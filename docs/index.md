@@ -3,8 +3,6 @@
 ![](images/Word Art.jpeg)
 
 
-**Author** : Kushal Luthra <br>
-**repo url** : https://github.com/kushal-luthra/data-engineering-101
 
 ### Index
   - SQL Performance Tuning:
@@ -15,3 +13,6 @@
   - Career Development
       - [Cold Mail Tactics](random/cold_mails.md)
   - [About Me](aboutme.md)
+
+
+**Author** : Kushal Luthra <br>
