@@ -10,6 +10,8 @@
   - SQL Performance Tuning:
       - [SQL Performance Tuning Page](./SQL/docs/sql_performance_tuning.md)
       - [SQL Performance Tuning Summary](./SQL/docs/sql_performance_tuning_summary.md)
-  - Career Development - Tips & Tricks:
+  - Concepts
+    - [Data Warehousing Concepts](./SQL/docs/Data-Warehousing-basics.md)
+  - Career Development
       - [Cold Mail Tactics](random/cold_mails.md)
   - [About Me](aboutme.md)
