@@ -15,7 +15,7 @@ theme:
 nav:
   - Home: index.md
   - SQL Performance Tuning:
-      - SQL Performance Tuning :  SQL/docs/sql_performance_tuning_summary.md
+      - SQL Performance Tuning :  SQL/docs/sql_performance_tuning.md
       - SQL Performance Tuning Summary :  SQL/docs/sql_performance_tuning_summary.md
   - About Me: aboutme.md
 
