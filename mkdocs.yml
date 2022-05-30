@@ -1,0 +1,26 @@
+site_name: Data Engineering 101
+site_author: Kushal Luthra
+site_description: Data Engineering 101 - concepts, quick reads, notes, etc.
+
+repo_name: data-engineering-101
+repo_url: https://github.com/kushal-luthra/data-engineering-101
+edit_uri: edit/main/docs/
+
+copyright: Copyright &copy; 2022 Kushal Luthra
+
+theme:
+  name: material
+  language: en
+
+nav:
+  - Home: index.md
+  - About Me: aboutme.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kushal-luthra
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/kushal_luthra
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/kushalluthra/
