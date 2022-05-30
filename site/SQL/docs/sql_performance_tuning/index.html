@@ -1,0 +1,991 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Engineering 101 - concepts, quick reads, notes, etc.">
+      
+      
+        <meta name="author" content="Kushal Luthra">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
+    
+    
+      
+        <title>SQL Performance Tuning : Summary - Data Engineering 101</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.1c3799f8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql-performance-tuning-summary" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Engineering 101
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SQL Performance Tuning : Summary
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Engineering 101
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          SQL Performance Tuning
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL Performance Tuning" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          SQL Performance Tuning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_performance_tuning_summary/" class="md-nav__link">
+        SQL Performance Tuning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_performance_tuning_summary/" class="md-nav__link">
+        SQL Performance Tuning Summary
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../aboutme/" class="md-nav__link">
+        About Me
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tip-1-never-use-star-to-fetch-all-records-from-table" class="md-nav__link">
+    Tip 1: Never use *(Star) to fetch all records from table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-2-try-to-avoid-distinct-keyword-from-the-query" class="md-nav__link">
+    Tip 2: Try to avoid DISTINCT keyword from the query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-3-carefully-use-where-conditions-in-sql" class="md-nav__link">
+    Tip 3: Carefully use WHERE conditions in sql
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-4-use-like-operator-instead-of-equal-to" class="md-nav__link">
+    Tip 4: Use Like operator instead of equal to (=)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-5-avoid-having-clausegroup-by-statements" class="md-nav__link">
+    Tip 5: Avoid HAVING clause/GROUP BY statements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-6-use-of-exists-and-in-operators" class="md-nav__link">
+    Tip 6: Use of EXISTS and IN Operators
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-7-try-to-use-union-all-instead-of-union" class="md-nav__link">
+    Tip 7: Try to use UNION ALL instead of UNION
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-8-avoid-use-of-functions-in-where-condition" class="md-nav__link">
+    Tip 8: Avoid use of Functions in Where condition.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-9-convert-or-to-and" class="md-nav__link">
+    Tip 9: convert OR to AND
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-10-subquery-unnesting" class="md-nav__link">
+    Tip 10: Subquery Unnesting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-11-in-and-between" class="md-nav__link">
+    Tip 11: IN and BETWEEN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-12-fetching-first-n-records" class="md-nav__link">
+    Tip 12: Fetching first N records
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-13-union-vs-union-all" class="md-nav__link">
+    Tip 13: UNION vs UNION ALL:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-14-intersect-vs-exists-operator" class="md-nav__link">
+    Tip 14: INTERSECT Vs EXISTS operator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-15-minus-vs-not-exists" class="md-nav__link">
+    Tip 15: MINUS Vs NOT EXISTS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-16-using-like-conditions" class="md-nav__link">
+    Tip 16: Using Like conditions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-17-using-functions-on-indexed-columns-will-suppress-index-usage" class="md-nav__link">
+    Tip 17: Using Functions on Indexed Columns will suppress index usage.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-18-handling-null-values" class="md-nav__link">
+    Tip 18: Handling NULL Values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-19-use-truncate-instead-of-delete" class="md-nav__link">
+    Tip 19 : Use Truncate instead of Delete
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-20-data-type-mismatches" class="md-nav__link">
+    Tip 20: Data Type Mismatches
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-21-tuning-ordered-queries-order-by-clause" class="md-nav__link">
+    Tip 21: Tuning Ordered queries- Order By clause
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-22-retrieving-min-and-max-values" class="md-nav__link">
+    Tip 22 : Retrieving MIN and MAX Values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-23-views" class="md-nav__link">
+    Tip 23 : Views
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-24-frequent-commit-is-not-desired" class="md-nav__link">
+    Tip 24: Frequent commit is not desired
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tip-25-multitable-dml-operations-skip-for-big-data" class="md-nav__link">
+    Tip 25: Multitable DML operations (skip for big data)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/SQL/docs/sql_performance_tuning.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="sql-performance-tuning-summary">SQL Performance Tuning : Summary</h1>
+<p><br></p>
+<h4 id="tip-1-never-use-star-to-fetch-all-records-from-table">Tip 1: Never use *(Star) to fetch all records from table</h4>
+<p>Sql query become fast if you use actual columns instead of * to fetch all the records from the table.<br></p>
+<p>Not Recommended - <br></p>
+<pre><code>Select * from Employee;
+</code></pre>
+<p>Recommended  <br></p>
+<pre><code>Select Eno,Ename,Address from Employee;
+</code></pre>
+<p><br></p>
+<h4 id="tip-2-try-to-avoid-distinct-keyword-from-the-query">Tip 2: Try to avoid DISTINCT keyword from the query</h4>
+<p>Try to avoid DISTINCT keyword from select statements.<br>
+DISTINCT keyword has high cost and low performance.<br>
+When anyone uses DISTINCT keyword, it first SORTS the data from column and then fetches the distinct values.<br>
+Use EXISTS operator instead of DISTINCT keyword.<br></p>
+<p>Not Recommended:<br></p>
+<pre><code>SELECT 
+    DISTINCT 
+             d.dept_no, 
+             d.department_name
+FROM Department d,Employee e
+WHERE d.dept_no= e.dept_no;
+</code></pre>
+<p>Recommended:<br></p>
+<pre><code>SELECT 
+    d.dept_no, 
+    d.department_name
+FROM Department d
+WHERE EXISTS ( SELECT ‘X’ FROM Employee e WHERE d.dept_no= e.dept_no);
+</code></pre>
+<p><br></p>
+<h4 id="tip-3-carefully-use-where-conditions-in-sql">Tip 3: Carefully use WHERE conditions in sql</h4>
+<p>Try to use correct operator as per requirement given.</p>
+<p>Not Recommended:<br></p>
+<pre><code>Select * 
+from Employee 
+WHERE salary != 65000;
+</code></pre>
+<p>Recommended:<br></p>
+<pre><code>Select * 
+from Employee 
+WHERE salary &gt; 65000 and salary &lt; 65000;
+</code></pre>
+<p><br></p>
+<h4 id="tip-4-use-like-operator-instead-of-equal-to">Tip 4: Use Like operator instead of equal to (=)</h4>
+<p>Not Recommended:<br></p>
+<pre><code>Select * 
+from Employee 
+where name=’Amit’;
+</code></pre>
+<p>Recommended:<br></p>
+<pre><code>Select * 
+from Employee 
+where name like ‘Amit%’;
+</code></pre>
+<p><br></p>
+<h4 id="tip-5-avoid-having-clausegroup-by-statements">Tip 5: Avoid HAVING clause/GROUP BY statements</h4>
+<p>HAVING clause and GROUP BY statements have high cost.<br>
+So try to avoid it in sql query.<br></p>
+<p>Not Recommended - <br></p>
+<pre><code>Select * 
+from Employee 
+WHERE name=’Amit’  
+GROUP BY department 
+HAVING salary=45000;
+</code></pre>
+<p>Recommended - <br></p>
+<pre><code>Select * 
+from Employee 
+WHERE name=’Amit’ and salary=45000;
+</code></pre>
+<p>More added: - <br>
+Having clause- <br>
+We use Having clause to eliminate some of the group values. <br>
+Issue – Having clause restricts the rows AFTER they are read. <br> 
+So if no restriction in “where clause”,  optimizer will use full table scan. <br>
+This is really important coz all predicates in the HAVING Clause will not be used as access predicates. So they will not make optimizer use indexes, partitions etc. <br>
+This is because to perform HAVING clause, it first reads all the rows and then eliminates unnecessary rows. <br></p>
+<p><br></p>
+<h4 id="tip-6-use-of-exists-and-in-operators">Tip 6: Use of EXISTS and IN Operators</h4>
+<p>Basically, Operator <strong>IN</strong> has lowest performance.<br>
+<strong>IN</strong> operator is used when Filter criteria is in subquery, whereas <strong>EXISTS</strong> operator is used when filter criteria is in main query.<br></p>
+<p>Example:<br>
+<strong>IN Operator</strong> <br></p>
+<pre><code>Select * 
+from Employee 
+where Department_name IN (
+                          Select Department_name 
+                          from Department 
+                          where Dno=10);
+</code></pre>
+<p><strong>Exist operator</strong> <br></p>
+<pre><code>Select * 
+from Employee 
+where EXISTS (
+               Select Department_name 
+               from Department 
+               where Dno=10);
+</code></pre>
+<p><strong>More added</strong> <br>
+When you run a query with IN clause, database will process it in below format –<br>
+That is, in case of use of IN clause, each value of sub query is joined with outer query.<br>
+Treats below Query -<br></p>
+<pre><code>select * from T1 where x in (select x from T2);
+</code></pre>
+<p>as -<br></p>
+<pre><code>select * from t1, (select x from t2) T2 where t1.x = t2.x;
+</code></pre>
+<p>But when you use EXIST clause, database <strong>will exit as soon as it gets the first match</strong>.<br>
+So, in case of EXIST clause it runs executes query in below format –<br>
+Treats below query -<br></p>
+<pre><code>select * from T1 where exists (select x from T2 where t1.x=t2.x);
+</code></pre>
+<p>as -<br></p>
+<pre><code>FOR x  IN (select * from t1) LOOP
+    IF (EXISTS ( SELECT X FROM T2) ) THEN
+        OUTPUT THE RECORD
+    END IF;
+END;
+</code></pre>
+<p>That is, using EXIST clause will imply database will run it like a FOR loop and as soon as match is found, it moves to next record.<br></p>
+<p><strong>So which one is faster – IN or EXIST?</strong><br>
+a. This totally depends on situation.<br>
+Use IN when - outer table = Big and Subquery = Small<br>
+Use EXISTS when – outer table = Small and Subquery = Big<br></p>
+<p>b. Even above rules are not fixed.<br>
+For example, if subquery has bigger table, but it has an index, in this case use of IN is suggested.<br></p>
+<p>c. So-<br>
+EXISTS doesn’t work better than IN all the times.<br>
+IN is better than EXISTS if –<br>
+outer table = Big and Subquery = Small<br>
+outer table = Small and Subquery = Big + Indexed<br></p>
+<p><strong>NOT EXISTS vs NOT IN</strong> <br>
+•   NOT EXISTS is not equivalent of NOT IN.<br>
+•   NOT EXISTS cannot be used instead of NOT IN all the times. <br>
+•   More specifically, if there is any NULL value in your data, they will show different result.<br>
+•   If your subquery returns even one NULL value, NOT IN will not match any rows.<br>
+•   On other hand, if you have a chance to use NOT EXISTS instead of NOT IN, you should test it.<br>
+•   In most database versions of oracle, EXISTS and IN are treated similarly in terms of execution plan.<br></p>
+<p><br></p>
+<h4 id="tip-7-try-to-use-union-all-instead-of-union">Tip 7: Try to use UNION ALL instead of UNION</h4>
+<p>UNION scans all data first and then eliminate duplicate so it has slow performance.<br></p>
+<p>Not Recommended<br></p>
+<pre><code>Select * from Employee where dept_no=10
+UNION
+Select * from Employee where dept_no=20;
+</code></pre>
+<p>Recommended <br></p>
+<pre><code>Select * from Employee where dept_no=10
+UNION  ALL
+Select * from Employee where dept_no=20;
+</code></pre>
+<p><br></p>
+<h4 id="tip-8-avoid-use-of-functions-in-where-condition">Tip 8: Avoid use of Functions in Where condition.</h4>
+<p>Not Recommended <br></p>
+<pre><code>Select * from Employee where Substr(name,1,3)=’Ami’;
+</code></pre>
+<p>Recommended <br></p>
+<pre><code>Select * from Employee where name like ‘Ami%’;
+</code></pre>
+<p><br></p>
+<h4 id="tip-9-convert-or-to-and">Tip 9: convert OR to AND</h4>
+<p>If we use OR clause, it will PREVENT index usages.<br>
+Instead, we should use AND where possible.<br>
+Not Recommended <br></p>
+<pre><code>select * from sales where prod_id = 13 or promo_id=14;
+</code></pre>
+<p>Recommended <br></p>
+<pre><code>select * from sales where prod_id = 13
+UNION All
+select * from sales where promo_id=14 AND prod_id &lt;&gt; 13;
+</code></pre>
+<p><br></p>
+<h4 id="tip-10-subquery-unnesting">Tip 10: Subquery Unnesting</h4>
+<p>Nested queries are very costly, and so transformer tries to convert them to equivalent join statements.<br>
+Not Recommended <br></p>
+<pre><code>select * from sales 
+where cust_id IN (select cust_id from customers);
+</code></pre>
+<p>Recommended <br></p>
+<pre><code>select sales.* from sales, customers 
+where sales.cust_id=customers.cust_id;
+</code></pre>
+<p><br></p>
+<h4 id="tip-11-in-and-between">Tip 11: IN and BETWEEN</h4>
+<pre><code>select * from employees where emp_id in (2,3,4,5); 
+</code></pre>
+<p>The above is equivalent to </p>
+<pre><code>select * from employees 
+where emp_id = 2 OR emp_id=3 OR emp_id=4 OR emp_id=5
+</code></pre>
+<p>---this implies full table scan.</p>
+<p>Solution -</p>
+<pre><code>select * from employees where emp_id between 2 and 5;
+</code></pre>
+<p><br></p>
+<h4 id="tip-12-fetching-first-n-records">Tip 12: Fetching first N records</h4>
+<p>Suppose we want to see only 10 records in our select statement output.<br> 
+There are 2 ways to do this –<br>
+Using rownum  (Recommended)</p>
+<pre><code>SELECT * FROM EMPLOYEE where rownum&lt;11;
+</code></pre>
+<p>Using fetch first (not recommended)</p>
+<pre><code>SELECT * FROM EMPLOYEE FETCH FIRST 10 ROWS ONLY;
+</code></pre>
+<p>In case of rownum- <br>
+Here it reads first 10 rows use count STOPKEY operator, and so faster than fetch first method.<br></p>
+<p>In case of fetch first –<br>
+Here we read whole table, and then applied a windowing function to select 1st 10 records.<br></p>
+<p><br></p>
+<h4 id="tip-13-union-vs-union-all">Tip 13: UNION vs UNION ALL:</h4>
+<p>UNION – combines data and drops duplicate rows.<br>
+UNION ALL – combines data and retains duplicate rows.<br><br>
+Suggest: Some key points-<br>
+•   by default, UNION ALL is less costly than UNION, as latter sorts data internally to remove duplicates.<br>
+•   But if your table is indexed, then sort operation in UNION wont be that costly, and so you can use UNION also.<br>
+So –<br>
+-   Use UNION if table is indexed and you don’t want duplicates in output.
+-   Use UNION ALL if–<br>
+    -   There is no duplicate in your data, or<br>
+    -   You are ok with having duplicate data in output.<br>
+-   But overall, UNION ALL gives better performance than UNION.<br></p>
+<p><br></p>
+<h4 id="tip-14-intersect-vs-exists-operator">Tip 14: INTERSECT Vs EXISTS operator</h4>
+<p>Intersect gives common rows of 2 intersection in a Sorted order.<br>
+As part of intersect, 2 rows sources are first sorted, and then common records are fetched.<br></p>
+<p>In place of INTERSECT operator, we should try and use EXISTS clause, which is more efficient.<br> 
+One caveat is that, in case of EXISTS clause, output is not sorted, unlike in case of INTERSECT clause.</p>
+<p>Not Recommended <br></p>
+<pre><code>SELECT employee_id 
+FROM employees 
+where employee_id between 145 and 179
+INTERSECT
+SELECT employee_id 
+FROM employees 
+WHERE first_name LIKE 'A%';
+</code></pre>
+<p>Recommended <br></p>
+<pre><code>SELECT employee_id 
+FROM employees e 
+where employee_id between 145 and 179
+and exists
+         (SELECT employee_id 
+          FROM employees t 
+          WHERE first_name LIKE 'A%' and e.employee_id = t.employee_id);
+</code></pre>
+<p><br></p>
+<h4 id="tip-15-minus-vs-not-exists">Tip 15: MINUS Vs NOT EXISTS</h4>
+<p>MINUS operator eliminates matched rows of 1st (with 2nd) and returns rest of the rows of 1st. <br>
+NOT EXISTS clause can also do same work as MINUS, but has much better performance. <br><br>
+Not Recommended <br></p>
+<pre><code>SELECT employee_id FROM employees where employee_id between 145 and 179
+MINUS
+SELECT employee_id FROM employees WHERE first_name LIKE 'A%';
+</code></pre>
+<p>Recommended <br></p>
+<pre><code>SELECT employee_id FROM employees e where employee_id between 145 and 179
+and not exists
+(SELECT employee_id FROM employees t WHERE first_name LIKE 'A%' and e.employee_id = t.employee_id);
+</code></pre>
+<p><br></p>
+<h4 id="tip-16-using-like-conditions">Tip 16: Using Like conditions</h4>
+<p>To enable use of indexes, avoid use of wild card character at beginning of source text scan.<br>
+If you are forced to use wild card character at beginning, you can create reverse index, and handle that problem using that index. <br>
+In this case, when you reverse index, then source text will eliminate use of wild card at beginning.<br>
+Eg – <br>
+Suppose you want to find records where last name ends is “hhar”, then create reverse() index on last_name to reverse it and then use condition where reversed last name begins with “rahh”. <br>
+Though reverse() index usage will have cost, but if your column is selective enough, it wont be much cost.</p>
+<p><br></p>
+<h4 id="tip-17-using-functions-on-indexed-columns-will-suppress-index-usage">Tip 17: Using Functions on Indexed Columns will suppress index usage.</h4>
+<p>Use of function on indexed column will suppress index usage.<br>
+So, rewrite query to avoid use of function.<br>
+BAD QUERY</p>
+<pre><code>    select employee_id, first_name, last_name
+    from employees 
+    where trunc(hire_date,'YEAR') = '01-JAN-2002';
+</code></pre>
+<p>GOOD: rewritten query</p>
+<pre><code>    select employee_id, first_name, last_name
+    from employees 
+    where hire_date between '01-JAN-2002' and '31-DEC-2002';
+</code></pre>
+<p>Eg2 -<br>
+Bad<br></p>
+<pre><code>select * from mytable where substr(emp_name,1,2) = 'Po';
+</code></pre>
+<p>Good<br> </p>
+<pre><code>select * from mytable where emp_name like 'Po%';
+</code></pre>
+<p>Note -<br> 
+In Spark, we have HashAggregates and SortAggregates.<br> 
+Hash Aggregates are more performant, and work only on mutable data types.<br>
+That is, if all elements in your Select clause (except those in Group by clause) are mutable types like INT, FLOAT, etc, then spark will use Hash Aggregates.<br> 
+This means, sometimes, for performance gain, we need to apply Function to transform values.<br></p>
+<p>See #14 at below link for details <br>
+https://github.com/kushal-luthra/spark-development/blob/master/notes/spark_opimization.md</p>
+<p><br></p>
+<h4 id="tip-18-handling-null-values">Tip 18: Handling NULL Values</h4>
+<p>Failing to deal with NULL values will lead to unintentional results or performance losses.<br>
+Why -<br>
+•B-Tree indexes do not index NULL values.<br>
+•If there are any NULL values in your indexed columns and you need to get rows which have NULL values, optimizer will not use your index, and perform a full table scan instead.<br>
+•That is, having Null values in your index may sometimes suppress index usage.<br></p>
+<p><strong>Ways to handle NULL value-based performance loss</strong> <br>
+a. Use IS NOT NULL condition in your WHERE clause. <br> 
+Use IS NOT NULL condition in your WHERE clause if you don’t need to have NULL values in result set.<br> 
+That is, even if you now your result will not be having any NULL values, you should use “is not null “ clause to make optimizer use indexes. <br> 
+Eg –
+Query 1: </p>
+<pre><code>select emp_name, emp_id 
+from employee 
+where emp_id &lt;&gt; 1;
+</code></pre>
+<p>Query 2: </p>
+<pre><code>select emp_name, emp_id 
+from employee 
+where emp_id &lt;&gt; 1 and emp_id is not null;
+</code></pre>
+<p>In query 1, we will see FULL Table scan and in case of query 2, we see index-based scan, and lower query cost.<br> </p>
+<p>b. Adding not null constraint to your columns and insert a specific value for NULL values like ‘0’ if value in a column is null. <br></p>
+<p>c. If reasonable, create a BITMAP index instead of B-Tree index. <br>
+BITMAP indexes store NULL values. <br>
+So even if there are null values in our column, optimizer will be able to use our indexes.<br> 
+However, you need to take into consideration index efficiency between B-Tree and BITMAP, as former as more efficient than latter.<br>
+- We use BITMAP indexes when – cardinality is LOW and index not modified often. <br>
+- We use B-Tree index when – cardinality/selectivity  is high.<br></p>
+<h4 id="tip-19-use-truncate-instead-of-delete">Tip 19 : Use Truncate instead of Delete</h4>
+<p><strong>Truncate</strong> is always faster than <strong>DELETE</strong> command.  <br>
+This is because when you run delete command, oracle database generates lots of UNDO data for deleted rows and generating UNDO data is an expensive operation. <br>
+Truncate doesn’t generate UNDO Data. <br></p>
+<p>But before using Truncate command, there are few things to note about it- <br>
+•   No rollback –  <br> Truncate operation cannot be rollbacked, and Flashback is also not so easy after truncate operations. <br>
+    You may need to use Flashback Data Archive or some other external tools in this case. <br> <br>
+•   Truncate is a DDL operation –  <br> So when you run Truncate, your transaction will be committed.  <br>It performs commit before and after Truncate operation.  <br>Since it does 2 commits, and even if truncate operation fails in between, the changes you did before will be permanent in any case. <br> <br>
+•   Truncate a partition -  <br>We don’t need to truncate whole table all the times. You can truncate partition as well. <br> <br>
+•   Truncate doesn’t fire DML triggers -  <br> So you wont be able to log your truncate operation because of that.  <br>But it can fire the DDL triggers. <br> <br>
+•   Truncate makes unusable indexes usable again.  But delete does not. <br>
+<br></p>
+<h4 id="tip-20-data-type-mismatches">Tip 20: Data Type Mismatches</h4>
+<p>If data types of column and compared value dont match, this may suppress index usage.<br></p>
+<pre><code>select cust_id, cust_code from customers where cust_code = 101;
+
+Vs
+
+select cust_id, cust_code from customers where cust_code = '101';
+</code></pre>
+<p><br></p>
+<h4 id="tip-21-tuning-ordered-queries-order-by-clause">Tip 21: Tuning Ordered queries- Order By clause</h4>
+<p>Order by mostly <strong>requires SORT operations</strong>.<br>
+This sort operation is done in PGA or in disk (if PGA doesn’t have enough memory)<br>
+This disk is shown as ‘temporary table space’ in execution plan.<br>
+Issue – sorting in disk is a costly operation.<br></p>
+<p>Solution –<br>
+• Create a B-Tree index on column used in Order by Clause, or<br>
+• Modify a B-Tree index to include column used in Order by Clause.<br>
+• Why–&gt;  B-Tree indexes store columns in Order and using B-Tree index will eliminate sort operations.<br></p>
+<p><br></p>
+<h4 id="tip-22-retrieving-min-and-max-values">Tip 22 : Retrieving MIN and MAX Values</h4>
+<p>B-Tree indexes increase the performance a lot for min and max value searches.<br>
+If no B-Tree index, optimizer will need to read whole table.<br></p>
+<p>If our query has another column or another aggregate function in your query, it will be reading whole index or whole table.<br>
+For example-<br>
+When you see below, if we are looking for min() and max() values individually, output is just 2 for each.<br>
+But when we want to get min() and max() together, database will read full table, and hence cost is 8 times. <br>This is coz we have 2 aggregate functions in our query.<br>
+Bad - <br></p>
+<pre><code>    select min(), max() from mytable;
+</code></pre>
+<p>Good - <br></p>
+<pre><code>    select * FROM 
+        (select min() from mytable) min_cust, 
+        (select max() from mytable) max_cust;
+</code></pre>
+<p><br></p>
+<h4 id="tip-23-views">Tip 23 : Views</h4>
+<p>Simple view = view created from single table. <br>
+Complex view = view created by using multiple tables. <br>
+Some suggestions w.r.t. views- <br>
+1.  If you don’t need to use all the tables in a view, then don’t use the view.  <br>Instead use the actual tables.  <br>Otherwise, server will have to join all tables, do aggregation etc on them for a view. i.e. use view for the purpose for which it was created. <br> <br>
+2.  Else create another view.  <br> <br>
+3.  Don’t join complex views with a table or another view - <br> This is because most of the times view is first executed completely at first, and then result is used as row source to other table or view.  <br>So, in this case you be reading lots of unnecessary data and performing unnecessary join and group by.  <br>This will increase cost a lot. <br> <br>
+4.  Avoid performing outer join to the views –  <br> because if you use equality predicate on view column, the optimizer gets wrong if the table of that column has an outer join in the view as well.  <br> Because outer join may not know performance of view and may lead to bad execution as well. <br>
+    E.g. – if we do outer join, optimizer may not be able to push predicate inside the view definition at times of execution plan. <br> <br></p>
+<p>Materialized Views- <br>
+Unlike basic and complex views, materialized views store both query and data. <br>
+Materialized view data can be refreshed manually or via auto-refresh. <br>
+But materialized view maintenance is a burden to database – it needs to be kept up to date for each modification on each change. <br>
+As compared to normal views, materialized view will improve performance as we will select data directly from materialized view, and there will be no sorts, joins etc. <br>
+We can create index, partitions etc on materialized view like in an ordinary table. <br></p>
+<p><strong>Summary</strong> <br>
+ • If you don’t need to use all the tables in a view, then don’t use the view. Instead use the actual tables.<br> 
+ • Don’t join complex views with a table or another view. <br>
+ • Avoid performing outer join to the views. <br>
+ • Use Materialized View -  <br> Unlike basic and complex views, materialized views store both query and data. Materialized view data can be refreshed manually or via auto-refresh. But materialized view maintenance is a burden to database .<br></p>
+<p><br></p>
+<h4 id="tip-24-frequent-commit-is-not-desired">Tip 24: Frequent commit is not desired</h4>
+<ul>
+<li>make REDO logs bulky as we may be committing prior to period. <br></li>
+<li>make lock on modified rows, making them unavailable to other applications.<br></li>
+</ul>
+<p><br></p>
+<h4 id="tip-25-multitable-dml-operations-skip-for-big-data">Tip 25: Multitable DML operations (skip for big data)</h4>
+<p>Sometimes we have to read same table as input to different tables in our data warehouse. <br>
+So, if we have 5 different tables requiring input from 1 table, we should ideally be reading input table just once, and keep on feeding into different output tables as per requirements. <br>
+For this we have 2 options – <br>
+•   INSERT ALL <br>
+•   MERGE INTO <br></p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Kushal Luthra
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/kushal-luthra" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/kushal_luthra" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/kushalluthra/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      
+    
+  </body>
+</html>
