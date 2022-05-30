@@ -17,7 +17,7 @@
     
     
       
-        <title>SQL Performance Tuning Summary - Data Engineering 101</title>
+        <title>SQL Analytical Functions - Data Engineering 101</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sql-performance-tuning-summary" class="md-skip">
+        <a href="#sql-analytical-functions" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SQL Performance Tuning Summary
+              SQL Analytical Functions
             
           </span>
         </div>
@@ -261,6 +261,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../sql_performance_tuning_summary/" class="md-nav__link">
+        SQL Performance Tuning Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -273,12 +287,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          SQL Performance Tuning Summary
+          SQL Analytical Functions
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        SQL Performance Tuning Summary
+        SQL Analytical Functions
       </a>
       
         
@@ -297,162 +311,123 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tip-1-never-use-star-to-fetch-all-records-from-table" class="md-nav__link">
-    Tip 1: Never use *(Star) to fetch all records from table
+  <a href="#over-partition-by-order-by" class="md-nav__link">
+    over (partition by / order by )
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tip-2-try-to-avoid-distinct-keyword-from-the-query" class="md-nav__link">
-    Tip 2: Try to avoid DISTINCT keyword from the query 
+  <a href="#ranking-functions" class="md-nav__link">
+    Ranking Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Ranking Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#row_number-rank-and-dense_rank" class="md-nav__link">
+    ROW_NUMBER, RANK and DENSE_RANK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-nulls" class="md-nav__link">
+    Handling NULLs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ntile" class="md-nav__link">
+    NTILE
+  </a>
+  
+    <nav class="md-nav" aria-label="NTILE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cume_dist-and-percent_rank" class="md-nav__link">
+    CUME_DIST and PERCENT_RANK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windowing-functions" class="md-nav__link">
+    Windowing Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Windowing Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-and" class="md-nav__link">
+    ROWS BETWEEN &lt;&gt; AND &lt;&gt;
+  </a>
+  
+    <nav class="md-nav" aria-label="ROWS BETWEEN &lt;&gt; AND &lt;&gt;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-unbounded-preceding-and-unbounded-following" class="md-nav__link">
+    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-unbounded-preceding-and-current-row" class="md-nav__link">
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-1-preceding-and-1-following-" class="md-nav__link">
+    ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING -
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range-between" class="md-nav__link">
+    RANGE BETWEEN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first_value-and-last_value" class="md-nav__link">
+    FIRST_VALUE and LAST_VALUE
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tip-3-carefully-use-where-conditions-in-sql" class="md-nav__link">
-    Tip 3: Carefully use WHERE conditions in sql. 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-4-use-like-operator-instead-of-equal-to" class="md-nav__link">
-    Tip 4: Use Like operator instead of equal to (=)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-5-avoid-having-clausegroup-by-statements" class="md-nav__link">
-    Tip 5: Avoid HAVING clause/GROUP BY statements
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-6-use-of-exists-and-in-operators" class="md-nav__link">
-    Tip 6: Use of EXISTS and IN Operators
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-7-try-to-use-union-all-instead-of-union-as-union-scans-all-data-first-and-then-eliminate-duplicate-so-it-has-slow-performance" class="md-nav__link">
-    Tip 7: Try to use UNION ALL instead of UNION as UNION scans all data first and then eliminate duplicate so it has slow performance.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-9-convert-or-to-and" class="md-nav__link">
-    Tip 9: convert OR to AND
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-10-subquery-unnesting" class="md-nav__link">
-    Tip 10: Subquery Unnesting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-11-in-and-between" class="md-nav__link">
-    Tip 11: IN and BETWEEN
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-12-fetching-first-n-records-select-from-employee-where-rownum11" class="md-nav__link">
-    Tip 12: Fetching first N records:  SELECT * FROM EMPLOYEE where rownum&lt;11
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-13-union-vs-union-all" class="md-nav__link">
-    Tip 13: UNION vs UNION ALL:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-14-intersect-vs-exists-operator" class="md-nav__link">
-    Tip 14: INTERSECT Vs EXISTS operator
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-15-minus-vs-not-exists" class="md-nav__link">
-    Tip 15: MINUS Vs NOT EXISTS
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-16-using-like-conditions" class="md-nav__link">
-    Tip 16: Using Like conditions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-17-using-functions-on-indexed-columns-will-suppress-index-usage" class="md-nav__link">
-    Tip 17: Using Functions on Indexed Columns will suppress index usage.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-18-handling-null-values" class="md-nav__link">
-    Tip 18: Handling NULL Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-19-use-truncate-instead-of-delete" class="md-nav__link">
-    Tip 19 : Use Truncate instead of Delete
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-20-data-type-mismatches" class="md-nav__link">
-    Tip 20: Data Type Mismatches
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-21-tuning-ordered-queries-order-by-clause" class="md-nav__link">
-    Tip 21: Tuning Ordered queries- Order By clause
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-22-retrieving-min-and-max-values" class="md-nav__link">
-    Tip 22 : Retrieving MIN and MAX Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-23-views" class="md-nav__link">
-    Tip 23 : Views
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-24-frequent-commit-is-not-desired" class="md-nav__link">
-    Tip 24: Frequent commit is not desired:
+  <a href="#laglead-functions" class="md-nav__link">
+    LAG/LEAD Functions
   </a>
   
 </li>
@@ -461,20 +436,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sql-analytical-functions/" class="md-nav__link">
-        SQL Analytical Functions
-      </a>
     </li>
   
 
@@ -624,162 +585,123 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tip-1-never-use-star-to-fetch-all-records-from-table" class="md-nav__link">
-    Tip 1: Never use *(Star) to fetch all records from table
+  <a href="#over-partition-by-order-by" class="md-nav__link">
+    over (partition by / order by )
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tip-2-try-to-avoid-distinct-keyword-from-the-query" class="md-nav__link">
-    Tip 2: Try to avoid DISTINCT keyword from the query 
+  <a href="#ranking-functions" class="md-nav__link">
+    Ranking Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Ranking Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#row_number-rank-and-dense_rank" class="md-nav__link">
+    ROW_NUMBER, RANK and DENSE_RANK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-nulls" class="md-nav__link">
+    Handling NULLs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ntile" class="md-nav__link">
+    NTILE
+  </a>
+  
+    <nav class="md-nav" aria-label="NTILE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cume_dist-and-percent_rank" class="md-nav__link">
+    CUME_DIST and PERCENT_RANK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windowing-functions" class="md-nav__link">
+    Windowing Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Windowing Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-and" class="md-nav__link">
+    ROWS BETWEEN &lt;&gt; AND &lt;&gt;
+  </a>
+  
+    <nav class="md-nav" aria-label="ROWS BETWEEN &lt;&gt; AND &lt;&gt;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-unbounded-preceding-and-unbounded-following" class="md-nav__link">
+    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-unbounded-preceding-and-current-row" class="md-nav__link">
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-1-preceding-and-1-following-" class="md-nav__link">
+    ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING -
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range-between" class="md-nav__link">
+    RANGE BETWEEN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first_value-and-last_value" class="md-nav__link">
+    FIRST_VALUE and LAST_VALUE
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tip-3-carefully-use-where-conditions-in-sql" class="md-nav__link">
-    Tip 3: Carefully use WHERE conditions in sql. 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-4-use-like-operator-instead-of-equal-to" class="md-nav__link">
-    Tip 4: Use Like operator instead of equal to (=)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-5-avoid-having-clausegroup-by-statements" class="md-nav__link">
-    Tip 5: Avoid HAVING clause/GROUP BY statements
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-6-use-of-exists-and-in-operators" class="md-nav__link">
-    Tip 6: Use of EXISTS and IN Operators
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-7-try-to-use-union-all-instead-of-union-as-union-scans-all-data-first-and-then-eliminate-duplicate-so-it-has-slow-performance" class="md-nav__link">
-    Tip 7: Try to use UNION ALL instead of UNION as UNION scans all data first and then eliminate duplicate so it has slow performance.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-9-convert-or-to-and" class="md-nav__link">
-    Tip 9: convert OR to AND
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-10-subquery-unnesting" class="md-nav__link">
-    Tip 10: Subquery Unnesting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-11-in-and-between" class="md-nav__link">
-    Tip 11: IN and BETWEEN
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-12-fetching-first-n-records-select-from-employee-where-rownum11" class="md-nav__link">
-    Tip 12: Fetching first N records:  SELECT * FROM EMPLOYEE where rownum&lt;11
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-13-union-vs-union-all" class="md-nav__link">
-    Tip 13: UNION vs UNION ALL:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-14-intersect-vs-exists-operator" class="md-nav__link">
-    Tip 14: INTERSECT Vs EXISTS operator
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-15-minus-vs-not-exists" class="md-nav__link">
-    Tip 15: MINUS Vs NOT EXISTS
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-16-using-like-conditions" class="md-nav__link">
-    Tip 16: Using Like conditions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-17-using-functions-on-indexed-columns-will-suppress-index-usage" class="md-nav__link">
-    Tip 17: Using Functions on Indexed Columns will suppress index usage.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-18-handling-null-values" class="md-nav__link">
-    Tip 18: Handling NULL Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-19-use-truncate-instead-of-delete" class="md-nav__link">
-    Tip 19 : Use Truncate instead of Delete
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-20-data-type-mismatches" class="md-nav__link">
-    Tip 20: Data Type Mismatches
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-21-tuning-ordered-queries-order-by-clause" class="md-nav__link">
-    Tip 21: Tuning Ordered queries- Order By clause
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-22-retrieving-min-and-max-values" class="md-nav__link">
-    Tip 22 : Retrieving MIN and MAX Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-23-views" class="md-nav__link">
-    Tip 23 : Views
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-24-frequent-commit-is-not-desired" class="md-nav__link">
-    Tip 24: Frequent commit is not desired:
+  <a href="#laglead-functions" class="md-nav__link">
+    LAG/LEAD Functions
   </a>
   
 </li>
@@ -796,103 +718,373 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/SQL/docs/sql_performance_tuning_summary.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/SQL/docs/sql-analytical-functions.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="sql-performance-tuning-summary">SQL Performance Tuning : Summary</h1>
-<h4 id="tip-1-never-use-star-to-fetch-all-records-from-table">Tip 1: Never use *(Star) to fetch all records from table</h4>
-<h4 id="tip-2-try-to-avoid-distinct-keyword-from-the-query">Tip 2: Try to avoid DISTINCT keyword from the query <br></h4>
-<p>Not Recommended:</p>
-<pre><code>SELECT DISTINCT d.dept_no, d.department_name
-    FROM Department d,Employee e
-    WHERE d.dept_no= e.dept_no;
+<h1 id="sql-analytical-functions">SQL Analytical Functions</h1>
+<p><a href="http://etutorials.org/SQL/Mastering+Oracle+SQL/Chapter+14.+Advanced+Analytic+SQL/14.1+Analytic+SQL+Overview/">Source</a></p>
+<h3 id="over-partition-by-order-by">over (partition by / order by )</h3>
+<p>eg -</p>
+<pre><code>SELECT o.region_id region_id, o.cust_nbr cust_nbr,
+
+ SUM(o.tot_sales) tot_sales,
+
+ SUM(SUM(o.tot_sales)) OVER (PARTITION BY o.region_id) region_sales
+
+FROM orders o
+
+WHERE o.year = 2001
+
+GROUP BY o.region_id, o.cust_nbr;
 </code></pre>
-<p>Recommended:<br></p>
-<pre><code>SELECT 
-    d.dept_no d.department_name
-FROM Department d
-WHERE EXISTS ( SELECT ‘X’ FROM Employee e WHERE d.dept_no= e.dept_no);
-</code></pre>
-<h4 id="tip-3-carefully-use-where-conditions-in-sql">Tip 3: Carefully use WHERE conditions in sql. <br></h4>
-<h4 id="tip-4-use-like-operator-instead-of-equal-to">Tip 4: Use Like operator instead of equal to (=)</h4>
-<h4 id="tip-5-avoid-having-clausegroup-by-statements">Tip 5: Avoid HAVING clause/GROUP BY statements</h4>
-<h4 id="tip-6-use-of-exists-and-in-operators">Tip 6: Use of EXISTS and IN Operators</h4>
-<h4 id="tip-7-try-to-use-union-all-instead-of-union-as-union-scans-all-data-first-and-then-eliminate-duplicate-so-it-has-slow-performance">Tip 7: Try to use UNION ALL instead of UNION as UNION scans all data first and then eliminate duplicate so it has slow performance.</h4>
-<h4 id="tip-9-convert-or-to-and">Tip 9: convert OR to AND</h4>
-<h4 id="tip-10-subquery-unnesting">Tip 10: Subquery Unnesting</h4>
-<h4 id="tip-11-in-and-between">Tip 11: IN and BETWEEN</h4>
-<h4 id="tip-12-fetching-first-n-records-select-from-employee-where-rownum11">Tip 12: Fetching first N records:  SELECT * FROM EMPLOYEE where rownum&lt;11</h4>
-<h4 id="tip-13-union-vs-union-all">Tip 13: UNION vs UNION ALL:</h4>
-<p>• by default, UNION ALL is less costly than UNION, as latter sorts data internally to remove duplicates.<br>
- • But if your table is indexed, then sort operation in UNION wont be that costly, and so you can use UNION also.<br></p>
-<h4 id="tip-14-intersect-vs-exists-operator">Tip 14: INTERSECT Vs EXISTS operator</h4>
-<h4 id="tip-15-minus-vs-not-exists">Tip 15: MINUS Vs NOT EXISTS</h4>
-<h4 id="tip-16-using-like-conditions">Tip 16: Using Like conditions</h4>
-<p>To enable use of indexes, avoid use of wild card character at beginning of source text scan.<br>
-If you are forced to use wild card character at beginning, you can create reverse index, and handle that problem using that index. In this case, when you reverse index, then source text will eliminate use of wild card at beginning.<br></p>
-<h4 id="tip-17-using-functions-on-indexed-columns-will-suppress-index-usage">Tip 17: Using Functions on Indexed Columns will suppress index usage.</h4>
-<p>So, rewrite query to avoid use of function.<br>
-BAD QUERY</p>
-<pre><code>    select employee_id, first_name, last_name
-    from employees 
-    where trunc(hire_date,'YEAR') = '01-JAN-2002';
-</code></pre>
-<p>GOOD: rewritten query</p>
-<pre><code>    select employee_id, first_name, last_name
-    from employees 
-    where hire_date between '01-JAN-2002' and '31-DEC-2002';
-</code></pre>
-<p>Eg2 -<br>
-Bad<br></p>
-<pre><code>select * from mytable where substr(emp_name,1,2) = 'Po';
-</code></pre>
-<p>Good<br> </p>
-<pre><code>select * from mytable where emp_name like 'Po%';
-</code></pre>
-<h4 id="tip-18-handling-null-values">Tip 18: Handling NULL Values</h4>
-<p>•B-Tree indexes do not index NULL values.<br>
-•If there are any NULL values in your indexed columns and you need to get rows which have NULL values, optimizer will not use your index, and perform a full table scan instead.<br>
-•That is, having Null values in your index may sometimes suppress index usage.<br></p>
-<p>Solution -<br>
-- Use IS NOT NULL condition in your WHERE clause. <br> 
-- Adding not null constraint to your columns and insert a specific value for NULL values like ‘0’ if value in a column is null. <br>
-- If reasonable, create a BITMAP index instead of B-Tree index. <br> </p>
-<h4 id="tip-19-use-truncate-instead-of-delete">Tip 19 : Use Truncate instead of Delete</h4>
-<h4 id="tip-20-data-type-mismatches">Tip 20: Data Type Mismatches</h4>
-<p>If data types of column and compared value dont match, this may suppress index usage.<br></p>
-<h4 id="tip-21-tuning-ordered-queries-order-by-clause">Tip 21: Tuning Ordered queries- Order By clause</h4>
-<p>Order by mostly requires sort operations.<br>
-This sort operation is done in PGA or in disk (if PGA doesn’t have enough memory)<br>
-This disk is shown as ‘temporary table space’ in execution plan.<br>
-Issue – sorting in disk is a costly operation.<br></p>
-<p>Solution –<br>
-• Create a B-Tree index on column used in Order by Clause, or<br>
-• Modify a B-Tree index to include column used in Order by Clause.<br>
-• Why – B-Tree indexes store columns in Order and using B-Tree index will eliminate sort operations.<br></p>
-<h4 id="tip-22-retrieving-min-and-max-values">Tip 22 : Retrieving MIN and MAX Values</h4>
-<p>B-Tree indexes increase the performance a lot for min and max value searches.<br>
-If no B-Tree index, optimizer will need to read whole table.<br>
-Bad - <br></p>
-<pre><code>    select min(), max() from mytable;
-</code></pre>
-<p>Good - <br></p>
-<pre><code>    select * FROM 
-        (select min() from mytable) min_cust, 
-        (select max() from mytable) max_cust;
-</code></pre>
-<h4 id="tip-23-views">Tip 23 : Views</h4>
-<p>• If you don’t need to use all the tables in a view, then don’t use the view. Instead use the actual tables.<br> 
- • Don’t join complex views with a table or another view. <br>
- • Avoid performing outer join to the views. <br>
- • Unlike basic and complex views, materialized views store both query and data. Materialized view data can be refreshed manually or via auto-refresh. But materialized view maintenance is a burden to database .<br></p>
-<h4 id="tip-24-frequent-commit-is-not-desired">Tip 24: Frequent commit is not desired:</h4>
+<h3 id="ranking-functions">Ranking Functions</h3>
+<p><a href="http://etutorials.org/SQL/Mastering+Oracle+SQL/Chapter+14.+Advanced+Analytic+SQL/14.2+Ranking+Functions/">source</a></p>
+<h4 id="row_number-rank-and-dense_rank">ROW_NUMBER, RANK and DENSE_RANK</h4>
 <ul>
-<li>make REDO logs bulky as we may be committing prior to period.<br></li>
-<li>make lock on modified rows, making them unavailable to other applications.<br></li>
+<li>ROW_NUMBER - Returns a unique number for each row starting with 1. <br>For rows that have duplicate values, numbers are arbitrarily assigned.<br></li>
+<li>DENSE_RANK - Assigns a unique number for each row starting with 1, except for rows that have duplicate values, in which case the same ranking is assigned.<br></li>
+<li>RANK - Assigns a unique number for each row starting with 1, except for rows that have duplicate values, in which case the same ranking is assigned and a gap appears in the sequence for each duplicate ranking.<br>
+eg 1 -</li>
 </ul>
+<pre><code>
+SELECT region_id, cust_nbr, 
+
+  SUM(tot_sales) cust_sales,
+
+  RANK( ) OVER (ORDER BY SUM(tot_sales) DESC) sales_rank,
+
+  DENSE_RANK( ) OVER (ORDER BY SUM(tot_sales) DESC) sales_dense_rank,
+
+  ROW_NUMBER( ) OVER (ORDER BY SUM(tot_sales) DESC) sales_number
+
+FROM orders
+
+WHERE year = 2001
+
+GROUP BY region_id, cust_nbr
+
+ORDER BY sales_number;
+
+
+REGION_ID   CUST_NBR  CUST_SALES SALES_RANK SALES_DENSE_RANK SALES_NUMBER
+
+---------- ---------- ---------- ---------- ---------------- ------------
+
+         8         18    1253840         11               11           11
+
+         5          2    1224992         12               12           12
+
+         9         23    1224992         12               12           13
+
+         9         24    1224992         12               12           14
+
+        10         30    1216858         15               13           15
+
+</code></pre>
+<p>eg 2 - The following query generates rankings for customer sales within each region rather than across all regions.<br> 
+Note the addition of the PARTITION BY clause:<br></p>
+<pre><code>SELECT 
+  region_id, cust_nbr, 
+
+  SUM(tot_sales) cust_sales,
+
+  RANK( ) OVER (PARTITION BY region_id  ORDER BY SUM(tot_sales) DESC) sales_rank,
+
+  DENSE_RANK( ) OVER (PARTITION BY region_id ORDER BY SUM(tot_sales) DESC) sales_dense_rank,
+
+  ROW_NUMBER( ) OVER (PARTITION BY region_id ORDER BY SUM(tot_sales) DESC) sales_number
+
+FROM orders
+
+WHERE year = 2001
+
+GROUP BY region_id, cust_nbr
+
+ORDER BY region_id, sales_number;
+
+REGION_ID    CUST_NBR CUST_SALES SALES_RANK SALES_DENSE_RANK SALES_NUMBER
+
+---------- ---------- ---------- ---------- ---------------- ------------
+
+         5          4    1878275          1                1            1
+
+         5          2    1224992          2                2            2
+
+         5          5    1169926          3                3            3
+
+         5          3    1161286          4                4            4
+
+         5          1    1151162          5                5            5
+
+         6          6    1788836          1                1            1
+
+         6          9    1208959          2                2            2
+
+</code></pre>
+<h4 id="handling-nulls">Handling NULLs<br></h4>
+<p>All ranking functions allow you to specify where in the ranking order NULL values should appear. <br>
+This is accomplished by appending either NULLS FIRST or NULLS LAST after the ORDER BY clause of the function, as in:<br></p>
+<pre><code>SELECT region_id, cust_nbr, SUM(tot_sales) cust_sales,
+
+  RANK( ) OVER (ORDER BY SUM(tot_sales) DESC NULLS LAST) sales_rank
+
+FROM orders
+
+WHERE year = 2001
+
+GROUP BY region_id, cust_nbr;
+</code></pre>
+<h3 id="ntile">NTILE<br></h3>
+<p>Another way rankings are commonly used is to generate buckets into which sets of rankings are grouped.<br> 
+For example, you may want to find those customers whose total sales ranked in the top 25%. <br>
+The following query uses the NTILE function to group the customers into four buckets (or quartiles):<br></p>
+<pre><code>SELECT region_id, cust_nbr, SUM(tot_sales) cust_sales,
+
+  NTILE(4) OVER (ORDER BY SUM(tot_sales) DESC) sales_quartile
+
+FROM orders
+
+WHERE year = 2001
+
+GROUP BY region_id, cust_nbr
+
+ORDER BY sales_quartile, cust_sales DESC;
+
+REGION_ID    CUST_NBR CUST_SALES SALES_QUARTILE
+
+---------- ---------- ---------- --------------
+
+         9         25    2232703              1
+
+         8         17    1944281              1
+
+         7         14    1929774              1
+</code></pre>
+<h4 id="cume_dist-and-percent_rank">CUME_DIST and PERCENT_RANK</h4>
+<p>CUME_DIST function (short for Cumulative Distribution) calculates the ratio of the number of rows that have a lesser or equal ranking to the total number of rows in the partition. <br> </p>
+<p>PERCENT_RANK function calculates the ratio of a row's ranking to the number of rows in the partition using the formula:<br></p>
+<pre><code>(RRP -- 1) / (NRP -- 1)
+</code></pre>
+<p>where RRP is the "rank of row in partition," and NRP is the "number of rows in partition."<br></p>
+<h3 id="windowing-functions">Windowing Functions</h3>
+<h4 id="rows-between-and">ROWS BETWEEN &lt;&gt; AND &lt;&gt;</h4>
+<p>Some of the sample values can be -</p>
+<h5 id="rows-between-unbounded-preceding-and-unbounded-following">ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING</h5>
+<p>eg -</p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  SUM(SUM(tot_sales)) OVER ( ORDER BY month 
+                             ROWS BETWEEN UNBOUNDED PRECEDING AND 
+                                          UNBOUNDED FOLLOWING     ) total_sales
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH MONTHLY_SALES TOTAL_SALES
+         1        610697     6307766
+         2        428676     6307766
+         3        637031     6307766
+         4        541146     6307766
+</code></pre>
+<h5 id="rows-between-unbounded-preceding-and-current-row">ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</h5>
+<p>eg 1 - max current value-</p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  MAX(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) max_preceeding
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH MONTHLY_SALES MAX_PRECEEDING
+         1        610697         610697
+         2        428676         610697
+         3        637031         637031
+         4        541146         637031
+         5        592935         637031
+         6        501485         637031
+</code></pre>
+<p>eg 2 - cumulative SUM -</p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  SUM(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) max_preceeding
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH MONTHLY_SALES RUNNING_TOTAL
+         1        610697         610697
+         2        428676        1039373
+         3        637031        1676404
+         4        541146        2217550
+         5        592935        2810485
+</code></pre>
+<h5 id="rows-between-1-preceding-and-1-following-">ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING -</h5>
+<p>eg -calculate avg of rolling 3 values (current row, rev row and next row);</p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  AVG(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) rolling_avg
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH MONTHLY_SALES ROLLING_AVG
+         1        610697    519686.5
+         2        428676  558801.333
+         3        637031  535617.667
+         4        541146  590370.667
+         5        592935  545188.667
+</code></pre>
+<h4 id="range-between">RANGE BETWEEN</h4>
+<ul>
+<li>ROWS BETWEEN - based on row ordered as per condition of ordering insdie over() clause.</li>
+<li>RANGE BETWEEN - based on value ranges specified under over() clause.</li>
+</ul>
+<p>eg1 - to generate a three-month rolling average (similar to above ROWS BETWEEN question).
+In our table, month is numeric integer value, and so RANGE works perfectly fine here.
+This substitution works because the month column contains integer values, so adding and subtracting 1 from the current month yields a three-month range.</p>
+<p>But if its character, then below wont be suited.</p>
+<pre><code>SELECT 
+  month,
+  SUM(tot_sales) monthly_sales,
+  AVG(SUM(tot_sales)) OVER (ORDER BY month RANGE BETWEEN 1 PRECEDING AND 1 FOLLOWING) rolling_avg
+FROM orders
+WHERE year = 2001  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+---------- ------------- -----------
+MONTH      MONTHLY_SALES ROLLING_AVG
+---------- ------------- -----------
+         1        610697    519686.5
+         2        428676  558801.333
+         3        637031  535617.667
+</code></pre>
+<p>eg2 - if we do a range of +/- 1.999, then also we get same values:</p>
+<pre><code>SELECT month,
+  SUM(tot_sales) monthly_sales,
+  AVG(SUM(tot_sales)) OVER (ORDER BY month RANGE BETWEEN 1.99 PRECEDING AND 1.99 FOLLOWING) rolling_avg
+FROM orders
+WHERE year = 2001  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+---------- ------------- -----------
+    MONTH  MONTHLY_SALES ROLLING_AVG
+---------- ------------- -----------
+         1        610697    519686.5
+         2        428676  558801.333
+         3        637031  535617.667
+</code></pre>
+<p>eg3 - working with <strong>DATE Range</strong>. <br>
+ROWS wont be of much use if we are working on Date Range.<br>
+If you are generating a window based on a DATE column, you can specify a range in increments of days, months, or years. <br>
+Since the orders table has no DATE columns, the next example shows how a date range can be specified against the order_dt column of the cust_order table:<br></p>
+<pre><code>SELECT 
+  TRUNC(order_dt) day,
+  SUM(sale_price) daily_sales,
+  AVG(SUM(sale_price)) OVER ( 
+                              ORDER BY TRUNC(order_dt) 
+                                              RANGE BETWEEN INTERVAL '2' DAY PRECEDING AND INTERVAL '2' DAY FOLLOWING     
+                            ) five_day_avg
+FROM cust_order
+WHERE sale_price IS NOT NULL 
+  AND order_dt BETWEEN TO_DATE('01-JUL-2001','DD-MON-YYYY')
+  AND TO_DATE('31-JUL-2001','DD-MON-YYYY')
+GROUP BY TRUNC(order_dt);
+
+
+--------- ----------- ------------
+DAY       DAILY_SALES FIVE_DAY_AVG
+--------- ----------- ------------
+16-JUL-01         112          146
+18-JUL-01         180          114
+20-JUL-01          50          169
+21-JUL-01          50   165.333333
+22-JUL-01         396   165.333333
+</code></pre>
+<h3 id="first_value-and-last_value">FIRST_VALUE and LAST_VALUE</h3>
+<p>They are used with windowing functions to identify the values of the first and last values in the window.<br>
+sample que :"How did each month's sales compare to the first month?"<br></p>
+<p>eg -<br>
+In the case of the three-month rolling average query shown previously, you could display the values of all three months along with the average of the three, as in:<br></p>
+<pre><code>SELECT month,
+  FIRST_VALUE(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) prev_month,
+  SUM(tot_sales) monthly_sales,
+  LAST_VALUE(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) next_month,
+  AVG(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) rolling_avg
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH PREV_MONTH MONTHLY_SALES NEXT_MONTH ROLLING_AVG
+         1     610697        610697     428676    519686.5
+         2     610697        428676     637031  558801.333
+         3     428676        637031     541146  535617.667
+         4     637031        541146     592935  590370.667
+         5     541146        592935     501485  545188.667
+</code></pre>
+<h3 id="laglead-functions">LAG/LEAD Functions</h3>
+<pre><code>&quot;LAG(VAL, N, &lt;default value&gt;) OVER () &quot; -- N=1 by default.
+&quot;LEAD(VAL, N, &lt;default value&gt;) OVER () &quot; -- N=1 by default.
+</code></pre>
+<p>Query - "Compute the total sales per month for the Mid-Atlantic region, including the percent change from the previous month" requires data from both the current and preceding rows to calculate the answer.</p>
+<p>Step 1 - get prev month's data using LAG function.<br></p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  LAG(SUM(tot_sales), 1) OVER (ORDER BY month) prev_month_sales
+FROM orders
+WHERE year = 2001
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+---------- ------------- ----------------
+     MONTH MONTHLY_SALES PREV_MONTH_SALES
+---------- ------------- ----------------
+         1        610697
+         2        428676           610697
+         3        637031           428676
+</code></pre>
+<p>Step 2 - handle NULL values. <br>
+If you see above, for month 1, PREV_MONTH_SALES is NULL.<br>
+So, can calculate % change in sales.<br>
+Here we keep current month sales as default value, and % sales in this case is 0%.<br></p>
+<pre><code>SELECT 
+    months.month month, 
+    months.monthly_sales monthly_sales,
+  ROUND((months.monthly_sales - months.prev_month_sales)/ months.prev_month_sales, 3) * 100 percent_change
+FROM
+ (
+    SELECT month, 
+           SUM(tot_sales) monthly_sales,
+           LAG(SUM(tot_sales), 1, SUM(tot_sales)) OVER (ORDER BY month) prev_month_sales
+
+    FROM orders
+    WHERE year = 2001
+    AND region_id = 6
+    GROUP BY month) months
+ORDER BY month;
+
+---------- ------------- --------------
+     MONTH MONTHLY_SALES PERCENT_CHANGE
+---------- ------------- --------------
+         1        610697              0
+         2        428676          -29.8
+         3        637031           48.6
+</code></pre>
 
               
             </article>
@@ -906,7 +1098,7 @@ Bad - <br></p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../sql_performance_tuning/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SQL Performance Tuning" rel="prev">
+        <a href="../sql_performance_tuning_summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SQL Performance Tuning Summary" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -915,20 +1107,20 @@ Bad - <br></p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              SQL Performance Tuning
+              SQL Performance Tuning Summary
             </div>
           </div>
         </a>
       
       
         
-        <a href="../sql-analytical-functions/" class="md-footer__link md-footer__link--next" aria-label="Next: SQL Analytical Functions" rel="next">
+        <a href="../Data-Warehousing-basics/" class="md-footer__link md-footer__link--next" aria-label="Next: Data Warehousing Concepts" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              SQL Analytical Functions
+              Data Warehousing Concepts
             </div>
           </div>
           <div class="md-footer__button md-icon">
