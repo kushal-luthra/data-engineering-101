@@ -13,6 +13,7 @@
   - Concepts
     - [Data Warehousing Concepts](./SQL/docs/Data-Warehousing-basics.md)
     - [ELK](random/ELK Stack.md)
+    - [Database Vs Datawarehouse Vs Datalake | ETL Vs ELT](random/ETL VS ELT.md)
   - Productivity Hacks
       - [Cold Mail Tactics](random/cold_mails.md)
   - [About Me](aboutme.md)
