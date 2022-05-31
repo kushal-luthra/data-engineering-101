@@ -12,6 +12,7 @@
   - SQL
       - [SQL Performance Tuning Page](./SQL/docs/sql_performance_tuning.md)
       - [SQL Performance Tuning Summary](./SQL/docs/sql_performance_tuning_summary.md)
+      - [Common Table Expressions (CTEs)](SQL/docs/Common Table Expressions.md)
       - [SQL Analytical Functions](SQL/docs/sql-analytical-functions.md)
       - [SQL Practise Questions](SQL/docs/sql-practise-questions.md)
   - Storage Layer <br>

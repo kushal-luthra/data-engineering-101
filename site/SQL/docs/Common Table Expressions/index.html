@@ -12,19 +12,19 @@
         <meta name="author" content="Kushal Luthra">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
     
     
       
-        <title>Data Engineering 101</title>
+        <title>Common Table Expressions (CTEs) - Data Engineering 101</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.1c3799f8.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.1c3799f8.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -39,7 +39,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-data-engineering-101" class="md-skip">
+        <a href="#common-table-expressions-ctes" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+    <a href="../../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Common Table Expressions (CTEs)
             
           </span>
         </div>
@@ -175,7 +175,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+    <a href="../../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -204,52 +204,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Home
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#index" class="md-nav__link">
-    Index
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -260,12 +219,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -288,7 +249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="SQL/docs/sql_performance_tuning/" class="md-nav__link">
+      <a href="../sql_performance_tuning/" class="md-nav__link">
         SQL Performance Tuning
       </a>
     </li>
@@ -302,7 +263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="SQL/docs/sql_performance_tuning_summary/" class="md-nav__link">
+      <a href="../sql_performance_tuning_summary/" class="md-nav__link">
         SQL Performance Tuning Summary
       </a>
     </li>
@@ -314,11 +275,75 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="SQL/docs/Common%20Table%20Expressions/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Common Table Expressions (CTEs)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Common Table Expressions (CTEs)
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-table-expressions-ctes" class="md-nav__link">
+    Common Table Expressions (CTEs)
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Table Expressions (CTEs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-common-table-expressions-ctes" class="md-nav__link">
+    What are Common Table Expressions (CTEs)?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-are-ctes-helpful" class="md-nav__link">
+    How are CTEs helpful?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-cte" class="md-nav__link">
+    How to create CTE?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -330,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="SQL/docs/sql-analytical-functions/" class="md-nav__link">
+      <a href="../sql-analytical-functions/" class="md-nav__link">
         SQL Analytical Functions
       </a>
     </li>
@@ -344,7 +369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="SQL/docs/sql-practise-questions/" class="md-nav__link">
+      <a href="../sql-practise-questions/" class="md-nav__link">
         SQL Practise Questions
       </a>
     </li>
@@ -392,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="SQL/docs/Data-Warehousing-basics/" class="md-nav__link">
+      <a href="../Data-Warehousing-basics/" class="md-nav__link">
         Data Warehousing Concepts
       </a>
     </li>
@@ -406,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="random/ELK%20Stack/" class="md-nav__link">
+      <a href="../../../random/ELK%20Stack/" class="md-nav__link">
         ELK
       </a>
     </li>
@@ -420,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="random/ETL%20VS%20ELT/" class="md-nav__link">
+      <a href="../../../random/ETL%20VS%20ELT/" class="md-nav__link">
         Database Vs Datawarehouse Vs Datalake | ETL Vs ELT
       </a>
     </li>
@@ -468,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
+      <a href="../../../Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
         Row-based Vs Column-based File Formats
       </a>
     </li>
@@ -482,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Storage%20Layer%20Choices/Text%20File%20Formats/" class="md-nav__link">
+      <a href="../../../Storage%20Layer%20Choices/Text%20File%20Formats/" class="md-nav__link">
         Text-based File Formats
       </a>
     </li>
@@ -496,7 +521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Storage%20Layer%20Choices/big%20data%20file%20formats/" class="md-nav__link">
+      <a href="../../../Storage%20Layer%20Choices/big%20data%20file%20formats/" class="md-nav__link">
         Big Data File Formats
       </a>
     </li>
@@ -544,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="random/cold_mails/" class="md-nav__link">
+      <a href="../../../random/cold_mails/" class="md-nav__link">
         Cold Mail Tactics
       </a>
     </li>
@@ -566,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="aboutme/" class="md-nav__link">
+      <a href="../../../aboutme/" class="md-nav__link">
         About Me
       </a>
     </li>
@@ -590,8 +615,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -600,9 +623,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#index" class="md-nav__link">
-    Index
+  <a href="#common-table-expressions-ctes" class="md-nav__link">
+    Common Table Expressions (CTEs)
   </a>
+  
+    <nav class="md-nav" aria-label="Common Table Expressions (CTEs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-common-table-expressions-ctes" class="md-nav__link">
+    What are Common Table Expressions (CTEs)?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-are-ctes-helpful" class="md-nav__link">
+    How are CTEs helpful?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-cte" class="md-nav__link">
+    How to create CTE?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -618,47 +668,39 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/SQL/docs/Common Table Expressions.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="welcome-to-data-engineering-101">Welcome to Data Engineering - 101</h1>
-<p><img alt="" src="images/Word%20Art.jpeg" /></p>
-<h3 id="index">Index</h3>
-<ul>
-<li>Concepts<ul>
-<li><a href="SQL/docs/Data-Warehousing-basics/">Data Warehousing Concepts</a></li>
-<li><a href="random/ELK%20Stack/">ELK</a></li>
-<li><a href="random/ETL%20VS%20ELT/">Database Vs Datawarehouse Vs Datalake | ETL Vs ELT</a></li>
-</ul>
-</li>
-<li>SQL<ul>
-<li><a href="SQL/docs/sql_performance_tuning/">SQL Performance Tuning Page</a></li>
-<li><a href="SQL/docs/sql_performance_tuning_summary/">SQL Performance Tuning Summary</a></li>
-<li><a href="SQL/docs/Common%20Table%20Expressions/">Common Table Expressions (CTEs)</a></li>
-<li><a href="SQL/docs/sql-analytical-functions/">SQL Analytical Functions</a></li>
-<li><a href="SQL/docs/sql-practise-questions/">SQL Practise Questions</a></li>
-</ul>
-</li>
-<li>
-<p>Storage Layer <br></p>
-<ul>
-<li><a href="Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/">Row-based Vs Column-based File Formats</a> <br></li>
-<li><a href="Storage%20Layer%20Choices/Text%20File%20Formats/">Text-based File Formats</a> <br></li>
-<li><a href="Storage%20Layer%20Choices/big%20data%20file%20formats/">Big Data File Formats</a> <br></li>
-</ul>
-</li>
-<li>
-<p>Productivity Hacks</p>
-<ul>
-<li><a href="random/cold_mails/">Cold Mail Tactics</a></li>
-</ul>
-</li>
-<li><a href="aboutme/">About Me</a></li>
-</ul>
-<p><strong>Author</strong> : Kushal Luthra <br></p>
+  <h1>Common Table Expressions (CTEs)</h1>
+
+<h3 id="common-table-expressions-ctes">Common Table Expressions (CTEs)</h3>
+<h4 id="what-are-common-table-expressions-ctes">What are Common Table Expressions (CTEs)?</h4>
+<p>A Common Table Expression (CTE) is the result set of a query which exists temporarily and for use only within the context of a larger query. <br>
+Much like a derived table, the result of a CTE is not stored and exists only for the duration of the query. </p>
+<p>Common Table expression (CTE) is a temporary named result set that you can reference within a SELECT, INSERT, UPDATE, or DELETE statement. <br>
+You can also use a CTE in a CREATE a view, as part of the view’s SELECT query. </p>
+<h4 id="how-are-ctes-helpful">How are CTEs helpful?</h4>
+<p>CTEs, like database views and derived tables, enable users to more easily write and maintain complex queries via increased readability and simplification. <br>
+This reduction in complexity is achieved by deconstructing ordinarily complex queries into simple blocks to be used, and reused if necessary, in rewriting the query.  <br>
+Example use cases include:
+- Needing to reference a derived table multiple times in a single query
+- An alternative to creating a view in the database
+- Performing the same calculation multiple times over across multiple query components</p>
+<h4 id="how-to-create-cte">How to create CTE?</h4>
+<p>We can define CTEs by adding a WITH clause directly before SELECT, INSERT, UPDATE, DELETE, or MERGE statement. <br>
+The WITH clause can include one or more CTEs separated by commas. <br>
+The following syntax can be followed: </p>
+<pre><code>[WITH  [, ...]]  
+
+::=
+cte_name [(column_name [, ...])]
+AS (cte_query) 
+</code></pre>
+<p>After you define your WITH clause with the CTEs, you can then reference the CTEs as you would refer any other table.  <br>
+However, you can refer a CTE only within the execution scope of the statement that immediately follows the WITH clause. After you’ve run your statement, the CTE result set is not available to other statements.</p>
 
               
             </article>
@@ -671,15 +713,30 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
+        
+        <a href="../sql_performance_tuning_summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SQL Performance Tuning Summary" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              SQL Performance Tuning Summary
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="SQL/docs/sql_performance_tuning/" class="md-footer__link md-footer__link--next" aria-label="Next: SQL Performance Tuning" rel="next">
+        <a href="../sql-analytical-functions/" class="md-footer__link md-footer__link--next" aria-label="Next: SQL Analytical Functions" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              SQL Performance Tuning
+              SQL Analytical Functions
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -744,10 +801,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
       
     
   </body>
