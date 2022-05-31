@@ -12,19 +12,19 @@
         <meta name="author" content="Kushal Luthra">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
     
     
       
-        <title>SQL Performance Tuning Summary - Data Engineering 101</title>
+        <title>Big Data File Formats - Data Engineering 101</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.1c3799f8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1c3799f8.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -39,7 +39,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sql-performance-tuning-summary" class="md-skip">
+        <a href="#avro-orc-and-parquet" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+    <a href="../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SQL Performance Tuning Summary
+              Big Data File Formats
             
           </span>
         </div>
@@ -175,7 +175,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+    <a href="../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -206,7 +206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -219,14 +219,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       
       
@@ -249,7 +247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql_performance_tuning/" class="md-nav__link">
+      <a href="../../SQL/docs/sql_performance_tuning/" class="md-nav__link">
         SQL Performance Tuning
       </a>
     </li>
@@ -261,206 +259,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          SQL Performance Tuning Summary
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/sql_performance_tuning_summary/" class="md-nav__link">
         SQL Performance Tuning Summary
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tip-1-never-use-star-to-fetch-all-records-from-table" class="md-nav__link">
-    Tip 1: Never use *(Star) to fetch all records from table
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-2-try-to-avoid-distinct-keyword-from-the-query" class="md-nav__link">
-    Tip 2: Try to avoid DISTINCT keyword from the query 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-3-carefully-use-where-conditions-in-sql" class="md-nav__link">
-    Tip 3: Carefully use WHERE conditions in sql. 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-4-use-like-operator-instead-of-equal-to" class="md-nav__link">
-    Tip 4: Use Like operator instead of equal to (=)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-5-avoid-having-clausegroup-by-statements" class="md-nav__link">
-    Tip 5: Avoid HAVING clause/GROUP BY statements
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-6-use-of-exists-and-in-operators" class="md-nav__link">
-    Tip 6: Use of EXISTS and IN Operators
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-7-try-to-use-union-all-instead-of-union-as-union-scans-all-data-first-and-then-eliminate-duplicate-so-it-has-slow-performance" class="md-nav__link">
-    Tip 7: Try to use UNION ALL instead of UNION as UNION scans all data first and then eliminate duplicate so it has slow performance.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-9-convert-or-to-and" class="md-nav__link">
-    Tip 9: convert OR to AND
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-10-subquery-unnesting" class="md-nav__link">
-    Tip 10: Subquery Unnesting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-11-in-and-between" class="md-nav__link">
-    Tip 11: IN and BETWEEN
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-12-fetching-first-n-records-select-from-employee-where-rownum11" class="md-nav__link">
-    Tip 12: Fetching first N records:  SELECT * FROM EMPLOYEE where rownum&lt;11
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-13-union-vs-union-all" class="md-nav__link">
-    Tip 13: UNION vs UNION ALL:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-14-intersect-vs-exists-operator" class="md-nav__link">
-    Tip 14: INTERSECT Vs EXISTS operator
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-15-minus-vs-not-exists" class="md-nav__link">
-    Tip 15: MINUS Vs NOT EXISTS
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-16-using-like-conditions" class="md-nav__link">
-    Tip 16: Using Like conditions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-17-using-functions-on-indexed-columns-will-suppress-index-usage" class="md-nav__link">
-    Tip 17: Using Functions on Indexed Columns will suppress index usage.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-18-handling-null-values" class="md-nav__link">
-    Tip 18: Handling NULL Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-19-use-truncate-instead-of-delete" class="md-nav__link">
-    Tip 19 : Use Truncate instead of Delete
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-20-data-type-mismatches" class="md-nav__link">
-    Tip 20: Data Type Mismatches
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-21-tuning-ordered-queries-order-by-clause" class="md-nav__link">
-    Tip 21: Tuning Ordered queries- Order By clause
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-22-retrieving-min-and-max-values" class="md-nav__link">
-    Tip 22 : Retrieving MIN and MAX Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-23-views" class="md-nav__link">
-    Tip 23 : Views
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-24-frequent-commit-is-not-desired" class="md-nav__link">
-    Tip 24: Frequent commit is not desired:
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -472,7 +275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-analytical-functions/" class="md-nav__link">
+      <a href="../../SQL/docs/sql-analytical-functions/" class="md-nav__link">
         SQL Analytical Functions
       </a>
     </li>
@@ -486,7 +289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-practise-questions/" class="md-nav__link">
+      <a href="../../SQL/docs/sql-practise-questions/" class="md-nav__link">
         SQL Practise Questions
       </a>
     </li>
@@ -534,7 +337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Data-Warehousing-basics/" class="md-nav__link">
+      <a href="../../SQL/docs/Data-Warehousing-basics/" class="md-nav__link">
         Data Warehousing Concepts
       </a>
     </li>
@@ -548,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../random/ELK%20Stack/" class="md-nav__link">
+      <a href="../../random/ELK%20Stack/" class="md-nav__link">
         ELK
       </a>
     </li>
@@ -562,7 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../random/ETL%20VS%20ELT/" class="md-nav__link">
+      <a href="../../random/ETL%20VS%20ELT/" class="md-nav__link">
         Database Vs Datawarehouse Vs Datalake | ETL Vs ELT
       </a>
     </li>
@@ -582,12 +385,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -610,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
+      <a href="../row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
         Row-based Vs Column-based File Formats
       </a>
     </li>
@@ -624,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Storage%20Layer%20Choices/Text%20File%20Formats/" class="md-nav__link">
+      <a href="../Text%20File%20Formats/" class="md-nav__link">
         Text-based File Formats
       </a>
     </li>
@@ -636,11 +441,48 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../Storage%20Layer%20Choices/big%20data%20file%20formats/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Big Data File Formats
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Big Data File Formats
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#avro-orc-and-parquet" class="md-nav__link">
+    Avro, ORC and Parquet
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -686,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../random/cold_mails/" class="md-nav__link">
+      <a href="../../random/cold_mails/" class="md-nav__link">
         Cold Mail Tactics
       </a>
     </li>
@@ -708,7 +550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../aboutme/" class="md-nav__link">
+      <a href="../../aboutme/" class="md-nav__link">
         About Me
       </a>
     </li>
@@ -732,8 +574,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -742,162 +582,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tip-1-never-use-star-to-fetch-all-records-from-table" class="md-nav__link">
-    Tip 1: Never use *(Star) to fetch all records from table
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-2-try-to-avoid-distinct-keyword-from-the-query" class="md-nav__link">
-    Tip 2: Try to avoid DISTINCT keyword from the query 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-3-carefully-use-where-conditions-in-sql" class="md-nav__link">
-    Tip 3: Carefully use WHERE conditions in sql. 
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-4-use-like-operator-instead-of-equal-to" class="md-nav__link">
-    Tip 4: Use Like operator instead of equal to (=)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-5-avoid-having-clausegroup-by-statements" class="md-nav__link">
-    Tip 5: Avoid HAVING clause/GROUP BY statements
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-6-use-of-exists-and-in-operators" class="md-nav__link">
-    Tip 6: Use of EXISTS and IN Operators
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-7-try-to-use-union-all-instead-of-union-as-union-scans-all-data-first-and-then-eliminate-duplicate-so-it-has-slow-performance" class="md-nav__link">
-    Tip 7: Try to use UNION ALL instead of UNION as UNION scans all data first and then eliminate duplicate so it has slow performance.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-9-convert-or-to-and" class="md-nav__link">
-    Tip 9: convert OR to AND
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-10-subquery-unnesting" class="md-nav__link">
-    Tip 10: Subquery Unnesting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-11-in-and-between" class="md-nav__link">
-    Tip 11: IN and BETWEEN
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-12-fetching-first-n-records-select-from-employee-where-rownum11" class="md-nav__link">
-    Tip 12: Fetching first N records:  SELECT * FROM EMPLOYEE where rownum&lt;11
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-13-union-vs-union-all" class="md-nav__link">
-    Tip 13: UNION vs UNION ALL:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-14-intersect-vs-exists-operator" class="md-nav__link">
-    Tip 14: INTERSECT Vs EXISTS operator
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-15-minus-vs-not-exists" class="md-nav__link">
-    Tip 15: MINUS Vs NOT EXISTS
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-16-using-like-conditions" class="md-nav__link">
-    Tip 16: Using Like conditions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-17-using-functions-on-indexed-columns-will-suppress-index-usage" class="md-nav__link">
-    Tip 17: Using Functions on Indexed Columns will suppress index usage.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-18-handling-null-values" class="md-nav__link">
-    Tip 18: Handling NULL Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-19-use-truncate-instead-of-delete" class="md-nav__link">
-    Tip 19 : Use Truncate instead of Delete
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-20-data-type-mismatches" class="md-nav__link">
-    Tip 20: Data Type Mismatches
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-21-tuning-ordered-queries-order-by-clause" class="md-nav__link">
-    Tip 21: Tuning Ordered queries- Order By clause
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-22-retrieving-min-and-max-values" class="md-nav__link">
-    Tip 22 : Retrieving MIN and MAX Values
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-23-views" class="md-nav__link">
-    Tip 23 : Views
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tip-24-frequent-commit-is-not-desired" class="md-nav__link">
-    Tip 24: Frequent commit is not desired:
+  <a href="#avro-orc-and-parquet" class="md-nav__link">
+    Avro, ORC and Parquet
   </a>
   
 </li>
@@ -914,103 +600,119 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/SQL/docs/sql_performance_tuning_summary.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/Storage Layer Choices/big data file formats.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="sql-performance-tuning-summary">SQL Performance Tuning : Summary</h1>
-<h4 id="tip-1-never-use-star-to-fetch-all-records-from-table">Tip 1: Never use *(Star) to fetch all records from table</h4>
-<h4 id="tip-2-try-to-avoid-distinct-keyword-from-the-query">Tip 2: Try to avoid DISTINCT keyword from the query <br></h4>
-<p>Not Recommended:</p>
-<pre><code>SELECT DISTINCT d.dept_no, d.department_name
-    FROM Department d,Employee e
-    WHERE d.dept_no= e.dept_no;
-</code></pre>
-<p>Recommended:<br></p>
-<pre><code>SELECT 
-    d.dept_no d.department_name
-FROM Department d
-WHERE EXISTS ( SELECT ‘X’ FROM Employee e WHERE d.dept_no= e.dept_no);
-</code></pre>
-<h4 id="tip-3-carefully-use-where-conditions-in-sql">Tip 3: Carefully use WHERE conditions in sql. <br></h4>
-<h4 id="tip-4-use-like-operator-instead-of-equal-to">Tip 4: Use Like operator instead of equal to (=)</h4>
-<h4 id="tip-5-avoid-having-clausegroup-by-statements">Tip 5: Avoid HAVING clause/GROUP BY statements</h4>
-<h4 id="tip-6-use-of-exists-and-in-operators">Tip 6: Use of EXISTS and IN Operators</h4>
-<h4 id="tip-7-try-to-use-union-all-instead-of-union-as-union-scans-all-data-first-and-then-eliminate-duplicate-so-it-has-slow-performance">Tip 7: Try to use UNION ALL instead of UNION as UNION scans all data first and then eliminate duplicate so it has slow performance.</h4>
-<h4 id="tip-9-convert-or-to-and">Tip 9: convert OR to AND</h4>
-<h4 id="tip-10-subquery-unnesting">Tip 10: Subquery Unnesting</h4>
-<h4 id="tip-11-in-and-between">Tip 11: IN and BETWEEN</h4>
-<h4 id="tip-12-fetching-first-n-records-select-from-employee-where-rownum11">Tip 12: Fetching first N records:  SELECT * FROM EMPLOYEE where rownum&lt;11</h4>
-<h4 id="tip-13-union-vs-union-all">Tip 13: UNION vs UNION ALL:</h4>
-<p>• by default, UNION ALL is less costly than UNION, as latter sorts data internally to remove duplicates.<br>
- • But if your table is indexed, then sort operation in UNION wont be that costly, and so you can use UNION also.<br></p>
-<h4 id="tip-14-intersect-vs-exists-operator">Tip 14: INTERSECT Vs EXISTS operator</h4>
-<h4 id="tip-15-minus-vs-not-exists">Tip 15: MINUS Vs NOT EXISTS</h4>
-<h4 id="tip-16-using-like-conditions">Tip 16: Using Like conditions</h4>
-<p>To enable use of indexes, avoid use of wild card character at beginning of source text scan.<br>
-If you are forced to use wild card character at beginning, you can create reverse index, and handle that problem using that index. In this case, when you reverse index, then source text will eliminate use of wild card at beginning.<br></p>
-<h4 id="tip-17-using-functions-on-indexed-columns-will-suppress-index-usage">Tip 17: Using Functions on Indexed Columns will suppress index usage.</h4>
-<p>So, rewrite query to avoid use of function.<br>
-BAD QUERY</p>
-<pre><code>    select employee_id, first_name, last_name
-    from employees 
-    where trunc(hire_date,'YEAR') = '01-JAN-2002';
-</code></pre>
-<p>GOOD: rewritten query</p>
-<pre><code>    select employee_id, first_name, last_name
-    from employees 
-    where hire_date between '01-JAN-2002' and '31-DEC-2002';
-</code></pre>
-<p>Eg2 -<br>
-Bad<br></p>
-<pre><code>select * from mytable where substr(emp_name,1,2) = 'Po';
-</code></pre>
-<p>Good<br> </p>
-<pre><code>select * from mytable where emp_name like 'Po%';
-</code></pre>
-<h4 id="tip-18-handling-null-values">Tip 18: Handling NULL Values</h4>
-<p>•B-Tree indexes do not index NULL values.<br>
-•If there are any NULL values in your indexed columns and you need to get rows which have NULL values, optimizer will not use your index, and perform a full table scan instead.<br>
-•That is, having Null values in your index may sometimes suppress index usage.<br></p>
-<p>Solution -<br>
-- Use IS NOT NULL condition in your WHERE clause. <br> 
-- Adding not null constraint to your columns and insert a specific value for NULL values like ‘0’ if value in a column is null. <br>
-- If reasonable, create a BITMAP index instead of B-Tree index. <br> </p>
-<h4 id="tip-19-use-truncate-instead-of-delete">Tip 19 : Use Truncate instead of Delete</h4>
-<h4 id="tip-20-data-type-mismatches">Tip 20: Data Type Mismatches</h4>
-<p>If data types of column and compared value dont match, this may suppress index usage.<br></p>
-<h4 id="tip-21-tuning-ordered-queries-order-by-clause">Tip 21: Tuning Ordered queries- Order By clause</h4>
-<p>Order by mostly requires sort operations.<br>
-This sort operation is done in PGA or in disk (if PGA doesn’t have enough memory)<br>
-This disk is shown as ‘temporary table space’ in execution plan.<br>
-Issue – sorting in disk is a costly operation.<br></p>
-<p>Solution –<br>
-• Create a B-Tree index on column used in Order by Clause, or<br>
-• Modify a B-Tree index to include column used in Order by Clause.<br>
-• Why – B-Tree indexes store columns in Order and using B-Tree index will eliminate sort operations.<br></p>
-<h4 id="tip-22-retrieving-min-and-max-values">Tip 22 : Retrieving MIN and MAX Values</h4>
-<p>B-Tree indexes increase the performance a lot for min and max value searches.<br>
-If no B-Tree index, optimizer will need to read whole table.<br>
-Bad - <br></p>
-<pre><code>    select min(), max() from mytable;
-</code></pre>
-<p>Good - <br></p>
-<pre><code>    select * FROM 
-        (select min() from mytable) min_cust, 
-        (select max() from mytable) max_cust;
-</code></pre>
-<h4 id="tip-23-views">Tip 23 : Views</h4>
-<p>• If you don’t need to use all the tables in a view, then don’t use the view. Instead use the actual tables.<br> 
- • Don’t join complex views with a table or another view. <br>
- • Avoid performing outer join to the views. <br>
- • Unlike basic and complex views, materialized views store both query and data. Materialized view data can be refreshed manually or via auto-refresh. But materialized view maintenance is a burden to database .<br></p>
-<h4 id="tip-24-frequent-commit-is-not-desired">Tip 24: Frequent commit is not desired:</h4>
-<ul>
-<li>make REDO logs bulky as we may be committing prior to period.<br></li>
-<li>make lock on modified rows, making them unavailable to other applications.<br></li>
-</ul>
+  <h1>Big Data File Formats</h1>
+
+<h2 id="avro-orc-and-parquet">Avro, ORC and Parquet</h2>
+<p>There major ones that work well with Big Data Environment are –
+•   Avro
+•   Orc
+•   Parquet</p>
+<p>All of above are –
+•   Splittable
+•   Agnostic compression - Any compression can be used with them, without readers having to know the codec. This is possible because codec is stored in the header metadata of the file format.
+Reader needn’t know in advance what kind of compression technique is used with these files. Compression codec is kept in file metadata, and whenever reader wants to read the data, he gets to know compression codec from metadata and can easily read the data.</p>
+<p>Avro File Formats
+1.  It is a row-based file format – data is stored row-by-row.
+So, it supports faster writes, but slower reads (when you want to read a subset of columns).
+2.  Self-describing schema - Schema is stored in JSON format and this metadata is embedded as part of data itself.
+3.  Actual data is stored in Compressed Binary format, which is quite efficient in terms of storage.
+4.  Language Neutral - Avro file format is general file format, and supports processing using lot of programming languages like C++, java, Python, Ruby, etc
+5.  Schema Evolution – Avro is quite mature in terms of schema evolution as compared to other file formats. Schema evolution includes aspects like –
+a.  Adding new columns
+b.  Removing old column
+c.  Renaming columns, etc
+6.  Splittable – file can be divided into parts which can be processed independently.</p>
+<p>Avro is a Serialization format.
+Serialization – converting data into a form which can be easily transferred over a network and stored in a file system.
+Deserialization – reading data and converting it into form which can be read by human. </p>
+<p>In which scenario, Avro is best suited –
+•   For storing data in landing zone of data lake – why –
+o   In lake, chances are different team requiring raw data, and since Avro is language neutral, so different teams can use it.
+o   In lake, data is unprocessed, that is no ETL done. For ETL kind of operations, we tend to read whole row and not a subset of it, and here again Avro is suited.
+   KL – in dh, we read only subset of data in lake to build warehouse. So, this point is debatable. 
+o   Finally, in lake, data schema evolves over time, and so Avro is suited for handling Schema evolution.
+•   Avro is typically the format of choice for write-heavy workloads given it is easy to append new rows.</p>
+<p><strong>Avro Vs Orc</strong></p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Avro</th>
+<th>Parquet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>format</td>
+<td>row based</td>
+<td>column based</td>
+</tr>
+<tr>
+<td>reads</td>
+<td>slower reads</td>
+<td>faster reads - so useful for analytical querying</td>
+</tr>
+<tr>
+<td>writes</td>
+<td>faster writes -  so suited to ETL operations.</td>
+<td>slower writes</td>
+</tr>
+<tr>
+<td>schema evolution</td>
+<td>it is quite mature wrt Schema Evolution</td>
+<td>Limited schema evolution support - you can add/delete column from the end.</td>
+</tr>
+<tr>
+<td>complex data types</td>
+<td>No such support.</td>
+<td>Provides support for deeply nested data structure.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Orc Vs Parquet</strong></p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Orc</th>
+<th>Parquet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>format</td>
+<td>column based</td>
+<td>column based</td>
+</tr>
+<tr>
+<td>predicate push down</td>
+<td>provides predicate push down to push the predicates at storage level - that allows us to query relevant data.</td>
+<td>No such support</td>
+</tr>
+<tr>
+<td>ACID properties</td>
+<td>Now supports ACID properties to an extent.</td>
+<td>No such support.</td>
+</tr>
+<tr>
+<td>Compression</td>
+<td>Better - has lot more encodings used as compared to parquet.</td>
+<td>good</td>
+</tr>
+<tr>
+<td>complex data types</td>
+<td>No such support.</td>
+<td>Provides support for deeply nested data structure.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="img.png" src="../images/img_3.png" /></p>
 
               
             </article>
@@ -1024,7 +726,7 @@ Bad - <br></p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../sql_performance_tuning/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SQL Performance Tuning" rel="prev">
+        <a href="../Text%20File%20Formats/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Text-based File Formats" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1033,20 +735,20 @@ Bad - <br></p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              SQL Performance Tuning
+              Text-based File Formats
             </div>
           </div>
         </a>
       
       
         
-        <a href="../sql-analytical-functions/" class="md-footer__link md-footer__link--next" aria-label="Next: SQL Analytical Functions" rel="next">
+        <a href="../../random/cold_mails/" class="md-footer__link md-footer__link--next" aria-label="Next: Cold Mail Tactics" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              SQL Analytical Functions
+              Cold Mail Tactics
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1111,10 +813,10 @@ Bad - <br></p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      <script src="../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
       
     
   </body>

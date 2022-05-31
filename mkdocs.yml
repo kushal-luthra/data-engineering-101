@@ -23,6 +23,10 @@ nav:
      - Data Warehousing Concepts :  SQL/docs/Data-Warehousing-basics.md
      - ELK : random/ELK Stack.md
      - Database Vs Datawarehouse Vs Datalake | ETL Vs ELT: random/ETL VS ELT.md
+  - Storage Layer:
+      - Row-based Vs Column-based File Formats : Storage Layer Choices/row based and column based file formats.md
+      - Text-based File Formats : Storage Layer Choices/Text File Formats.md
+      - Big Data File Formats : Storage Layer Choices/big data file formats.md
   - Productivity Hacks:
       - Cold Mail Tactics : random/cold_mails.md
   - About Me: aboutme.md

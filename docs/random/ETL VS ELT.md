@@ -1,4 +1,3 @@
-### Database Vs Datawarehouse Vs Datalake | ETL Vs ELT
 
 ####  Database
 •	Meant for Transactional data - OLTP (online transaction processing) <br>
@@ -17,16 +16,17 @@ o	The moment we run complex queries on our database with an intent to do some an
 •	we get the data from multiple sources. <br>
 •	Meant for Structured Data. <br>
 •	It is also Schema on write. <br>
-•	Eg – Teradata <br>
+	Eg – Teradata <br>
 •	storage cost is high but lesser than your database. <br>
 •	In case of data warehouse, its an ETL process – i.e. data is extracted, then transformed, and finally Loaded into database. <br>
-o	Issue – we lose flexibility in terms of managing data. <br>
-o	This is because even before writing, we are to decide how to store it. We cant always look into future and plan use case of our data. <br>
-suppose your data is in database <br>
-extract the data <br>
-Transform it (is a complex process) <br>
-	      Load it to Datawarehouse <br>
-	This approach reduces our flexibility. <br>
+-	Issue – we lose flexibility in terms of managing data. <br>
+-	This is because even before writing, we are to decide how to store it. We cant always look into future and plan use case of our data. <br>
+<br>
+Suppose your data is in database, wherein you ->  <br>
+- extract the data <br>
+- Transform it (is a complex process) <br>
+- Load it to Datawarehouse <br>
+This approach reduces our flexibility. <br>
 
 #### Data Lake
 •	Its aim, like data warehouse, is to get insights from huge amount of data. <br>
