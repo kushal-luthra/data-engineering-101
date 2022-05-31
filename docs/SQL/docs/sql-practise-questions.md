@@ -285,10 +285,10 @@ select
  max(salary) over (partition by company_id ) as max_sal_per_company
  from salaries);
  
- ```
- 
- 5. Countries You Can Safely Invest In<br>
- https://leetcode.com/problems/countries-you-can-safely-invest-in/ <br>
+```
+
+6. Countries You Can Safely Invest In<br>
+https://leetcode.com/problems/countries-you-can-safely-invest-in/ <br>
  
  Table Person:
 
@@ -1202,7 +1202,7 @@ Note: <br>
 Followee would not follow himself/herself in all cases. <br>
 
 Ans. <br>
-there could be duplicates in table, so use count distinct for counting followers. <br>
+There could be duplicates in table, so use count distinct for counting followers. <br>
 
 ```
 select 
@@ -1218,4 +1218,5 @@ from (
 group by main 
 order by main;
 ```
+
 

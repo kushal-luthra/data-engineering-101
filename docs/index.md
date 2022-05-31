@@ -12,7 +12,7 @@
       - [SQL Practise Questions](SQL/docs/sql-practise-questions.md)
   - Concepts
     - [Data Warehousing Concepts](./SQL/docs/Data-Warehousing-basics.md)
-  - Career Development
+  - Productivity Hacks
       - [Cold Mail Tactics](random/cold_mails.md)
   - [About Me](aboutme.md)
 
