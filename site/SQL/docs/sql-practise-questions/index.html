@@ -350,6 +350,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/ELK%20Stack/" class="md-nav__link">
+        ELK
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -812,56 +826,89 @@ select
  max(salary) over (partition by company_id ) as max_sal_per_company
  from salaries);
 
- ```
-
- 5. Countries You Can Safely Invest In&lt;br&gt;
- https://leetcode.com/problems/countries-you-can-safely-invest-in/ &lt;br&gt;
-
- Table Person:
-
-| Column Name    | Type    |
-|----------------|---------|
-| id             | int     |
-| name           | varchar |
-| phone_number   | varchar |
-
-id is the primary key for this table.&lt;br&gt;
-Each row of this table contains the name of a person and their phone number.&lt;br&gt;
-Phone number will be in the form 'xxx-yyyyyyy' where xxx is the country code (3 characters) and yyyyyyy is the phone number (7 characters) where x and y are digits. &lt;br&gt;
-Both can contain leading zeros.&lt;br&gt;
-
-Table Country:
-
-| Column Name    | Type    |
-|----------------|---------|
-| name           | varchar |
-| country_code   | varchar |
-
-country_code is the primary key for this table.&lt;br&gt;
-Each row of this table contains the country name and its code. country_code will be in the form 'xxx' where x is digits.&lt;br&gt;
-
-
-Table Calls:&lt;br&gt;
-
-| Column Name | Type |
-|-------------|------|
-| caller_id   | int  |
-| callee_id   | int  |
-| duration    | int  |
-
-
-
-There is no primary key for this table, it may contain duplicates.&lt;br&gt;
-Each row of this table contains the caller id, callee id and the duration of the call in minutes. caller_id != callee_id&lt;br&gt;
-A telecommunications company wants to invest in new countries. The company intends to invest in the countries where the average call duration of the calls in this country is strictly greater than the global average call duration.&lt;br&gt;
-
-Write an SQL query to find the countries where this company can invest.&lt;br&gt;
-
-Return the result table in any order.&lt;br&gt;
-
-The query result format is in the following example.&lt;br&gt;
 </code></pre>
-<p>Person table:
+<ol>
+<li>Countries You Can Safely Invest In<br>
+https://leetcode.com/problems/countries-you-can-safely-invest-in/ <br></li>
+</ol>
+<p>Table Person:</p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>id is the primary key for this table.<br>
+Each row of this table contains the name of a person and their phone number.<br>
+Phone number will be in the form 'xxx-yyyyyyy' where xxx is the country code (3 characters) and yyyyyyy is the phone number (7 characters) where x and y are digits. <br>
+Both can contain leading zeros.<br></p>
+<p>Table Country:</p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>country_code</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>country_code is the primary key for this table.<br>
+Each row of this table contains the country name and its code. country_code will be in the form 'xxx' where x is digits.<br></p>
+<p>Table Calls:<br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>caller_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>callee_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+<p>There is no primary key for this table, it may contain duplicates.<br>
+Each row of this table contains the caller id, callee id and the duration of the call in minutes. caller_id != callee_id<br>
+A telecommunications company wants to invest in new countries. The company intends to invest in the countries where the average call duration of the calls in this country is strictly greater than the global average call duration.<br></p>
+<p>Write an SQL query to find the countries where this company can invest.<br></p>
+<p>Return the result table in any order.<br></p>
+<p>The query result format is in the following example.<br></p>
+<pre><code>Person table:
 +----+----------+--------------+
 | id | name     | phone_number |
 +----+----------+--------------+
@@ -871,8 +918,9 @@ The query result format is in the following example.&lt;br&gt;
 | 2  | Maroua   | 212-6523651  |
 | 7  | Meir     | 972-1234567  |
 | 9  | Rachel   | 972-0011100  |
-+----+----------+--------------+</p>
-<p>Country table:
++----+----------+--------------+
+
+Country table:
 +----------+--------------+
 | name     | country_code |
 +----------+--------------+
@@ -881,8 +929,9 @@ The query result format is in the following example.&lt;br&gt;
 | Morocco  | 212          |
 | Germany  | 049          |
 | Ethiopia | 251          |
-+----------+--------------+</p>
-<p>Calls table:
++----------+--------------+
+
+Calls table:
 +-----------+-----------+----------+
 | caller_id | callee_id | duration |
 +-----------+-----------+----------+
@@ -896,8 +945,9 @@ The query result format is in the following example.&lt;br&gt;
 | 7         | 1         | 3        |
 | 9         | 7         | 1        |
 | 1         | 7         | 7        |
-+-----------+-----------+----------+</p>
-<p>Result table:
++-----------+-----------+----------+
+
+Result table:
 +----------+
 | country  |
 +----------+
@@ -907,10 +957,10 @@ The average call duration for Peru is (102 + 102 + 330 + 330 + 5 + 5) / 6 = 145.
 The average call duration for Israel is (33 + 4 + 13 + 13 + 3 + 1 + 1 + 7) / 8 = 9.37500
 The average call duration for Morocco is (33 + 4 + 59 + 59 + 3 + 7) / 6 = 27.5000 
 Global call duration average = (2 * (33 + 3 + 59 + 102 + 330 + 5 + 13 + 3 + 1 + 7)) / 20 = 55.70000
-Since Peru is the only country where average call duration is greater than the global average, it's the only recommended country.</p>
-<pre><code>Ans.
+Since Peru is the only country where average call duration is greater than the global average, it's the only recommended country.
 </code></pre>
-<p>with call_table as (select 
+<p>Ans.</p>
+<pre><code>with call_table as (select 
     distinct
         caller_id, 
         callee_id,
@@ -946,72 +996,69 @@ select distinct country from (
                                       left join Country t
                                       on trim(c.country_code) = trim(t.country_code)
                                 ) 
-                                where country_avg&gt;overall_avg;</p>
-<pre><code>
-5. Rectangles Area&lt;br&gt;
-https://leetcode.com/problems/rectangles-area/ &lt;br&gt;
-Table: Points&lt;br&gt;
-
-+---------------+---------+
+                                where country_avg&gt;overall_avg;
+</code></pre>
+<ol>
+<li>Rectangles Area<br>
+https://leetcode.com/problems/rectangles-area/ <br>
+Table: Points<br></li>
+</ol>
+<p>+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | id            | int     |
 | x_value       | int     |
 | y_value       | int     |
 +---------------+---------+
-id is the primary key for this table.&lt;br&gt;
-Each point is represented as a 2D Dimensional (x_value, y_value).&lt;br&gt;
-Write an SQL query to report of all possible rectangles which can be formed by any two points of the table.&lt;br&gt; 
-
-Each row in the result contains three columns (p1, p2, area) where:&lt;br&gt;
-
-p1 and p2 are the id of two opposite corners of a rectangle and p1 &lt; p2.&lt;br&gt;
-Area of this rectangle is represented by the column area.&lt;br&gt;
-Report the query in descending order by area in case of tie in ascending order by p1 and p2.&lt;br&gt;
-
-</code></pre>
-<p>Points table:
+id is the primary key for this table.<br>
+Each point is represented as a 2D Dimensional (x_value, y_value).<br>
+Write an SQL query to report of all possible rectangles which can be formed by any two points of the table.<br> </p>
+<p>Each row in the result contains three columns (p1, p2, area) where:<br></p>
+<p>p1 and p2 are the id of two opposite corners of a rectangle and p1 &lt; p2.<br>
+Area of this rectangle is represented by the column area.<br>
+Report the query in descending order by area in case of tie in ascending order by p1 and p2.<br></p>
+<pre><code>Points table:
 +----------+-------------+-------------+
 | id       | x_value     | y_value     |
 +----------+-------------+-------------+
 | 1        | 2           | 8           |
 | 2        | 4           | 7           |
 | 3        | 2           | 10          |
-+----------+-------------+-------------+</p>
-<p>Result table:
++----------+-------------+-------------+
+
+Result table:
 +----------+-------------+-------------+
 | p1       | p2          | area        |
 +----------+-------------+-------------+
 | 2        | 3           | 6           |
 | 1        | 2           | 2           |
-+----------+-------------+-------------+</p>
-<p>p1 should be less than p2 and area greater than 0.
++----------+-------------+-------------+
+
+p1 should be less than p2 and area greater than 0.
 p1 = 1 and p2 = 2, has an area equal to |2-4| * |8-7| = 2.
 p1 = 2 and p2 = 3, has an area equal to |4-2| * |7-10| = 6.
-p1 = 1 and p2 = 3 It's not possible because the rectangle has an area equal to 0.</p>
-<pre><code>
-Ans.
-
+p1 = 1 and p2 = 3 It's not possible because the rectangle has an area equal to 0.
 </code></pre>
-<p>-- Approach 1:
+<p>Ans.</p>
+<pre><code>-- Approach 1:
 select 
     a.id as P1,
     b.id as P2,
-    abs(a.x_value - b.x_value)<em>abs(a.y_value - b.y_value) as area
+    abs(a.x_value - b.x_value)*abs(a.y_value - b.y_value) as area
 from
     points a, points b
-where <br />
+where   
     a.id &lt; b.id   and 
-    abs(a.x_value - b.x_value)</em>abs(a.y_value - b.y_value)&gt;0
+    abs(a.x_value - b.x_value)*abs(a.y_value - b.y_value)&gt;0
 order by 
-        abs(a.x_value - b.x_value)<em>abs(a.y_value - b.y_value) desc, 
+        abs(a.x_value - b.x_value)*abs(a.y_value - b.y_value) desc, 
         a.id, 
         b.id; 
 -- Approach 2:
-select   <br />
+select     
     a.p1, b.p2, 
-    abs(a.x1-b.x2)</em>abs(a.y1-b.y2) as area
-from   <br />
+    abs(a.x1-b.x2)*abs(a.y1-b.y2) as area
+from     
 (select 
     id as P1,
     x_value as x1,
@@ -1025,82 +1072,158 @@ from points) a,
     concat(x_value, y_value) as p2_coordinate
 from points    ) b
 where 
-    p1<p2
+    p1&lt;p2
     and
     p1_coordinate!=p2_coordinate --no duplicate/same point
     and 
-    abs(x1-x2)*abs(y1-y2)>0
-order by abs(a.x1-b.x2)*abs(a.y1-b.y2) desc, a.p1, b.p2     </p>
-<pre><code>
-6. Active users : Imp -- date diff between consecutive days. &lt;br&gt;
-https://leetcode.com/problems/active-users/      &lt;br&gt;
-
-Table Accounts: &lt;br&gt;
-
-| Column Name   | Type    |
-|---------------|---------|
-| id            | int     |
-| name          | varchar |
-
-the id is the primary key for this table. &lt;br&gt;
-This table contains the account id and the user name of each account. &lt;br&gt;
-
-
-Table Logins: &lt;br&gt;
-
-| Column Name   | Type    |
-|---------------|---------|
-| id            | int     |
-| login_date    | date    |
-+---------------+---------+
-There is no primary key for this table, it may contain duplicates. &lt;br&gt;
-This table contains the account id of the user who logged in and the login date. A user may log in multiple times in the day. &lt;br&gt;
-
-
-Write an SQL query to find the id and the name of active users. &lt;br&gt;
-
-Active users are those who logged in to their accounts for 5 or more consecutive days. &lt;br&gt;
-
-Return the result table ordered by the id. &lt;br&gt;
-
-The query result format is in the following example: &lt;br&gt;
-
-Accounts table:
-
-| id | name     |
-|----|----------|
-| 1  | Winston  |
-| 7  | Jonathan |
-
-Logins table: &lt;br&gt;
-
-| id | login_date |
-|----|------------|
-| 7  | 2020-05-30 |
-| 1  | 2020-05-30 |
-| 7  | 2020-05-31 |
-| 7  | 2020-06-01 |
-| 7  | 2020-06-02 |
-| 7  | 2020-06-02 |
-| 7  | 2020-06-03 |
-| 1  | 2020-06-07 |
-| 7  | 2020-06-10 |
-
-
-Result table: &lt;br&gt;
-
-| id | name     |
-|----|----------|
-| 7  | Jonathan |
-
-
-User Winston with id = 1 logged in 2 times only in 2 different days, so, Winston is not an active user. &lt;br&gt;
-User Jonathan with id = 7 logged in 7 times in 6 different days, five of them were consecutive days, so, Jonathan is an active user. &lt;br&gt;
-
-Ans.
-
+    abs(x1-x2)*abs(y1-y2)&gt;0
+order by abs(a.x1-b.x2)*abs(a.y1-b.y2) desc, a.p1, b.p2     
 </code></pre>
-<p>select distinct 
+<ol>
+<li>Active users : Imp -- date diff between consecutive days. <br>
+https://leetcode.com/problems/active-users/      <br></li>
+</ol>
+<p>Table Accounts: <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>the id is the primary key for this table. <br>
+This table contains the account id and the user name of each account. <br></p>
+<p>Table Logins: <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>login_date</td>
+<td>date</td>
+</tr>
+<tr>
+<td>+---------------+---------+</td>
+<td></td>
+</tr>
+<tr>
+<td>There is no primary key for this table, it may contain duplicates. <br></td>
+<td></td>
+</tr>
+<tr>
+<td>This table contains the account id of the user who logged in and the login date. A user may log in multiple times in the day. <br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Write an SQL query to find the id and the name of active users. <br></p>
+<p>Active users are those who logged in to their accounts for 5 or more consecutive days. <br></p>
+<p>Return the result table ordered by the id. <br></p>
+<p>The query result format is in the following example: <br></p>
+<p>Accounts table:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Winston</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Jonathan</td>
+</tr>
+</tbody>
+</table>
+<p>Logins table: <br></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>login_date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>2020-05-30</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2020-05-30</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2020-05-31</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2020-06-01</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2020-06-02</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2020-06-02</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2020-06-03</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2020-06-07</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2020-06-10</td>
+</tr>
+</tbody>
+</table>
+<p>Result table: <br></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>Jonathan</td>
+</tr>
+</tbody>
+</table>
+<p>User Winston with id = 1 logged in 2 times only in 2 different days, so, Winston is not an active user. <br>
+User Jonathan with id = 7 logged in 7 times in 6 different days, five of them were consecutive days, so, Jonathan is an active user. <br></p>
+<p>Ans.</p>
+<pre><code>select distinct 
         d.id, 
         d.name 
     from 
@@ -1117,38 +1240,48 @@ Ans.
                     a.login_date,
                     lag( a.login_date,4,'1990-01-01') over (partition by a.id order by  a.login_date) as found_recs_old_login_date 
                  from 
-                 (select distinct id, to_char(login_date,'YYYY-MM-DD') as login_date from Logins ) a<br />
+                 (select distinct id, to_char(login_date,'YYYY-MM-DD') as login_date from Logins ) a  
                 ) b
             left join 
                   Accounts c
-            on b.id = c.id<br />
+            on b.id = c.id  
         ) d 
 where d.date_diff=4 
-order by d.id;</p>
-<pre><code>
-
-7.  Apples &amp; Oranges &lt;br&gt;
-https://leetcode.com/problems/apples-oranges/ &lt;br&gt;
-
-Table: Sales &lt;br&gt;
-
-| Column Name   | Type    |
-|---------------|---------|
-| sale_date     | date    |
-| fruit         | enum    | 
-| sold_num      | int     | 
-
-(sale_date,fruit) is the primary key for this table. &lt;br&gt;
-This table contains the sales of &quot;apples&quot; and &quot;oranges&quot; sold each day. &lt;br&gt;
-
-Write an SQL query to report the difference between number of apples and oranges sold each day. &lt;br&gt;
-
-Return the result table ordered by sale_date in format ('YYYY-MM-DD'). &lt;br&gt;
-
-The query result format is in the following example: &lt;br&gt;
-
+order by d.id;
 </code></pre>
-<p>Sales table:
+<ol>
+<li>Apples &amp; Oranges <br>
+https://leetcode.com/problems/apples-oranges/ <br></li>
+</ol>
+<p>Table: Sales <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sale_date</td>
+<td>date</td>
+</tr>
+<tr>
+<td>fruit</td>
+<td>enum</td>
+</tr>
+<tr>
+<td>sold_num</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+<p>(sale_date,fruit) is the primary key for this table. <br>
+This table contains the sales of "apples" and "oranges" sold each day. <br></p>
+<p>Write an SQL query to report the difference between number of apples and oranges sold each day. <br></p>
+<p>Return the result table ordered by sale_date in format ('YYYY-MM-DD'). <br></p>
+<p>The query result format is in the following example: <br></p>
+<pre><code>Sales table:
 +------------+------------+-------------+
 | sale_date  | fruit      | sold_num    |
 +------------+------------+-------------+
@@ -1160,8 +1293,9 @@ The query result format is in the following example: &lt;br&gt;
 | 2020-05-03 | oranges    | 0           |
 | 2020-05-04 | apples     | 15          |
 | 2020-05-04 | oranges    | 16          |
-+------------+------------+-------------+</p>
-<p>Result table:
++------------+------------+-------------+
+
+Result table:
 +------------+--------------+
 | sale_date  | diff         |
 +------------+--------------+
@@ -1169,75 +1303,97 @@ The query result format is in the following example: &lt;br&gt;
 | 2020-05-02 | 0            |
 | 2020-05-03 | 20           |
 | 2020-05-04 | -1           |
-+------------+--------------+</p>
-<p>Day 2020-05-01, 10 apples and 8 oranges were sold (Difference  10 - 8 = 2).
++------------+--------------+
+
+Day 2020-05-01, 10 apples and 8 oranges were sold (Difference  10 - 8 = 2).
 Day 2020-05-02, 15 apples and 15 oranges were sold (Difference 15 - 15 = 0).
 Day 2020-05-03, 20 apples and 0 oranges were sold (Difference 20 - 0 = 20).
-Day 2020-05-04, 15 apples and 16 oranges were sold (Difference 15 - 16 = -1).</p>
-<pre><code>
-Ans.
-
+Day 2020-05-04, 15 apples and 16 oranges were sold (Difference 15 - 16 = -1).
 </code></pre>
-<p>KL -
+<p>Ans.</p>
+<pre><code>KL -
 select
         coalesce(to_char(a.sale_date,'YYYY-MM-DD'),to_char(b.sale_date,'YYYY-MM-DD')) as sale_date,
         coalesce(a.sold_num,0) - coalesce(b.sold_num,0) as diff
 from 
-    (select sale_date , sold_num from sales where fruit='apples') a<br />
+    (select sale_date , sold_num from sales where fruit='apples') a  
 full join
     (select sale_date , sold_num from sales where fruit='oranges') b
 on 
     to_char(a.sale_date,'YYYY-MM-DD')=to_char(b.sale_date,'YYYY-MM-DD')
 order by 
-    coalesce(to_char(a.sale_date,'YYYY-MM-DD'),to_char(b.sale_date,'YYYY-MM-DD'));</p>
-<p>NG -
+    coalesce(to_char(a.sale_date,'YYYY-MM-DD'),to_char(b.sale_date,'YYYY-MM-DD'));
+
+NG -
     select sale_date, 
-           sum(case when fruit = 'apples' then sold_num else 0-sold_num end) as "diff"
+           sum(case when fruit = 'apples' then sold_num else 0-sold_num end) as &quot;diff&quot;
     from sales
-    group by sale_date</p>
-<pre><code>
-8. Evaluate Boolean Expression &lt;br&gt;
-https://leetcode.com/problems/evaluate-boolean-expression/ &lt;br&gt;
-
-Table Variables: &lt;br&gt;
-
-| Column Name   | Type    |
-|---------------|---------|
-| name          | varchar |
-| value         | int     |
-
-name is the primary key for this table. &lt;br&gt;
-This table contains the stored variables and their values. &lt;br&gt;
-
-
-Table Expressions: &lt;br&gt;
-
-| Column Name   | Type    |
-|---------------|---------|
-| left_operand  | varchar |
-| operator      | enum    |
-| right_operand | varchar |
-
-(left_operand, operator, right_operand) is the primary key for this table. &lt;br&gt;
-This table contains a boolean expression that should be evaluated. &lt;br&gt;
-operator is an enum that takes one of the values ('&lt;', '&gt;', '=') &lt;br&gt;
-The values of left_operand and right_operand are guaranteed to be in the Variables table. &lt;br&gt;
-
-Write an SQL query to evaluate the boolean expressions in Expressions table. &lt;br&gt;
-
-Return the result table in any order. &lt;br&gt;
-
-The query result format is in the following example. &lt;br&gt;
-
+    group by sale_date
 </code></pre>
-<p>Variables table:
+<ol>
+<li>Evaluate Boolean Expression <br>
+https://leetcode.com/problems/evaluate-boolean-expression/ <br></li>
+</ol>
+<p>Table Variables: <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>value</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+<p>name is the primary key for this table. <br>
+This table contains the stored variables and their values. <br></p>
+<p>Table Expressions: <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left_operand</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>enum</td>
+</tr>
+<tr>
+<td>right_operand</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>(left_operand, operator, right_operand) is the primary key for this table. <br>
+This table contains a boolean expression that should be evaluated. <br>
+operator is an enum that takes one of the values ('&lt;', '&gt;', '=') <br>
+The values of left_operand and right_operand are guaranteed to be in the Variables table. <br></p>
+<p>Write an SQL query to evaluate the boolean expressions in Expressions table. <br></p>
+<p>Return the result table in any order. <br></p>
+<p>The query result format is in the following example. <br></p>
+<pre><code>Variables table:
 +------+-------+
 | name | value |
 +------+-------+
 | x    | 66    |
 | y    | 77    |
-+------+-------+</p>
-<p>Expressions table:
++------+-------+
+
+Expressions table:
 +--------------+----------+---------------+
 | left_operand | operator | right_operand |
 +--------------+----------+---------------+
@@ -1247,8 +1403,9 @@ The query result format is in the following example. &lt;br&gt;
 | y            | &gt;        | x             |
 | y            | &lt;        | x             |
 | x            | =        | x             |
-+--------------+----------+---------------+</p>
-<p>Result table:
++--------------+----------+---------------+
+
+Result table:
 +--------------+----------+---------------+-------+
 | left_operand | operator | right_operand | value |
 +--------------+----------+---------------+-------+
@@ -1259,19 +1416,18 @@ The query result format is in the following example. &lt;br&gt;
 | y            | &lt;        | x             | false |
 | x            | =        | x             | true  |
 +--------------+----------+---------------+-------+
-As shown, you need find the value of each boolean exprssion in the table using the variables table.</p>
-<pre><code>
-Ans.
+As shown, you need find the value of each boolean exprssion in the table using the variables table.
 </code></pre>
-<p>select 
-        left_operand as "left_operand",
-        operator as "operator",
-        right_operand as "right_operand",
+<p>Ans.</p>
+<pre><code>select 
+        left_operand as &quot;left_operand&quot;,
+        operator as &quot;operator&quot;,
+        right_operand as &quot;right_operand&quot;,
         case 
             when operator='&gt;' then case when left_value&gt;right_value then 'true' else 'false' end 
             when operator='&lt;' then case when left_value&lt;right_value then 'true' else 'false' end 
             when operator='=' then case when left_value=right_value then 'true' else 'false' end 
-        end as "value" 
+        end as &quot;value&quot; 
         from 
             (
                 select
@@ -1288,40 +1444,62 @@ Ans.
                 left join 
                     variables c
                 on a.right_operand = c.name
-            );</p>
-<pre><code>
-9. Customers Who Bought Products A and B but Not C  &lt;br&gt;
-https://leetcode.com/problems/customers-who-bought-products-a-and-b-but-not-c/submissions/ &lt;br&gt;     
-
-Table: Customers &lt;br&gt;
-
-| Column Name         | Type    |
-|---------------------|---------|
-| customer_id         | int     |
-| customer_name       | varchar |
-
-customer_id is the primary key for this table. &lt;br&gt;
-customer_name is the name of the customer. &lt;br&gt;
-
-Table: Orders
-
-| Column Name   | Type    |
-|---------------|---------|
-| order_id      | int     |
-| customer_id   | int     |
-| product_name  | varchar |
-
-order_id is the primary key for this table. &lt;br&gt;
-customer_id is the id of the customer who bought the product &quot;product_name&quot;. &lt;br&gt;
-
-Write an SQL query to report the customer_id and customer_name of customers who bought products &quot;A&quot;, &quot;B&quot; but did not buy the product &quot;C&quot; since we want to recommend them buy this product. &lt;br&gt;
-
-Return the result table ordered by customer_id. &lt;br&gt;
-
-The query result format is in the following example. &lt;br&gt;
-
+            );
 </code></pre>
-<p>Customers table:
+<ol>
+<li>Customers Who Bought Products A and B but Not C  <br>
+https://leetcode.com/problems/customers-who-bought-products-a-and-b-but-not-c/submissions/ <br>     </li>
+</ol>
+<p>Table: Customers <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customer_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>customer_name</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>customer_id is the primary key for this table. <br>
+customer_name is the name of the customer. <br></p>
+<p>Table: Orders</p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>order_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>product_name</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>order_id is the primary key for this table. <br>
+customer_id is the id of the customer who bought the product "product_name". <br></p>
+<p>Write an SQL query to report the customer_id and customer_name of customers who bought products "A", "B" but did not buy the product "C" since we want to recommend them buy this product. <br></p>
+<p>Return the result table ordered by customer_id. <br></p>
+<p>The query result format is in the following example. <br></p>
+<pre><code>Customers table:
 +-------------+---------------+
 | customer_id | customer_name |
 +-------------+---------------+
@@ -1329,8 +1507,9 @@ The query result format is in the following example. &lt;br&gt;
 | 2           | Diana         |
 | 3           | Elizabeth     |
 | 4           | Jhon          |
-+-------------+---------------+</p>
-<p>Orders table:
++-------------+---------------+
+
+Orders table:
 +------------+--------------+---------------+
 | order_id   | customer_id  | product_name  |
 +------------+--------------+---------------+
@@ -1343,63 +1522,77 @@ The query result format is in the following example. &lt;br&gt;
 | 70         |     3        |     B         |
 | 80         |     3        |     D         |
 | 90         |     4        |     C         |
-+------------+--------------+---------------+</p>
-<p>Result table:
++------------+--------------+---------------+
+
+Result table:
 +-------------+---------------+
 | customer_id | customer_name |
 +-------------+---------------+
 | 3           | Elizabeth     |
 +-------------+---------------+
-Only the customer_id with id 3 bought the product A and B but not the product C.</p>
-<pre><code>Ans. &lt;br&gt;
-
+Only the customer_id with id 3 bought the product A and B but not the product C.
 </code></pre>
-<p>select 
+<p>Ans. <br></p>
+<pre><code>select 
     customer_id,
     customer_name
 from (
         select 
-            distinct<br />
-                    a.customer_id,<br />
+            distinct  
+                    a.customer_id,  
                     b.customer_name, 
                     a.product_name 
            from 
             orders a 
-                left join    <br />
-            customers b    <br />
-            on a.customer_id = b.customer_id   <br />
+                left join      
+            customers b      
+            on a.customer_id = b.customer_id     
         where a.product_name in ('A','B','C') 
     )
     group by customer_id,customer_name
     having sum(case when product_name='A' then 1 when product_name='B' then 2 else 100 end)=3
-    order by customer_id;</p>
-<pre><code>10.  Capital Gain/Loss &lt;br&gt;
-https://leetcode.com/problems/capital-gainloss/ &lt;br&gt;
-
-Table: Stocks &lt;br&gt;
-
-| Column Name   | Type    |
-|---------------|---------|
-| stock_name    | varchar |
-| operation     | enum    |
-| operation_day | int     |
-| price         | int     |
-
-(stock_name, day) is the primary key for this table. &lt;br&gt;
-The operation column is an ENUM of type ('Sell', 'Buy') &lt;br&gt;
-Each row of this table indicates that the stock which has stock_name had an operation on the day operation_day with the price. &lt;br&gt;
-It is guaranteed that each 'Sell' operation for a stock has a corresponding 'Buy' operation in a previous day. &lt;br&gt;
-
-
-Write an SQL query to report the Capital gain/loss for each stock. &lt;br&gt;
-
-The capital gain/loss of a stock is total gain or loss after buying and selling the stock one or many times. &lt;br&gt;
-
-Return the result table in any order. &lt;br&gt;
-
-The query result format is in the following example: &lt;br&gt;
+    order by customer_id;
 </code></pre>
-<p>Stocks table:
+<ol>
+<li>Capital Gain/Loss <br>
+https://leetcode.com/problems/capital-gainloss/ <br></li>
+</ol>
+<p>Table: Stocks <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stock_name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>operation</td>
+<td>enum</td>
+</tr>
+<tr>
+<td>operation_day</td>
+<td>int</td>
+</tr>
+<tr>
+<td>price</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+<p>(stock_name, day) is the primary key for this table. <br>
+The operation column is an ENUM of type ('Sell', 'Buy') <br>
+Each row of this table indicates that the stock which has stock_name had an operation on the day operation_day with the price. <br>
+It is guaranteed that each 'Sell' operation for a stock has a corresponding 'Buy' operation in a previous day. <br></p>
+<p>Write an SQL query to report the Capital gain/loss for each stock. <br></p>
+<p>The capital gain/loss of a stock is total gain or loss after buying and selling the stock one or many times. <br></p>
+<p>Return the result table in any order. <br></p>
+<p>The query result format is in the following example: <br></p>
+<pre><code>Stocks table:
 +---------------+-----------+---------------+--------+
 | stock_name    | operation | operation_day | price  |
 +---------------+-----------+---------------+--------+
@@ -1413,150 +1606,312 @@ The query result format is in the following example: &lt;br&gt;
 | Corona Masks  | Buy       | 6             | 1000   |
 | Handbags      | Sell      | 29            | 7000   |
 | Corona Masks  | Sell      | 10            | 10000  |
-+---------------+-----------+---------------+--------+</p>
-<p>Result table:
++---------------+-----------+---------------+--------+
+
+Result table:
 +---------------+-------------------+
 | stock_name    | capital_gain_loss |
 +---------------+-------------------+
 | Corona Masks  | 9500              |
 | Leetcode      | 8000              |
 | Handbags      | -23000            |
-+---------------+-------------------+</p>
-<pre><code>Leetcode stock was bought at day 1 for 1000$ and was sold at day 5 for 9000$. Capital gain = 9000 - 1000 = 8000$. &lt;br&gt;
-Handbags stock was bought at day 17 for 30000$ and was sold at day 29 for 7000$. Capital loss = 7000 - 30000 = -23000$. &lt;br&gt;
-Corona Masks stock was bought at day 1 for 10$ and was sold at day 3 for 1010$. It was bought again at day 4 for 1000$ and was sold at day 5 for 500$.  &lt;br&gt;
-At last, it was bought at day 6 for 1000$ and was sold at day 10 for 10000$.  &lt;br&gt;
-Capital gain/loss is the sum of capital gains/losses for each ('Buy' --&gt; 'Sell') operation  &lt;br&gt;
-= (1010 - 10) + (500 - 1000) + (10000 - 1000) = 1000 - 500 + 9000 = 9500$.
-
-Ans.
-
++---------------+-------------------+
 </code></pre>
-<p>select
+<p>Leetcode stock was bought at day 1 for 1000$ and was sold at day 5 for 9000$. Capital gain = 9000 - 1000 = 8000$. <br>
+Handbags stock was bought at day 17 for 30000$ and was sold at day 29 for 7000$. Capital loss = 7000 - 30000 = -23000$. <br>
+Corona Masks stock was bought at day 1 for 10$ and was sold at day 3 for 1010$. It was bought again at day 4 for 1000$ and was sold at day 5 for 500$.  <br>
+At last, it was bought at day 6 for 1000$ and was sold at day 10 for 10000$.  <br>
+Capital gain/loss is the sum of capital gains/losses for each ('Buy' --&gt; 'Sell') operation  <br>
+= (1010 - 10) + (500 - 1000) + (10000 - 1000) = 1000 - 500 + 9000 = 9500$.</p>
+<p>Ans.</p>
+<pre><code>select
     stock_name,
     sum(case when operation ='Sell' then price else 0-price end) as capital_gain_loss 
 from 
     stocks
 group by stock_name
-order by stock_name;</p>
-<pre><code>
-12. Number of Trusted Contacts of a Customer &lt;br&gt;
-https://leetcode.com/problems/number-of-trusted-contacts-of-a-customer/ &lt;br&gt;
-
-Table: Customers &lt;br&gt;
-
-| Column Name   | Type    |
-|--------------|---------|
-| customer_id   | int     |
-| customer_name | varchar |
-| email         | varchar |
-
-customer_id is the primary key for this table. &lt;br&gt;
-Each row of this table contains the name and the email of a customer of an online shop. &lt;br&gt;
-
-Table: Contacts &lt;br&gt;
-
-| Column Name   | Type    |
-|--------------|---------|
-| user_id       | id      |
-| contact_name  | varchar |
-| contact_email | varchar |
-
-(user_id, contact_email) is the primary key for this table. &lt;br&gt;
-Each row of this table contains the name and email of one contact of customer with user_id. &lt;br&gt;
-This table contains information about people each customer trust. The contact may or may not exist in the Customers table. &lt;br&gt;
-
-Table: Invoices &lt;br&gt;
-
-| Column Name  | Type    |
-|--------------|---------|
-| invoice_id   | int     |
-| price        | int     |
-| user_id      | int     |
-
-
-invoice_id is the primary key for this table. &lt;br&gt;
-Each row of this table indicates that user_id has an invoice with invoice_id and a price. &lt;br&gt;
-
-Write an SQL query to find the following for each invoice_id: &lt;br&gt;
-
-customer_name: The name of the customer the invoice is related to. &lt;br&gt;
-price: The price of the invoice. &lt;br&gt;
-contacts_cnt: The number of contacts related to the customer. &lt;br&gt;
-trusted_contacts_cnt: The number of contacts related to the customer and at the same time they are customers to the shop. &lt;br&gt; 
-(i.e His/Her email exists in the Customers table.) &lt;br&gt;
-Order the result table by invoice_id. &lt;br&gt;
-
-The query result format is in the following example: &lt;br&gt;
-
-Customers table: &lt;br&gt;
-
-| customer_id | customer_name | email              |
-|-------------|---------------|--------------------|
-| 1           | Alice         | alice@leetcode.com |
-| 2           | Bob           | bob@leetcode.com   |
-| 13          | John          | john@leetcode.com  |
-| 6           | Alex          | alex@leetcode.com  |
-
-
-Contacts table:
-
-| user_id     | contact_name | contact_email      |
-|-------------|--------------|--------------------|
-| 1           | Bob          | bob@leetcode.com   |
-| 1           | John         | john@leetcode.com  |
-| 1           | Jal          | jal@leetcode.com   |
-| 2           | Omar         | omar@leetcode.com  |
-| 2           | Meir         | meir@leetcode.com  |
-| 6           | Alice        | alice@leetcode.com |
-
-
-
-Invoices table:  &lt;br&gt;
-
-| invoice_id | price | user_id |
-|------------|-------|---------|
-| 77         | 100   | 1       |
-| 88         | 200   | 1       |
-| 99         | 300   | 2       |
-| 66         | 400   | 2       |
-| 55         | 500   | 13      |
-| 44         | 60    | 6       |
-
-
-Result table:
-
-| invoice_id | customer_name | price | contacts_cnt | trusted_contacts_cnt |
-|------------|---------------|-------|--------------|----------------------|
-| 44         | Alex          | 60    | 1            | 1                    |
-| 55         | John          | 500   | 0            | 0                    |
-| 66         | Bob           | 400   | 2            | 0                    |
-| 77         | Alice         | 100   | 3            | 2                    |
-| 88         | Alice         | 200   | 3            | 2                    |
-| 99         | Bob           | 300   | 2            | 0                    |
-
-
-Alice has three contacts, two of them are trusted contacts (Bob and John). &lt;br&gt;
-Bob has two contacts, none of them is a trusted contact. &lt;br&gt;
-Alex has one contact and it is a trusted contact (Alice). &lt;br&gt;
-John doesn't have any contacts. &lt;br&gt;
-
-Ans.
+order by stock_name;
 </code></pre>
-<p>select
+<ol>
+<li>Number of Trusted Contacts of a Customer <br>
+https://leetcode.com/problems/number-of-trusted-contacts-of-a-customer/ <br></li>
+</ol>
+<p>Table: Customers <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customer_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>customer_name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>email</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>customer_id is the primary key for this table. <br>
+Each row of this table contains the name and the email of a customer of an online shop. <br></p>
+<p>Table: Contacts <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>contact_name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>contact_email</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>(user_id, contact_email) is the primary key for this table. <br>
+Each row of this table contains the name and email of one contact of customer with user_id. <br>
+This table contains information about people each customer trust. The contact may or may not exist in the Customers table. <br></p>
+<p>Table: Invoices <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invoice_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>price</td>
+<td>int</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+<p>invoice_id is the primary key for this table. <br>
+Each row of this table indicates that user_id has an invoice with invoice_id and a price. <br></p>
+<p>Write an SQL query to find the following for each invoice_id: <br></p>
+<p>customer_name: The name of the customer the invoice is related to. <br>
+price: The price of the invoice. <br>
+contacts_cnt: The number of contacts related to the customer. <br>
+trusted_contacts_cnt: The number of contacts related to the customer and at the same time they are customers to the shop. <br> 
+(i.e His/Her email exists in the Customers table.) <br>
+Order the result table by invoice_id. <br></p>
+<p>The query result format is in the following example: <br></p>
+<p>Customers table: <br></p>
+<table>
+<thead>
+<tr>
+<th>customer_id</th>
+<th>customer_name</th>
+<th>email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Alice</td>
+<td>alice@leetcode.com</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bob</td>
+<td>bob@leetcode.com</td>
+</tr>
+<tr>
+<td>13</td>
+<td>John</td>
+<td>john@leetcode.com</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Alex</td>
+<td>alex@leetcode.com</td>
+</tr>
+</tbody>
+</table>
+<p>Contacts table:</p>
+<table>
+<thead>
+<tr>
+<th>user_id</th>
+<th>contact_name</th>
+<th>contact_email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Bob</td>
+<td>bob@leetcode.com</td>
+</tr>
+<tr>
+<td>1</td>
+<td>John</td>
+<td>john@leetcode.com</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Jal</td>
+<td>jal@leetcode.com</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Omar</td>
+<td>omar@leetcode.com</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Meir</td>
+<td>meir@leetcode.com</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Alice</td>
+<td>alice@leetcode.com</td>
+</tr>
+</tbody>
+</table>
+<p>Invoices table:  <br></p>
+<table>
+<thead>
+<tr>
+<th>invoice_id</th>
+<th>price</th>
+<th>user_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>77</td>
+<td>100</td>
+<td>1</td>
+</tr>
+<tr>
+<td>88</td>
+<td>200</td>
+<td>1</td>
+</tr>
+<tr>
+<td>99</td>
+<td>300</td>
+<td>2</td>
+</tr>
+<tr>
+<td>66</td>
+<td>400</td>
+<td>2</td>
+</tr>
+<tr>
+<td>55</td>
+<td>500</td>
+<td>13</td>
+</tr>
+<tr>
+<td>44</td>
+<td>60</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>Result table:</p>
+<table>
+<thead>
+<tr>
+<th>invoice_id</th>
+<th>customer_name</th>
+<th>price</th>
+<th>contacts_cnt</th>
+<th>trusted_contacts_cnt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>44</td>
+<td>Alex</td>
+<td>60</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>55</td>
+<td>John</td>
+<td>500</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>66</td>
+<td>Bob</td>
+<td>400</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>77</td>
+<td>Alice</td>
+<td>100</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>88</td>
+<td>Alice</td>
+<td>200</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>99</td>
+<td>Bob</td>
+<td>300</td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Alice has three contacts, two of them are trusted contacts (Bob and John). <br>
+Bob has two contacts, none of them is a trusted contact. <br>
+Alex has one contact and it is a trusted contact (Alice). <br>
+John doesn't have any contacts. <br></p>
+<p>Ans.</p>
+<pre><code>select
     a.invoice_id ,
     b.customer_name,
     a.price,
-    (select count(<em>) from contacts where user_id =  a.user_id) as contacts_cnt ,
-    (select count(</em>) from contacts where user_id = a.user_id and contact_email in (select email from customers) ) as trusted_contacts_cnt 
+    (select count(*) from contacts where user_id =  a.user_id) as contacts_cnt ,
+    (select count(*) from contacts where user_id = a.user_id and contact_email in (select email from customers) ) as trusted_contacts_cnt 
 from
     invoices a
 left join 
     customers b
 on 
     a.user_id = b.customer_id
-order by invoice_id;</p>
-<p>-- Other Approach: Using Joins
+order by invoice_id;
+
+-- Other Approach: Using Joins
 select
         a.invoice_id ,
         b.customer_name,
@@ -1581,44 +1936,63 @@ left join
 ) e
 on a.user_id = e.user_id
 group by a.invoice_id , b.customer_name, a.price
-order by a.invoice_id;</p>
-<pre><code>
-
-
-12. Activity Participants &lt;br&gt;
-https://leetcode.com/problems/activity-participants/ &lt;br&gt; 
-
-Table: Friends &lt;br&gt;
-
-| Column Name   | Type    |
-|---------------|---------|
-| id            | int     |
-| name          | varchar |
-| activity      | varchar |
-
-
-id is the id of the friend and primary key for this table.&lt;br&gt;
-name is the name of the friend.&lt;br&gt;
-activity is the name of the activity which the friend takes part in.&lt;br&gt;
-
-Table: Activities &lt;br&gt;
-
-| Column Name   | Type    |
-|---------------|---------|
-| id            | int     |
-| name          | varchar |
-
-id is the primary key for this table.&lt;br&gt;
-name is the name of the activity.&lt;br&gt;
-
-Write an SQL query to find the names of all the activities with neither maximum, nor minimum number of participants.&lt;br&gt;
-
-Return the result table in any order. Each activity in table Activities is performed by any person in the table Friends.&lt;br&gt;
-
-The query result format is in the following example:&lt;br&gt;
-
+order by a.invoice_id;
 </code></pre>
-<p>Friends table:
+<ol>
+<li>Activity Participants <br>
+https://leetcode.com/problems/activity-participants/ <br> </li>
+</ol>
+<p>Table: Friends <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>activity</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>id is the id of the friend and primary key for this table.<br>
+name is the name of the friend.<br>
+activity is the name of the activity which the friend takes part in.<br></p>
+<p>Table: Activities <br></p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar</td>
+</tr>
+</tbody>
+</table>
+<p>id is the primary key for this table.<br>
+name is the name of the activity.<br></p>
+<p>Write an SQL query to find the names of all the activities with neither maximum, nor minimum number of participants.<br></p>
+<p>Return the result table in any order. Each activity in table Activities is performed by any person in the table Friends.<br></p>
+<p>The query result format is in the following example:<br></p>
+<pre><code>Friends table:
 +------+--------------+---------------+
 | id   | name         | activity      |
 +------+--------------+---------------+
@@ -1628,78 +2002,101 @@ The query result format is in the following example:&lt;br&gt;
 | 4    | Elvis Q.     | Eating        |
 | 5    | Daniel A.    | Eating        |
 | 6    | Bob B.       | Horse Riding  |
-+------+--------------+---------------+</p>
-<p>Activities table:
++------+--------------+---------------+
+
+Activities table:
 +------+--------------+
 | id   | name         |
 +------+--------------+
 | 1    | Eating       |
 | 2    | Singing      |
 | 3    | Horse Riding |
-+------+--------------+</p>
-<p>Result table:
++------+--------------+
+
+Result table:
 +--------------+
 | activity     |
 +--------------+
 | Singing      |
-+--------------+</p>
-<p>Eating activity is performed by 3 friends, maximum number of participants, (Jonathan D. , Elvis Q. and Daniel A.)
-Horse Riding activity is performed by 1 friend, minimum number of participants, (Bob B.)
-Singing is performed by 2 friends (Victor J. and Jade W.)</p>
-<pre><code>
-Ans.
++--------------+
 
+Eating activity is performed by 3 friends, maximum number of participants, (Jonathan D. , Elvis Q. and Daniel A.)
+Horse Riding activity is performed by 1 friend, minimum number of participants, (Bob B.)
+Singing is performed by 2 friends (Victor J. and Jade W.)
 </code></pre>
-<p>select activity from (
+<p>Ans.</p>
+<pre><code>select activity from (
                 select
                     activity,
-                    count(<em>) as act_count,
-                    min(count(</em>)) over () as min_cnt,
+                    count(*) as act_count,
+                    min(count(*)) over () as min_cnt,
                     max(count(*)) over () as max_cnt
                 from friends
                 group by activity
                 order by activity
                     ) 
-where min_cnt&lt;act_count and act_count&lt;max_cnt;</p>
-<pre><code>
-
-13. Second Degree Follower &lt;br&gt;
-https://leetcode.com/problems/second-degree-follower/submissions/ &lt;br&gt;
-
-In facebook, there is a follow table with two columns: followee, follower. &lt;br&gt;
-
-Please write a sql query to get the amount of each follower’s follower if he/she has one. &lt;br&gt;
-
-For example: &lt;br&gt;
-
-| followee    | follower   |
-|-------------|------------|
-|     A       |     B      |
-|     B       |     C      |
-|     B       |     D      |
-|     D       |     E      |
-
-
-should output:
-
-| follower    | num        |
-|-------------|------------|
-|     B       |  2         |
-|     D       |  1         |
-
-
-Explaination: &lt;br&gt;
-Both B and D exist in the follower list, when as a followee, B's follower is C and D, and D's follower is E. &lt;br&gt;
-A does not exist in follower list. &lt;br&gt;
-
-Note: &lt;br&gt;
-Followee would not follow himself/herself in all cases. &lt;br&gt;
-
-Ans. &lt;br&gt;
-There could be duplicates in table, so use count distinct for counting followers. &lt;br&gt;
-
+where min_cnt&lt;act_count and act_count&lt;max_cnt;
 </code></pre>
-<p>select 
+<ol>
+<li>Second Degree Follower <br>
+https://leetcode.com/problems/second-degree-follower/submissions/ <br></li>
+</ol>
+<p>In facebook, there is a follow table with two columns: followee, follower. <br></p>
+<p>Please write a sql query to get the amount of each follower’s follower if he/she has one. <br></p>
+<p>For example: <br></p>
+<table>
+<thead>
+<tr>
+<th>followee</th>
+<th>follower</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>B</td>
+</tr>
+<tr>
+<td>B</td>
+<td>C</td>
+</tr>
+<tr>
+<td>B</td>
+<td>D</td>
+</tr>
+<tr>
+<td>D</td>
+<td>E</td>
+</tr>
+</tbody>
+</table>
+<p>should output:</p>
+<table>
+<thead>
+<tr>
+<th>follower</th>
+<th>num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>2</td>
+</tr>
+<tr>
+<td>D</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Explaination: <br>
+Both B and D exist in the follower list, when as a followee, B's follower is C and D, and D's follower is E. <br>
+A does not exist in follower list. <br></p>
+<p>Note: <br>
+Followee would not follow himself/herself in all cases. <br></p>
+<p>Ans. <br>
+There could be duplicates in table, so use count distinct for counting followers. <br></p>
+<pre><code>select 
     main as follower, 
     count(distinct follower) as num 
 from (
@@ -1711,7 +2108,7 @@ from (
     )
 group by main 
 order by main;
-```</p>
+</code></pre>
 
               
             </article>
