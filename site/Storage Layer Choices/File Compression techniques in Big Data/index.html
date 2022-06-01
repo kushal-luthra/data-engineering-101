@@ -12,19 +12,19 @@
         <meta name="author" content="Kushal Luthra">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.16">
     
     
       
-        <title>Common Table Expressions (CTEs) - Data Engineering 101</title>
+        <title>File Compression Techniques in Big Data Systems - Data Engineering 101</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.1c3799f8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1c3799f8.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -39,7 +39,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#common-table-expressions-ctes" class="md-skip">
+        <a href="#file-compression-techniques" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+    <a href="../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Common Table Expressions (CTEs)
+              File Compression Techniques in Big Data Systems
             
           </span>
         </div>
@@ -175,7 +175,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+    <a href="../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -206,7 +206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -219,14 +219,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       
       
@@ -249,7 +247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql_performance_tuning/" class="md-nav__link">
+      <a href="../../SQL/docs/sql_performance_tuning/" class="md-nav__link">
         SQL Performance Tuning
       </a>
     </li>
@@ -263,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql_performance_tuning_summary/" class="md-nav__link">
+      <a href="../../SQL/docs/sql_performance_tuning_summary/" class="md-nav__link">
         SQL Performance Tuning Summary
       </a>
     </li>
@@ -275,75 +273,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Common Table Expressions (CTEs)
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/Common%20Table%20Expressions/" class="md-nav__link">
         Common Table Expressions (CTEs)
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#common-table-expressions-ctes" class="md-nav__link">
-    Common Table Expressions (CTEs)
-  </a>
-  
-    <nav class="md-nav" aria-label="Common Table Expressions (CTEs)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-are-common-table-expressions-ctes" class="md-nav__link">
-    What are Common Table Expressions (CTEs)?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-are-ctes-helpful" class="md-nav__link">
-    How are CTEs helpful?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-create-cte" class="md-nav__link">
-    How to create CTE?
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -355,7 +289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-analytical-functions/" class="md-nav__link">
+      <a href="../../SQL/docs/sql-analytical-functions/" class="md-nav__link">
         SQL Analytical Functions
       </a>
     </li>
@@ -369,7 +303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-practise-questions/" class="md-nav__link">
+      <a href="../../SQL/docs/sql-practise-questions/" class="md-nav__link">
         SQL Practise Questions
       </a>
     </li>
@@ -417,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Data-Warehousing-basics/" class="md-nav__link">
+      <a href="../../SQL/docs/Data-Warehousing-basics/" class="md-nav__link">
         Data Warehousing Concepts
       </a>
     </li>
@@ -431,7 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../random/ELK%20Stack/" class="md-nav__link">
+      <a href="../../random/ELK%20Stack/" class="md-nav__link">
         ELK
       </a>
     </li>
@@ -445,7 +379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../random/ETL%20VS%20ELT/" class="md-nav__link">
+      <a href="../../random/ETL%20VS%20ELT/" class="md-nav__link">
         Database Vs Datawarehouse Vs Datalake | ETL Vs ELT
       </a>
     </li>
@@ -465,12 +399,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -493,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
+      <a href="../row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
         Row-based Vs Column-based File Formats
       </a>
     </li>
@@ -507,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Storage%20Layer%20Choices/Text%20File%20Formats/" class="md-nav__link">
+      <a href="../Text%20File%20Formats/" class="md-nav__link">
         Text-based File Formats
       </a>
     </li>
@@ -521,7 +457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Storage%20Layer%20Choices/big%20data%20file%20formats/" class="md-nav__link">
+      <a href="../big%20data%20file%20formats/" class="md-nav__link">
         Big Data File Formats
       </a>
     </li>
@@ -533,11 +469,95 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../Storage%20Layer%20Choices/File%20Compression%20techniques%20in%20Big%20Data/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          File Compression Techniques in Big Data Systems
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         File Compression Techniques in Big Data Systems
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-compression-techniques" class="md-nav__link">
+    File Compression Techniques
+  </a>
+  
+    <nav class="md-nav" aria-label="File Compression Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snappy" class="md-nav__link">
+    Snappy
+  </a>
+  
+    <nav class="md-nav" aria-label="Snappy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#splittablity-in-compression-techniques" class="md-nav__link">
+    Splittablity in compression techniques
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lzo" class="md-nav__link">
+    Lzo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gzip" class="md-nav__link">
+    Gzip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bzip2" class="md-nav__link">
+    Bzip2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -583,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../random/cold_mails/" class="md-nav__link">
+      <a href="../../random/cold_mails/" class="md-nav__link">
         Cold Mail Tactics
       </a>
     </li>
@@ -605,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../aboutme/" class="md-nav__link">
+      <a href="../../aboutme/" class="md-nav__link">
         About Me
       </a>
     </li>
@@ -637,30 +657,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#common-table-expressions-ctes" class="md-nav__link">
-    Common Table Expressions (CTEs)
+  <a href="#file-compression-techniques" class="md-nav__link">
+    File Compression Techniques
   </a>
   
-    <nav class="md-nav" aria-label="Common Table Expressions (CTEs)">
+    <nav class="md-nav" aria-label="File Compression Techniques">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-are-common-table-expressions-ctes" class="md-nav__link">
-    What are Common Table Expressions (CTEs)?
+  <a href="#snappy" class="md-nav__link">
+    Snappy
+  </a>
+  
+    <nav class="md-nav" aria-label="Snappy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#splittablity-in-compression-techniques" class="md-nav__link">
+    Splittablity in compression techniques
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lzo" class="md-nav__link">
+    Lzo
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#how-are-ctes-helpful" class="md-nav__link">
-    How are CTEs helpful?
+  <a href="#gzip" class="md-nav__link">
+    Gzip
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#how-to-create-cte" class="md-nav__link">
-    How to create CTE?
+  <a href="#bzip2" class="md-nav__link">
+    Bzip2
   </a>
   
 </li>
@@ -682,39 +722,103 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/SQL/docs/Common Table Expressions.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/Storage Layer Choices/File Compression techniques in Big Data.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-  <h1>Common Table Expressions (CTEs)</h1>
+  <h1>File Compression Techniques in Big Data Systems</h1>
 
-<h3 id="common-table-expressions-ctes">Common Table Expressions (CTEs)</h3>
-<h4 id="what-are-common-table-expressions-ctes">What are Common Table Expressions (CTEs)?</h4>
-<p>A Common Table Expression (CTE) is the result set of a query which exists temporarily and for use only within the context of a larger query. <br>
-Much like a derived table, the result of a CTE is not stored and exists only for the duration of the query. </p>
-<p>Common Table expression (CTE) is a temporary named result set that you can reference within a SELECT, INSERT, UPDATE, or DELETE statement. <br>
-You can also use a CTE in a CREATE a view, as part of the view’s SELECT query. </p>
-<h4 id="how-are-ctes-helpful">How are CTEs helpful?</h4>
-<p>CTEs, like database views and derived tables, enable users to more easily write and maintain complex queries via increased readability and simplification. <br>
-This reduction in complexity is achieved by deconstructing ordinarily complex queries into simple blocks to be used, and reused if necessary, in rewriting the query.  <br>
-Example use cases include: <br>
-- Needing to reference a derived table multiple times in a single query <br>
-- An alternative to creating a view in the database <br>
-- Performing the same calculation multiple times over across multiple query components <br></p>
-<h4 id="how-to-create-cte">How to create CTE?</h4>
-<p>We can define CTEs by adding a WITH clause directly before SELECT, INSERT, UPDATE, DELETE, or MERGE statement. <br>
-The WITH clause can include one or more CTEs separated by commas. <br>
-The following syntax can be followed: </p>
-<pre><code>[WITH  [, ...]]  
-
-::=
-cte_name [(column_name [, ...])]
-AS (cte_query) 
-</code></pre>
-<p>After you define your WITH clause with the CTEs, you can then reference the CTEs as you would refer any other table.  <br>
-However, you can refer a CTE only within the execution scope of the statement that immediately follows the WITH clause. After you’ve run your statement, the CTE result set is not available to other statements.</p>
+<h2 id="file-compression-techniques">File Compression Techniques</h2>
+<p>These techniques are common to Hadoop ecosystem, not just Hive. <br></p>
+<p>Why need compression? <br>
+•   Helps reduce storage especially when it comes to data being replicated across various nodes. <br>
+•   Helps us process data faster as size of data is less. <br>
+•   Since data is compressed, so I/O costs is less – A major overhead in processing large amounts of data is disk and network I/O, reducing the amount of data that needs to be read and written to disk can significantly decrease overall processing time. This includes compression of source data, but also the intermediate data generated as part of data processing. <br> </p>
+<p>Compression and Decompression comes with some cost in terms of time taken to compress and decompress. <br>
+But when we compare I/O gains, we can actually ignore this additional time to compress-decompress. <br></p>
+<p>Important Compression Techniques – <br>
+1.  Snappy <br>
+2.  Lzo <br>
+3.  Gzip <br>
+4.  Bzip2 <br></p>
+<p>Some of the compression codecs are optimized for storage – they bring down size drastically. But this takes time. <br>
+Some of compression codecs are optimized for speed – compression done quickly, but not efficiently. <br></p>
+<p>So trade-off is that –  <br>
+•   if we want more compression ratio, we have to spend more time in compression. <br>
+•   If we want faster compression, we spend less time in compression. <br></p>
+<h4 id="snappy">Snappy</h4>
+<p>Snappy is a very fast compression. <br> 
+However, in terms of compression ratio, it is not that efficient. <br>
+But in most production scenarios, snappy is used as it provides a fine balance between speed and compression efficiency. <br>
+So, snappy is optimized for speed, not storage. <br></p>
+<h5 id="splittablity-in-compression-techniques">Splittablity in compression techniques</h5>
+<p>Although compression can greatly optimize processing performance, not all compression formats supported on Hadoop are splittable. <br> 
+Because the MapReduce framework splits data for input to multiple tasks, having a non splittable compression format is an impediment to efficient processing. <br> 
+If files cannot be split, that means the entire file needs to be passed to a single MapReduce task, eliminating the advantages of parallelism and data locality that Hadoop provides. <br> 
+For this reason, splitability is a major consideration in choosing a compression format as well as file format. <br></p>
+<p>Snappy by default is not splittable – so if we use non splittable file formats like JSON and XML, snappy won’t give splittable output. <br>
+<strong>Is this a big concern?</strong> No – because in production scenarios, we hardly use JSON and XML. <br>
+In production scenarios, we use container-based formats like Avro, Parquet, Orc – which are splittable by their structure and no need for compression technique to handle this aspect. <br></p>
+<p>So, Snappy is intended to be used with a container format like Avro, Orc, Parquet since it’s not inherently splittable. <br></p>
+<h4 id="lzo">Lzo</h4>
+<p>LZO is similar to Snappy in that it’s optimized for speed as opposed to size. <br> 
+Unlike Snappy, LZO compressed files are splittable, but this requires an additional indexing step. <br> 
+This makes LZO a good choice for things like plain-text files (like json, text and xml files) that are not being stored as part of a container format. <br> 
+It should also be noted that LZO’s license prevents it from being distributed with Hadoop and requires a separate install, unlike Snappy, which can be distributed with Hadoop. <br></p>
+<p>But snappy is fastest among all compression techniques. <br></p>
+<h4 id="gzip">Gzip</h4>
+<p>•   Gzip provides very good compression performance (on average, about 2.5times the compression that’d be offered by Snappy). <br> 
+•   But in terms of processing speed its slow.  <br>
+•   Gzip is also not splittable, so it should be used with a container format. <br> 
+•   Note that one reason Gzip is sometimes slower than Snappy for processing is that Gzip compressed files take up fewer blocks, so fewer tasks are required for processing the same data. For this reason, using smaller blocks with Gzip can lead to better performance. <br>
+•   Eg – <br>
+o   1 gb file – split into 8 blocks. <br>
+o   After gzip compression, we get 200 mb file – 2 block – so number of blocks coming down, which reduces parallelism. <br>
+o   Solution – reduce block size to say, 50Mb, leading to 200mb file split into 4 blocks, and so parallelism doubles. <br></p>
+<h4 id="bzip2">Bzip2</h4>
+<p>•   Bzip2 provides excellent compression performance, but can be significantly slower than other compression codecs such as Snappy in terms of processing performance. <br> 
+•   Unlike Snappy and Gzip, bzip2 is inherently splittable.  <br>
+•   In the examples we have seen, bzip2 will normally compress around 9% better than GZip, in terms of storage space. <br> 
+•   However, this extra compression comes with a significant read/write performance cost. This performance difference will vary with different machines, but in general bzip2 is about 10 times slower than GZip. <br> 
+•   For this reason, it’s not an ideal codec for Hadoop storage, unless your primary need is reducing the storage footprint. One example of such a use case would be using Hadoop mainly for active archival purposes. <br></p>
+<table>
+<thead>
+<tr>
+<th>Codec</th>
+<th>Splittable</th>
+<th>compression</th>
+<th>speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>snappy</td>
+<td>N</td>
+<td>low</td>
+<td>Highest</td>
+</tr>
+<tr>
+<td>lzo</td>
+<td>Y</td>
+<td>low</td>
+<td>high</td>
+</tr>
+<tr>
+<td>gzip</td>
+<td>N</td>
+<td>High</td>
+<td>slow</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td>Y</td>
+<td>Highest</td>
+<td>Slowest</td>
+</tr>
+</tbody>
+</table>
 
               
             </article>
@@ -728,7 +832,7 @@ However, you can refer a CTE only within the execution scope of the statement th
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../sql_performance_tuning_summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SQL Performance Tuning Summary" rel="prev">
+        <a href="../big%20data%20file%20formats/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Big Data File Formats" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -737,20 +841,20 @@ However, you can refer a CTE only within the execution scope of the statement th
               <span class="md-footer__direction">
                 Previous
               </span>
-              SQL Performance Tuning Summary
+              Big Data File Formats
             </div>
           </div>
         </a>
       
       
         
-        <a href="../sql-analytical-functions/" class="md-footer__link md-footer__link--next" aria-label="Next: SQL Analytical Functions" rel="next">
+        <a href="../../random/cold_mails/" class="md-footer__link md-footer__link--next" aria-label="Next: Cold Mail Tactics" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              SQL Analytical Functions
+              Cold Mail Tactics
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -815,10 +919,10 @@ However, you can refer a CTE only within the execution scope of the statement th
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      <script src="../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
       
     
   </body>
