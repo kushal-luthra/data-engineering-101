@@ -22,6 +22,7 @@
     - [File Compression Techniques in Big Data Systems](Storage Layer Choices/File Compression techniques in Big Data.md)<br>
   - Productivity Hacks
       - [Cold Mail Tactics](random/cold_mails.md)
+      - [LinkedIn Growth](random/LinkedIn growth.md)
   - [About Me](aboutme.md)
 
  **Author** : Kushal Luthra <br>
