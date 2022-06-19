@@ -9,6 +9,8 @@
     - [Data Warehousing Concepts](./SQL/docs/Data-Warehousing-basics.md)
     - [ELK](random/ELK Stack.md)
     - [Database Vs Datawarehouse Vs Datalake | ETL Vs ELT](random/ETL VS ELT.md)
+  - OOPs concepts
+    - [OOPs in Python](OOPs/OOPs in Python.md) 
   - SQL
       - [SQL Performance Tuning Page](./SQL/docs/sql_performance_tuning.md)
       - [SQL Performance Tuning Summary](./SQL/docs/sql_performance_tuning_summary.md)
