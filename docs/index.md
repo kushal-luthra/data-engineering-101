@@ -26,6 +26,7 @@
       - [Cold Mail Tactics](random/cold_mails.md)
       - [LinkedIn Growth](random/LinkedIn growth.md)
       - [Top 10 hacks to be a Bad developer](random/Top-10-hacks-to-be-a-Bad-Developer.md)
+      - [Jeff Bezos on Amazon Leadership principles](random/Amazon-Leadership-Principles-Jeff-Bezos-thought-process.md)
   - [About Me](aboutme.md)
 
  **Author** : Kushal Luthra <br>
