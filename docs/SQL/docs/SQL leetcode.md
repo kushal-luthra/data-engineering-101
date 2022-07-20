@@ -590,3 +590,105 @@ group by grp , status
 order by  min(mydate); 
 ```
 
+#### User Purchase Platform
+```
+Table: Spending
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| user_id     | int     |
+| spend_date  | date    |
+| platform    | enum    | 
+| amount      | int     |
++-------------+---------+
+The table logs the history of the spending of users that make purchases from an online shopping website that has a desktop and a mobile application.
+(user_id, spend_date, platform) is the primary key of this table.
+The platform column is an ENUM type of ('desktop', 'mobile').
+```
+ 
+
+Write an SQL query to find the total number of users and the total amount spent using the mobile only, the desktop only, and both mobile and desktop together for each date.
+Return the result table in any order.<br>
+The query result format is in the following example.<br>
+
+```
+Example 1:
+
+Input: 
+Spending table:
++---------+------------+----------+--------+
+| user_id | spend_date | platform | amount |
++---------+------------+----------+--------+
+| 1       | 2019-07-01 | mobile   | 100    |
+| 1       | 2019-07-01 | desktop  | 100    |
+| 2       | 2019-07-01 | mobile   | 100    |
+| 2       | 2019-07-02 | mobile   | 100    |
+| 3       | 2019-07-01 | desktop  | 100    |
+| 3       | 2019-07-02 | desktop  | 100    |
++---------+------------+----------+--------+
+Output: 
++------------+----------+--------------+-------------+
+| spend_date | platform | total_amount | total_users |
++------------+----------+--------------+-------------+
+| 2019-07-01 | desktop  | 100          | 1           |
+| 2019-07-01 | mobile   | 100          | 1           |
+| 2019-07-01 | both     | 200          | 1           |
+| 2019-07-02 | desktop  | 100          | 1           |
+| 2019-07-02 | mobile   | 100          | 1           |
+| 2019-07-02 | both     | 0            | 0           |
++------------+----------+--------------+-------------+ 
+Explanation: 
+On 2019-07-01, user 1 purchased using both desktop and mobile, user 2 purchased using mobile only and user 3 purchased using desktop only.
+On 2019-07-02, user 2 purchased using mobile only, user 3 purchased using desktop only and no one purchased using both platforms.
+```
+Ans <br>
+```
+with cte as (
+select
+    spend_date,
+    user_id,
+    sum(case when platform='mobile' then amount else 0 end) as mobile_amount,
+    sum(case when platform='desktop' then amount else 0 end) as desktop_amount    
+from spending
+    group by spend_date,user_id
+    
+),
+cte2 as (
+select
+    spend_date,
+     user_id,
+    case 
+        when  mobile_amount > 0 and desktop_amount>0 then 'both'
+        when  mobile_amount > 0 and desktop_amount=0 then 'mobile'
+        when  mobile_amount = 0 and desktop_amount>0 then 'desktop'
+        end as platform,
+    (mobile_amount+desktop_amount) as total_amount
+from cte
+group by spend_date , user_id
+),
+cte3 as 
+(
+    SELECT distinct(spend_date), 'desktop' platform 
+    FROM Spending
+    UNION
+    SELECT distinct(spend_date), 'mobile' platform 
+    FROM Spending
+    UNION
+    SELECT distinct(spend_date), 'both' platform 
+    FROM Spending
+)
+select 
+    cte3.spend_date,
+    cte3.platform,
+    coalesce(sum(cte2.total_amount),0) as total_amount,
+    count(cte2.user_id) as total_users
+from cte3
+left join cte2
+on 
+    cte3.spend_date=cte2.spend_date
+    and 
+    cte3.platform=cte2.platform
+group by  spend_date,
+platform;
+```
