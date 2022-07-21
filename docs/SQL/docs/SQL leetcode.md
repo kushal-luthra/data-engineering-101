@@ -1,9 +1,10 @@
 ####  Second Highest Salary
 Link : https://leetcode.com/problems/second-highest-salary/ <br>
 
-Table: Employee<br>
-
 ```
+Table: Employee
+
+
 +-------------+------+
 | Column Name | Type |
 +-------------+------+

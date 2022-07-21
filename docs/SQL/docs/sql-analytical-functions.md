@@ -196,7 +196,9 @@ eg 1 - max current value-
 ```
 SELECT month, 
   SUM(tot_sales) monthly_sales,
-  MAX(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) max_preceeding
+  MAX(SUM(tot_sales)) OVER (ORDER BY month 
+                            ROWS BETWEEN UNBOUNDED PRECEDING 
+                            AND CURRENT ROW) max_preceeding
 FROM orders
 WHERE year = 2001 
   AND region_id = 6
@@ -251,7 +253,7 @@ ORDER BY month;
 ```
 
 #### RANGE BETWEEN
-- ROWS BETWEEN - based on row ordered as per condition of ordering insdie over() clause.
+- ROWS BETWEEN - based on row ordered as per condition of ordering inside over() clause.
 - RANGE BETWEEN - based on value ranges specified under over() clause.
 
 eg1 - to generate a three-month rolling average (similar to above ROWS BETWEEN question).
@@ -264,7 +266,11 @@ But if its character, then below wont be suited.
 SELECT 
   month,
   SUM(tot_sales) monthly_sales,
-  AVG(SUM(tot_sales)) OVER (ORDER BY month RANGE BETWEEN 1 PRECEDING AND 1 FOLLOWING) rolling_avg
+  AVG(SUM(tot_sales)) OVER (ORDER BY month 
+                            RANGE BETWEEN 
+                                1 PRECEDING 
+                                AND 
+                                1 FOLLOWING) rolling_avg
 FROM orders
 WHERE year = 2001  AND region_id = 6
 GROUP BY month
@@ -282,7 +288,11 @@ eg2 - if we do a range of +/- 1.999, then also we get same values:
 ```
 SELECT month,
   SUM(tot_sales) monthly_sales,
-  AVG(SUM(tot_sales)) OVER (ORDER BY month RANGE BETWEEN 1.99 PRECEDING AND 1.99 FOLLOWING) rolling_avg
+  AVG(SUM(tot_sales)) OVER (ORDER BY month 
+                            RANGE BETWEEN 
+                                1.99 PRECEDING 
+                                AND 
+                                1.99 FOLLOWING) rolling_avg
 FROM orders
 WHERE year = 2001  AND region_id = 6
 GROUP BY month
@@ -306,7 +316,10 @@ SELECT
   SUM(sale_price) daily_sales,
   AVG(SUM(sale_price)) OVER ( 
                               ORDER BY TRUNC(order_dt) 
-								              RANGE BETWEEN INTERVAL '2' DAY PRECEDING AND INTERVAL '2' DAY FOLLOWING     
+							  RANGE BETWEEN 
+							    INTERVAL '2' DAY PRECEDING 
+							    AND 
+							    INTERVAL '2' DAY FOLLOWING     
                             ) five_day_avg
 FROM cust_order
 WHERE sale_price IS NOT NULL 
