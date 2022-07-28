@@ -17,7 +17,7 @@
     
     
       
-        <title>SQL Analytical Functions - Data Engineering 101</title>
+        <title>SQL leetcode - Data Engineering 101</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sql-analytical-functions" class="md-skip">
+        <a href="#second-highest-salary" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SQL Analytical Functions
+              SQL leetcode
             
           </span>
         </div>
@@ -343,14 +343,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
@@ -413,167 +411,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          SQL Analytical Functions
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../sql-analytical-functions/" class="md-nav__link">
         SQL Analytical Functions
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#over-partition-by-order-by" class="md-nav__link">
-    over (partition by / order by )
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ranking-functions" class="md-nav__link">
-    Ranking Functions
-  </a>
-  
-    <nav class="md-nav" aria-label="Ranking Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#row_number-rank-and-dense_rank" class="md-nav__link">
-    ROW_NUMBER, RANK and DENSE_RANK
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#handling-nulls" class="md-nav__link">
-    Handling NULLs
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ntile" class="md-nav__link">
-    NTILE
-  </a>
-  
-    <nav class="md-nav" aria-label="NTILE">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cume_dist-and-percent_rank" class="md-nav__link">
-    CUME_DIST and PERCENT_RANK
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#windowing-functions" class="md-nav__link">
-    Windowing Functions
-  </a>
-  
-    <nav class="md-nav" aria-label="Windowing Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rows-between-and" class="md-nav__link">
-    ROWS BETWEEN &lt;&gt; AND &lt;&gt;
-  </a>
-  
-    <nav class="md-nav" aria-label="ROWS BETWEEN &lt;&gt; AND &lt;&gt;">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rows-between-unbounded-preceding-and-unbounded-following" class="md-nav__link">
-    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rows-between-unbounded-preceding-and-current-row" class="md-nav__link">
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rows-between-1-preceding-and-1-following-" class="md-nav__link">
-    ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING -
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#range-between" class="md-nav__link">
-    RANGE BETWEEN
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#first_value-and-last_value" class="md-nav__link">
-    FIRST_VALUE and LAST_VALUE
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#laglead-functions" class="md-nav__link">
-    LAG/LEAD Functions
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -859,8 +701,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -869,123 +709,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#over-partition-by-order-by" class="md-nav__link">
-    over (partition by / order by )
+  <a href="#second-highest-salary" class="md-nav__link">
+    Second Highest Salary
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ranking-functions" class="md-nav__link">
-    Ranking Functions
-  </a>
-  
-    <nav class="md-nav" aria-label="Ranking Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#row_number-rank-and-dense_rank" class="md-nav__link">
-    ROW_NUMBER, RANK and DENSE_RANK
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#handling-nulls" class="md-nav__link">
-    Handling NULLs
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ntile" class="md-nav__link">
-    NTILE
-  </a>
-  
-    <nav class="md-nav" aria-label="NTILE">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cume_dist-and-percent_rank" class="md-nav__link">
-    CUME_DIST and PERCENT_RANK
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#windowing-functions" class="md-nav__link">
-    Windowing Functions
-  </a>
-  
-    <nav class="md-nav" aria-label="Windowing Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rows-between-and" class="md-nav__link">
-    ROWS BETWEEN &lt;&gt; AND &lt;&gt;
-  </a>
-  
-    <nav class="md-nav" aria-label="ROWS BETWEEN &lt;&gt; AND &lt;&gt;">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rows-between-unbounded-preceding-and-unbounded-following" class="md-nav__link">
-    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rows-between-unbounded-preceding-and-current-row" class="md-nav__link">
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rows-between-1-preceding-and-1-following-" class="md-nav__link">
-    ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING -
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#range-between" class="md-nav__link">
-    RANGE BETWEEN
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#first_value-and-last_value" class="md-nav__link">
-    FIRST_VALUE and LAST_VALUE
+  <a href="#find-median-given-frequency-of-numbers" class="md-nav__link">
+    Find Median Given Frequency of Numbers
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#laglead-functions" class="md-nav__link">
-    LAG/LEAD Functions
+  <a href="#find-cumulative-salary-of-an-employee" class="md-nav__link">
+    Find Cumulative Salary of an Employee
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#average-salary-departments-vs-company" class="md-nav__link">
+    Average Salary: Departments VS Company
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sales-by-day-of-the-week" class="md-nav__link">
+    Sales by Day of the Week
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#report-contiguous-dates" class="md-nav__link">
+    Report Contiguous Dates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-purchase-platform" class="md-nav__link">
+    User Purchase Platform
   </a>
   
 </li>
@@ -1002,385 +769,651 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/SQL/docs/sql-analytical-functions.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/kushal-luthra/data-engineering-101/edit/main/docs/SQL/docs/SQL leetcode.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="sql-analytical-functions">SQL Analytical Functions</h1>
-<p><a href="http://etutorials.org/SQL/Mastering+Oracle+SQL/Chapter+14.+Advanced+Analytic+SQL/14.1+Analytic+SQL+Overview/">Source</a></p>
-<h3 id="over-partition-by-order-by">over (partition by / order by )</h3>
-<p>eg -</p>
-<pre><code>SELECT o.region_id region_id, o.cust_nbr cust_nbr,
+  <h1>SQL leetcode</h1>
 
- SUM(o.tot_sales) tot_sales,
+<h4 id="second-highest-salary">Second Highest Salary</h4>
+<p>Link : https://leetcode.com/problems/second-highest-salary/ <br></p>
+<pre><code>Table: Employee
 
- SUM(SUM(o.tot_sales)) OVER (PARTITION BY o.region_id) region_sales
 
-FROM orders o
-
-WHERE o.year = 2001
-
-GROUP BY o.region_id, o.cust_nbr;
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| salary      | int  |
++-------------+------+
+id is the primary key column for this table.
+Each row of this table contains information about the salary of an employee.
 </code></pre>
-<h3 id="ranking-functions">Ranking Functions</h3>
-<p><a href="http://etutorials.org/SQL/Mastering+Oracle+SQL/Chapter+14.+Advanced+Analytic+SQL/14.2+Ranking+Functions/">source</a></p>
-<h4 id="row_number-rank-and-dense_rank">ROW_NUMBER, RANK and DENSE_RANK</h4>
-<ul>
-<li>ROW_NUMBER - Returns a unique number for each row starting with 1. <br>For rows that have duplicate values, numbers are arbitrarily assigned.<br></li>
-<li>DENSE_RANK - Assigns a unique number for each row starting with 1, except for rows that have duplicate values, in which case the same ranking is assigned.<br></li>
-<li>RANK - Assigns a unique number for each row starting with 1, except for rows that have duplicate values, in which case the same ranking is assigned and a gap appears in the sequence for each duplicate ranking.<br>
-eg 1 -</li>
-</ul>
+<p>Write an SQL query to report the second highest salary from the Employee table. If there is no second highest salary, the query should report null.<br>
+The query result format is in the following example.<br></p>
+<pre><code>Example 1:
+
+Input: 
+Employee table:
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+Output: 
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+
+Example 2:
+
+Input: 
+Employee table:
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
++----+--------+
+Output: 
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| null                |
++---------------------+
+</code></pre>
+<p>Ans <br></p>
+<pre><code>select  max(salary) as SecondHighestSalary from
+(select 
+    salary, 
+    dense_rank() over (order by salary desc) as sal_rank 
+ from employee
+ ) 
+where sal_rank=2;
+</code></pre>
+<p>Note -&gt; if Nth highest salary --&gt; <br>
+Link : https://leetcode.com/problems/nth-highest-salary/ <br></p>
+<pre><code>CREATE FUNCTION getNthHighestSalary(N IN NUMBER) RETURN NUMBER IS
+result NUMBER;
+BEGIN
+    /* Write your PL/SQL query statement below */
+
+    select max(salary) into result
+    from 
+        (
+        select salary, 
+               dense_rank() over (order by salary desc) as sal_rank
+            from employee
+        ) where sal_rank=N;
+
+    RETURN result;
+END;
+
+</code></pre>
+<h4 id="find-median-given-frequency-of-numbers">Find Median Given Frequency of Numbers</h4>
+<p>Link : https://leetcode.com/problems/find-median-given-frequency-of-numbers/ <br>
+Table: Numbers <br></p>
 <pre><code>
-SELECT region_id, cust_nbr, 
-
-  SUM(tot_sales) cust_sales,
-
-  RANK( ) OVER (ORDER BY SUM(tot_sales) DESC) sales_rank,
-
-  DENSE_RANK( ) OVER (ORDER BY SUM(tot_sales) DESC) sales_dense_rank,
-
-  ROW_NUMBER( ) OVER (ORDER BY SUM(tot_sales) DESC) sales_number
-
-FROM orders
-
-WHERE year = 2001
-
-GROUP BY region_id, cust_nbr
-
-ORDER BY sales_number;
-
-
-REGION_ID   CUST_NBR  CUST_SALES SALES_RANK SALES_DENSE_RANK SALES_NUMBER
-
----------- ---------- ---------- ---------- ---------------- ------------
-
-         8         18    1253840         11               11           11
-
-         5          2    1224992         12               12           12
-
-         9         23    1224992         12               12           13
-
-         9         24    1224992         12               12           14
-
-        10         30    1216858         15               13           15
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| num         | int  |
+| frequency   | int  |
++-------------+------+
+num is the primary key for this table.
+Each row of this table shows the frequency of a number in the database.
 
 </code></pre>
-<p>eg 2 - The following query generates rankings for customer sales within each region rather than across all regions.<br> 
-Note the addition of the PARTITION BY clause:<br></p>
-<pre><code>SELECT 
-  region_id, cust_nbr, 
+<p>The median is the value separating the higher half from the lower half of a data sample. <br>
+Write an SQL query to report the median of all the numbers in the database after decompressing the Numbers table. Round the median to one decimal point. <br>
+The query result format is in the following example. <br></p>
+<pre><code>Example 1:
 
-  SUM(tot_sales) cust_sales,
-
-  RANK( ) OVER (PARTITION BY region_id  ORDER BY SUM(tot_sales) DESC) sales_rank,
-
-  DENSE_RANK( ) OVER (PARTITION BY region_id ORDER BY SUM(tot_sales) DESC) sales_dense_rank,
-
-  ROW_NUMBER( ) OVER (PARTITION BY region_id ORDER BY SUM(tot_sales) DESC) sales_number
-
-FROM orders
-
-WHERE year = 2001
-
-GROUP BY region_id, cust_nbr
-
-ORDER BY region_id, sales_number;
-
-REGION_ID    CUST_NBR CUST_SALES SALES_RANK SALES_DENSE_RANK SALES_NUMBER
-
----------- ---------- ---------- ---------- ---------------- ------------
-
-         5          4    1878275          1                1            1
-
-         5          2    1224992          2                2            2
-
-         5          5    1169926          3                3            3
-
-         5          3    1161286          4                4            4
-
-         5          1    1151162          5                5            5
-
-         6          6    1788836          1                1            1
-
-         6          9    1208959          2                2            2
+Input: 
+Numbers table:
++-----+-----------+
+| num | frequency |
++-----+-----------+
+| 0   | 7         |
+| 1   | 1         |
+| 2   | 3         |
+| 3   | 1         |
++-----+-----------+
+Output: 
++--------+
+| median |
++--------+
+| 0.0    |
++--------+
+Explanation: 
+If we decompress the Numbers table, we will get [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3], so the median is (0 + 0) / 2 = 0.
+</code></pre>
+<p>Ans <br></p>
+<pre><code>select round(avg(num),1) as median
+from
+        (
+        select
+            num,
+            frequency,
+            lag(cum_sum,1,0) over (order by num) as prev_sum,
+            cum_sum,
+            medium_num
+        from
+                (select 
+                    num,
+                    frequency,
+                    sum(frequency) over (order by num) as cum_sum,
+                    sum(frequency) over () / 2 as medium_num
+                from numbers)   a 
+            ) b
+where medium_num between prev_sum and  cum_sum;
+</code></pre>
+<h4 id="find-cumulative-salary-of-an-employee">Find Cumulative Salary of an Employee</h4>
+<p>Table: Employee <br></p>
+<pre><code>+-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| month       | int  |
+| salary      | int  |
++-------------+------+
+(id, month) is the primary key for this table.
+Each row in the table indicates the salary of an employee in one month during the year 2020.
 
 </code></pre>
-<h4 id="handling-nulls">Handling NULLs<br></h4>
-<p>All ranking functions allow you to specify where in the ranking order NULL values should appear. <br>
-This is accomplished by appending either NULLS FIRST or NULLS LAST after the ORDER BY clause of the function, as in:<br></p>
-<pre><code>SELECT region_id, cust_nbr, SUM(tot_sales) cust_sales,
+<p>Write an SQL query to calculate the cumulative salary summary for every employee in a single unified table. <br></p>
+<p>The cumulative salary summary for an employee can be calculated as follows: <br>
+- For each month that the employee worked, sum up the salaries in that month and the previous two months. This is their 3-month sum for that month. If an employee did not work for the company in previous months, their effective salary for those months is 0. <br>
+- Do not include the 3-month sum for the most recent month that the employee worked for in the summary. <br>
+- Do not include the 3-month sum for any month the employee did not work. <br>
+- Return the result table ordered by id in ascending order. In case of a tie, order it by month in descending order. <br></p>
+<p>The query result format is in the following example. <br></p>
+<p>Example 1: <br></p>
+<pre><code>Input: 
+Employee table:
++----+-------+--------+
+| id | month | salary |
++----+-------+--------+
+| 1  | 1     | 20     |
+| 2  | 1     | 20     |
+| 1  | 2     | 30     |
+| 2  | 2     | 30     |
+| 3  | 2     | 40     |
+| 1  | 3     | 40     |
+| 3  | 3     | 60     |
+| 1  | 4     | 60     |
+| 3  | 4     | 70     |
+| 1  | 7     | 90     |
+| 1  | 8     | 90     |
++----+-------+--------+
+Output: 
++----+-------+--------+
+| id | month | Salary |
++----+-------+--------+
+| 1  | 7     | 90     |
+| 1  | 4     | 130    |
+| 1  | 3     | 90     |
+| 1  | 2     | 50     |
+| 1  | 1     | 20     |
+| 2  | 1     | 20     |
+| 3  | 3     | 100    |
+| 3  | 2     | 40     |
++----+-------+--------+
+Explanation: 
+Employee '1' has five salary records excluding their most recent month '8':
+- 90 for month '7'.
+- 60 for month '4'.
+- 40 for month '3'.
+- 30 for month '2'.
+- 20 for month '1'.
+So the cumulative salary summary for this employee is:
++----+-------+--------+
+| id | month | salary |
++----+-------+--------+
+| 1  | 7     | 90     |  (90 + 0 + 0)
+| 1  | 4     | 130    |  (60 + 40 + 30)
+| 1  | 3     | 90     |  (40 + 30 + 20)
+| 1  | 2     | 50     |  (30 + 20 + 0)
+| 1  | 1     | 20     |  (20 + 0 + 0)
++----+-------+--------+
+Note that the 3-month sum for month '7' is 90 because they did not work during month '6' or month '5'.
 
-  RANK( ) OVER (ORDER BY SUM(tot_sales) DESC NULLS LAST) sales_rank
+Employee '2' only has one salary record (month '1') excluding their most recent month '2'.
++----+-------+--------+
+| id | month | salary |
++----+-------+--------+
+| 2  | 1     | 20     |  (20 + 0 + 0)
++----+-------+--------+
 
-FROM orders
-
-WHERE year = 2001
-
-GROUP BY region_id, cust_nbr;
+Employee '3' has two salary records excluding their most recent month '4':
+- 60 for month '3'.
+- 40 for month '2'.
+So the cumulative salary summary for this employee is:
++----+-------+--------+
+| id | month | salary |
++----+-------+--------+
+| 3  | 3     | 100    |  (60 + 40 + 0)
+| 3  | 2     | 40     |  (40 + 0 + 0)
++----+-------+--------+
 </code></pre>
-<h3 id="ntile">NTILE<br></h3>
-<p>Another way rankings are commonly used is to generate buckets into which sets of rankings are grouped.<br> 
-For example, you may want to find those customers whose total sales ranked in the top 25%. <br>
-The following query uses the NTILE function to group the customers into four buckets (or quartiles):<br></p>
-<pre><code>SELECT region_id, cust_nbr, SUM(tot_sales) cust_sales,
-
-  NTILE(4) OVER (ORDER BY SUM(tot_sales) DESC) sales_quartile
-
-FROM orders
-
-WHERE year = 2001
-
-GROUP BY region_id, cust_nbr
-
-ORDER BY sales_quartile, cust_sales DESC;
-
-REGION_ID    CUST_NBR CUST_SALES SALES_QUARTILE
-
----------- ---------- ---------- --------------
-
-         9         25    2232703              1
-
-         8         17    1944281              1
-
-         7         14    1929774              1
+<p>Ans <br></p>
+<pre><code>select
+    id, 
+    month,
+    sum(salary) over (partition by id order by month range between 2 PRECEDING and current row)  as salary
+from    
+    (
+    select 
+        id,
+        month,
+        salary,
+        max(month) over (partition by id order by month rows between unbounded preceding and unbounded following) as max_month_for_employee     
+    from employee
+     )
+ where month!=max_month_for_employee
+ order by id, month desc;  
 </code></pre>
-<h4 id="cume_dist-and-percent_rank">CUME_DIST and PERCENT_RANK</h4>
-<p>CUME_DIST function (short for Cumulative Distribution) calculates the ratio of the number of rows that have a lesser or equal ranking to the total number of rows in the partition. <br> </p>
-<p>PERCENT_RANK function calculates the ratio of a row's ranking to the number of rows in the partition using the formula:<br></p>
-<pre><code>(RRP -- 1) / (NRP -- 1)
+<h4 id="average-salary-departments-vs-company">Average Salary: Departments VS Company</h4>
+<p>Link : https://leetcode.com/problems/average-salary-departments-vs-company/ <br></p>
+<pre><code>Table: Salary
+
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| employee_id | int  |
+| amount      | int  |
+| pay_date    | date |
++-------------+------+
+id is the primary key column for this table.
+Each row of this table indicates the salary of an employee in one month.
+employee_id is a foreign key from the Employee table.
+
+
+Table: Employee
+
++---------------+------+
+| Column Name   | Type |
++---------------+------+
+| employee_id   | int  |
+| department_id | int  |
++---------------+------+
+employee_id is the primary key column for this table.
+Each row of this table indicates the department of an employee.
 </code></pre>
-<p>where RRP is the "rank of row in partition," and NRP is the "number of rows in partition."<br></p>
-<h3 id="windowing-functions">Windowing Functions</h3>
-<h4 id="rows-between-and">ROWS BETWEEN &lt;&gt; AND &lt;&gt;</h4>
-<p>Some of the sample values can be -</p>
-<h5 id="rows-between-unbounded-preceding-and-unbounded-following">ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING</h5>
-<p>eg -</p>
-<pre><code>SELECT month, 
-  SUM(tot_sales) monthly_sales,
-  SUM(SUM(tot_sales)) OVER ( ORDER BY month 
-                             ROWS BETWEEN UNBOUNDED PRECEDING AND 
-                                          UNBOUNDED FOLLOWING     ) total_sales
-FROM orders
-WHERE year = 2001 
-  AND region_id = 6
-GROUP BY month
-ORDER BY month;
+<p>Write an SQL query to report the comparison result (higher/lower/same) of the average salary of employees in a department to the company's average salary. <br>
+Return the result table in any order. <br>
+The query result format is in the following example. <br>
+Example 1: <br></p>
+<pre><code>Input: 
+Salary table:
++----+-------------+--------+------------+
+| id | employee_id | amount | pay_date   |
++----+-------------+--------+------------+
+| 1  | 1           | 9000   | 2017/03/31 |
+| 2  | 2           | 6000   | 2017/03/31 |
+| 3  | 3           | 10000  | 2017/03/31 |
+| 4  | 1           | 7000   | 2017/02/28 |
+| 5  | 2           | 6000   | 2017/02/28 |
+| 6  | 3           | 8000   | 2017/02/28 |
++----+-------------+--------+------------+
+Employee table:
++-------------+---------------+
+| employee_id | department_id |
++-------------+---------------+
+| 1           | 1             |
+| 2           | 2             |
+| 3           | 2             |
++-------------+---------------+
+Output: 
++-----------+---------------+------------+
+| pay_month | department_id | comparison |
++-----------+---------------+------------+
+| 2017-02   | 1             | same       |
+| 2017-03   | 1             | higher     |
+| 2017-02   | 2             | same       |
+| 2017-03   | 2             | lower      |
++-----------+---------------+------------+
+Explanation: 
+In March, the company's average salary is (9000+6000+10000)/3 = 8333.33...
+The average salary for department '1' is 9000, which is the salary of employee_id '1' since there is only one employee in this department. So the comparison result is 'higher' since 9000 &gt; 8333.33 obviously.
+The average salary of department '2' is (6000 + 10000)/2 = 8000, which is the average of employee_id '2' and '3'. So the comparison result is 'lower' since 8000 &lt; 8333.33.
 
-     MONTH MONTHLY_SALES TOTAL_SALES
-         1        610697     6307766
-         2        428676     6307766
-         3        637031     6307766
-         4        541146     6307766
+With he same formula for the average salary comparison in February, the result is 'same' since both the department '1' and '2' have the same average salary with the company, which is 7000.
 </code></pre>
-<h5 id="rows-between-unbounded-preceding-and-current-row">ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</h5>
-<p>eg 1 - max current value-</p>
-<pre><code>SELECT month, 
-  SUM(tot_sales) monthly_sales,
-  MAX(SUM(tot_sales)) OVER (ORDER BY month 
-                            ROWS BETWEEN UNBOUNDED PRECEDING 
-                            AND CURRENT ROW) max_preceeding
-FROM orders
-WHERE year = 2001 
-  AND region_id = 6
-GROUP BY month
-ORDER BY month;
-
-     MONTH MONTHLY_SALES MAX_PRECEEDING
-         1        610697         610697
-         2        428676         610697
-         3        637031         637031
-         4        541146         637031
-         5        592935         637031
-         6        501485         637031
+<p>Ans  <br></p>
+<pre><code>select distinct
+    pay_month,
+    department_id,
+    case 
+        when avg_dept&lt;avg_company then 'lower'
+        when avg_dept=avg_company then 'same'
+        when avg_dept&gt;avg_company then 'higher'
+    end as comparison
+from    
+    (
+            select 
+                department_id,
+                date_format(pay_date, '%Y-%m') as pay_month,
+                 avg(employee_salary) over (partition by pay_date  ) as avg_company,
+                 avg(employee_salary) over (partition by pay_date, department_id  ) as avg_dept
+            from    
+                (select
+                    s.employee_id,
+                    s.amount as employee_salary,
+                    s.pay_date,
+                    e.department_id   
+                from salary s 
+                inner join employee e
+                on s.employee_id = e.employee_id) a
+    ) b     
 </code></pre>
-<p>eg 2 - cumulative SUM -</p>
-<pre><code>SELECT month, 
-  SUM(tot_sales) monthly_sales,
-  SUM(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) max_preceeding
-FROM orders
-WHERE year = 2001 
-  AND region_id = 6
-GROUP BY month
-ORDER BY month;
+<h4 id="sales-by-day-of-the-week">Sales by Day of the Week</h4>
+<p>https://leetcode.com/problems/sales-by-day-of-the-week/ <br></p>
+<pre><code>Table: Orders
 
-     MONTH MONTHLY_SALES RUNNING_TOTAL
-         1        610697         610697
-         2        428676        1039373
-         3        637031        1676404
-         4        541146        2217550
-         5        592935        2810485
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| order_id      | int     |
+| customer_id   | int     |
+| order_date    | date    | 
+| item_id       | varchar |
+| quantity      | int     |
++---------------+---------+
+(ordered_id, item_id) is the primary key for this table.
+This table contains information on the orders placed.
+order_date is the date item_id was ordered by the customer with id customer_id.
+
+
+Table: Items
+
++---------------------+---------+
+| Column Name         | Type    |
++---------------------+---------+
+| item_id             | varchar |
+| item_name           | varchar |
+| item_category       | varchar |
++---------------------+---------+
+item_id is the primary key for this table.
+item_name is the name of the item.
+item_category is the category of the item.
 </code></pre>
-<h5 id="rows-between-1-preceding-and-1-following-">ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING -</h5>
-<p>eg -calculate avg of rolling 3 values (current row, rev row and next row);</p>
-<pre><code>SELECT month, 
-  SUM(tot_sales) monthly_sales,
-  AVG(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) rolling_avg
-FROM orders
-WHERE year = 2001 
-  AND region_id = 6
-GROUP BY month
-ORDER BY month;
-
-     MONTH MONTHLY_SALES ROLLING_AVG
-         1        610697    519686.5
-         2        428676  558801.333
-         3        637031  535617.667
-         4        541146  590370.667
-         5        592935  545188.667
+<p>You are the business owner and would like to obtain a sales report for category items and the day of the week. <br>
+Write an SQL query to report how many units in each category have been ordered on each day of the week. <br>
+Return the result table ordered by category. <br>
+The query result format is in the following example. <br></p>
+<p>Example 1: <br></p>
+<pre><code>Input: 
+Orders table:
++------------+--------------+-------------+--------------+-------------+
+| order_id   | customer_id  | order_date  | item_id      | quantity    |
++------------+--------------+-------------+--------------+-------------+
+| 1          | 1            | 2020-06-01  | 1            | 10          |
+| 2          | 1            | 2020-06-08  | 2            | 10          |
+| 3          | 2            | 2020-06-02  | 1            | 5           |
+| 4          | 3            | 2020-06-03  | 3            | 5           |
+| 5          | 4            | 2020-06-04  | 4            | 1           |
+| 6          | 4            | 2020-06-05  | 5            | 5           |
+| 7          | 5            | 2020-06-05  | 1            | 10          |
+| 8          | 5            | 2020-06-14  | 4            | 5           |
+| 9          | 5            | 2020-06-21  | 3            | 5           |
++------------+--------------+-------------+--------------+-------------+
+Items table:
++------------+----------------+---------------+
+| item_id    | item_name      | item_category |
++------------+----------------+---------------+
+| 1          | LC Alg. Book   | Book          |
+| 2          | LC DB. Book    | Book          |
+| 3          | LC SmarthPhone | Phone         |
+| 4          | LC Phone 2020  | Phone         |
+| 5          | LC SmartGlass  | Glasses       |
+| 6          | LC T-Shirt XL  | T-Shirt       |
++------------+----------------+---------------+
+Output: 
++------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+| Category   | Monday    | Tuesday   | Wednesday | Thursday  | Friday    | Saturday  | Sunday    |
++------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+| Book       | 20        | 5         | 0         | 0         | 10        | 0         | 0         |
+| Glasses    | 0         | 0         | 0         | 0         | 5         | 0         | 0         |
+| Phone      | 0         | 0         | 5         | 1         | 0         | 0         | 10        |
+| T-Shirt    | 0         | 0         | 0         | 0         | 0         | 0         | 0         |
++------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+Explanation: 
+On Monday (2020-06-01, 2020-06-08) were sold a total of 20 units (10 + 10) in the category Book (ids: 1, 2).
+On Tuesday (2020-06-02) were sold a total of 5 units in the category Book (ids: 1, 2).
+On Wednesday (2020-06-03) were sold a total of 5 units in the category Phone (ids: 3, 4).
+On Thursday (2020-06-04) were sold a total of 1 unit in the category Phone (ids: 3, 4).
+On Friday (2020-06-05) were sold 10 units in the category Book (ids: 1, 2) and 5 units in Glasses (ids: 5).
+On Saturday there are no items sold.
+On Sunday (2020-06-14, 2020-06-21) were sold a total of 10 units (5 +5) in the category Phone (ids: 3, 4).
+There are no sales of T-shirts.
 </code></pre>
-<h4 id="range-between">RANGE BETWEEN</h4>
-<ul>
-<li>ROWS BETWEEN - based on row ordered as per condition of ordering inside over() clause.</li>
-<li>RANGE BETWEEN - based on value ranges specified under over() clause.</li>
-</ul>
-<p>eg1 - to generate a three-month rolling average (similar to above ROWS BETWEEN question).
-In our table, month is numeric integer value, and so RANGE works perfectly fine here.
-This substitution works because the month column contains integer values, so adding and subtracting 1 from the current month yields a three-month range.</p>
-<p>But if its character, then below wont be suited.</p>
-<pre><code>SELECT 
-  month,
-  SUM(tot_sales) monthly_sales,
-  AVG(SUM(tot_sales)) OVER (ORDER BY month 
-                            RANGE BETWEEN 
-                                1 PRECEDING 
-                                AND 
-                                1 FOLLOWING) rolling_avg
-FROM orders
-WHERE year = 2001  AND region_id = 6
-GROUP BY month
-ORDER BY month;
+<p>Ans  <br></p>
+<pre><code>with cte_table as 
+(select
+    b.item_category,
+    dayname(a.order_date) as day_of_week,
+    COALESCE(sum(a.quantity),0) as qty
+from 
+    orders a 
+    RIGHT join
+    items b
+    on a.item_id = b.item_id
+group by b.item_category, dayname(a.order_date)
+)
+select
+    item_category as &quot;CATEGORY&quot;,
+    sum(case when upper(day_of_week)='MONDAY' then qty else 0 end) as 'MONDAY',
+    sum(case when  upper(day_of_week)='TUESDAY' then qty else 0 end) as 'TUESDAY',
+    sum(case when  upper(day_of_week)='WEDNESDAY' then qty else 0 end) as 'WEDNESDAY',
+    sum(case when  upper(day_of_week)='THURSDAY' then qty else 0 end) as 'THURSDAY',
+    sum(case when  upper(day_of_week)='FRIDAY' then qty else 0 end) as 'FRIDAY',
+    sum(case when  upper(day_of_week)='SATURDAY' then qty else 0 end) as 'SATURDAY',
+    sum(case when  upper(day_of_week)='SUNDAY' then qty else 0 end) as 'SUNDAY'
 
----------- ------------- -----------
-MONTH      MONTHLY_SALES ROLLING_AVG
----------- ------------- -----------
-         1        610697    519686.5
-         2        428676  558801.333
-         3        637031  535617.667
+from cte_table
+group by item_category
+order by item_category;
+
 </code></pre>
-<p>eg2 - if we do a range of +/- 1.999, then also we get same values:</p>
-<pre><code>SELECT month,
-  SUM(tot_sales) monthly_sales,
-  AVG(SUM(tot_sales)) OVER (ORDER BY month 
-                            RANGE BETWEEN 
-                                1.99 PRECEDING 
-                                AND 
-                                1.99 FOLLOWING) rolling_avg
-FROM orders
-WHERE year = 2001  AND region_id = 6
-GROUP BY month
-ORDER BY month;
+<h4 id="report-contiguous-dates">Report Contiguous Dates</h4>
+<p>https://leetcode.com/problems/report-contiguous-dates/ <br></p>
+<pre><code>Table: Failed
 
----------- ------------- -----------
-    MONTH  MONTHLY_SALES ROLLING_AVG
----------- ------------- -----------
-         1        610697    519686.5
-         2        428676  558801.333
-         3        637031  535617.667
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| fail_date    | date    |
++--------------+---------+
+fail_date is the primary key for this table.
+This table contains the days of failed tasks.
+
+
+Table: Succeeded
+
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| success_date | date    |
++--------------+---------+
+success_date is the primary key for this table.
+This table contains the days of succeeded tasks.
 </code></pre>
-<p>eg3 - working with <strong>DATE Range</strong>. <br>
-ROWS wont be of much use if we are working on Date Range.<br>
-If you are generating a window based on a DATE column, you can specify a range in increments of days, months, or years. <br>
-Since the orders table has no DATE columns, the next example shows how a date range can be specified against the order_dt column of the cust_order table:<br></p>
-<pre><code>SELECT 
-  TRUNC(order_dt) day,
-  SUM(sale_price) daily_sales,
-  AVG(SUM(sale_price)) OVER ( 
-                              ORDER BY TRUNC(order_dt) 
-                              RANGE BETWEEN 
-                                INTERVAL '2' DAY PRECEDING 
-                                AND 
-                                INTERVAL '2' DAY FOLLOWING     
-                            ) five_day_avg
-FROM cust_order
-WHERE sale_price IS NOT NULL 
-  AND order_dt BETWEEN TO_DATE('01-JUL-2001','DD-MON-YYYY')
-  AND TO_DATE('31-JUL-2001','DD-MON-YYYY')
-GROUP BY TRUNC(order_dt);
-
-
---------- ----------- ------------
-DAY       DAILY_SALES FIVE_DAY_AVG
---------- ----------- ------------
-16-JUL-01         112          146
-18-JUL-01         180          114
-20-JUL-01          50          169
-21-JUL-01          50   165.333333
-22-JUL-01         396   165.333333
+<p>A system is running one task every day. Every task is independent of the previous tasks. The tasks can fail or succeed. <br>
+Write an SQL query to generate a report of period_state for each continuous interval of days in the period from 2019-01-01 to 2019-12-31. <br>
+period_state is 'failed' if tasks in this interval failed or 'succeeded' if tasks in this interval succeeded. Interval of days are retrieved as start_date and end_date. <br>
+Return the result table ordered by start_date. <br>
+The query result format is in the following example. <br></p>
+<p>Example 1: <br></p>
+<pre><code>Input: 
+Failed table:
++-------------------+
+| fail_date         |
++-------------------+
+| 2018-12-28        |
+| 2018-12-29        |
+| 2019-01-04        |
+| 2019-01-05        |
++-------------------+
+Succeeded table:
++-------------------+
+| success_date      |
++-------------------+
+| 2018-12-30        |
+| 2018-12-31        |
+| 2019-01-01        |
+| 2019-01-02        |
+| 2019-01-03        |
+| 2019-01-06        |
++-------------------+
+Output: 
++--------------+--------------+--------------+
+| period_state | start_date   | end_date     |
++--------------+--------------+--------------+
+| succeeded    | 2019-01-01   | 2019-01-03   |
+| failed       | 2019-01-04   | 2019-01-05   |
+| succeeded    | 2019-01-06   | 2019-01-06   |
++--------------+--------------+--------------+
+Explanation: 
+The report ignored the system state in 2018 as we care about the system in the period 2019-01-01 to 2019-12-31.
+From 2019-01-01 to 2019-01-03 all tasks succeeded and the system state was &quot;succeeded&quot;.
+From 2019-01-04 to 2019-01-05 all tasks failed and the system state was &quot;failed&quot;.
+From 2019-01-06 to 2019-01-06 all tasks succeeded and the system state was &quot;succeeded&quot;.
 </code></pre>
-<h3 id="first_value-and-last_value">FIRST_VALUE and LAST_VALUE</h3>
-<p>They are used with windowing functions to identify the values of the first and last values in the window.<br>
-sample que :"How did each month's sales compare to the first month?"<br></p>
-<p>eg -<br>
-In the case of the three-month rolling average query shown previously, you could display the values of all three months along with the average of the three, as in:<br></p>
-<pre><code>SELECT month,
-  FIRST_VALUE(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) prev_month,
-  SUM(tot_sales) monthly_sales,
-  LAST_VALUE(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) next_month,
-  AVG(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) rolling_avg
-FROM orders
-WHERE year = 2001 
-  AND region_id = 6
-GROUP BY month
-ORDER BY month;
-
-     MONTH PREV_MONTH MONTHLY_SALES NEXT_MONTH ROLLING_AVG
-         1     610697        610697     428676    519686.5
-         2     610697        428676     637031  558801.333
-         3     428676        637031     541146  535617.667
-         4     637031        541146     592935  590370.667
-         5     541146        592935     501485  545188.667
+<p>Ans  <br></p>
+<pre><code>with 
+cte1 as 
+        (
+            select
+                'failed' as status,
+                date_format(fail_date,'%Y-%m-%d') as mydate
+            from 
+            Failed
+            where fail_date between '2019-01-01' and '2019-12-31'
+            union 
+            select
+                'succeeded' as status,
+                date_format(success_date,'%Y-%m-%d') as mydate
+            from 
+            Succeeded
+            where success_date between '2019-01-01' and '2019-12-31'
+        ), 
+cte2 as 
+    (select 
+            mydate,
+            status,
+            row_number() over (order by mydate)  -   dense_rank() over (partition by status order by mydate) as grp
+    from cte1
+    )
+select
+    status as period_state, 
+    min(mydate) as start_date,
+    max(mydate) as end_date
+from 
+cte2
+group by grp , status 
+order by  min(mydate); 
 </code></pre>
-<h3 id="laglead-functions">LAG/LEAD Functions</h3>
-<pre><code>&quot;LAG(VAL, N, &lt;default value&gt;) OVER () &quot; -- N=1 by default.
-&quot;LEAD(VAL, N, &lt;default value&gt;) OVER () &quot; -- N=1 by default.
+<h4 id="user-purchase-platform">User Purchase Platform</h4>
+<pre><code>Table: Spending
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| user_id     | int     |
+| spend_date  | date    |
+| platform    | enum    | 
+| amount      | int     |
++-------------+---------+
+The table logs the history of the spending of users that make purchases from an online shopping website that has a desktop and a mobile application.
+(user_id, spend_date, platform) is the primary key of this table.
+The platform column is an ENUM type of ('desktop', 'mobile').
 </code></pre>
-<p>Query - "Compute the total sales per month for the Mid-Atlantic region, including the percent change from the previous month" requires data from both the current and preceding rows to calculate the answer.</p>
-<p>Step 1 - get prev month's data using LAG function.<br></p>
-<pre><code>SELECT month, 
-  SUM(tot_sales) monthly_sales,
-  LAG(SUM(tot_sales), 1) OVER (ORDER BY month) prev_month_sales
-FROM orders
-WHERE year = 2001
-  AND region_id = 6
-GROUP BY month
-ORDER BY month;
+<p>Write an SQL query to find the total number of users and the total amount spent using the mobile only, the desktop only, and both mobile and desktop together for each date.
+Return the result table in any order.<br>
+The query result format is in the following example.<br></p>
+<pre><code>Example 1:
 
----------- ------------- ----------------
-     MONTH MONTHLY_SALES PREV_MONTH_SALES
----------- ------------- ----------------
-         1        610697
-         2        428676           610697
-         3        637031           428676
+Input: 
+Spending table:
++---------+------------+----------+--------+
+| user_id | spend_date | platform | amount |
++---------+------------+----------+--------+
+| 1       | 2019-07-01 | mobile   | 100    |
+| 1       | 2019-07-01 | desktop  | 100    |
+| 2       | 2019-07-01 | mobile   | 100    |
+| 2       | 2019-07-02 | mobile   | 100    |
+| 3       | 2019-07-01 | desktop  | 100    |
+| 3       | 2019-07-02 | desktop  | 100    |
++---------+------------+----------+--------+
+Output: 
++------------+----------+--------------+-------------+
+| spend_date | platform | total_amount | total_users |
++------------+----------+--------------+-------------+
+| 2019-07-01 | desktop  | 100          | 1           |
+| 2019-07-01 | mobile   | 100          | 1           |
+| 2019-07-01 | both     | 200          | 1           |
+| 2019-07-02 | desktop  | 100          | 1           |
+| 2019-07-02 | mobile   | 100          | 1           |
+| 2019-07-02 | both     | 0            | 0           |
++------------+----------+--------------+-------------+ 
+Explanation: 
+On 2019-07-01, user 1 purchased using both desktop and mobile, user 2 purchased using mobile only and user 3 purchased using desktop only.
+On 2019-07-02, user 2 purchased using mobile only, user 3 purchased using desktop only and no one purchased using both platforms.
 </code></pre>
-<p>Step 2 - handle NULL values. <br>
-If you see above, for month 1, PREV_MONTH_SALES is NULL.<br>
-So, can calculate % change in sales.<br>
-Here we keep current month sales as default value, and % sales in this case is 0%.<br></p>
-<pre><code>SELECT 
-    months.month month, 
-    months.monthly_sales monthly_sales,
-  ROUND((months.monthly_sales - months.prev_month_sales)/ months.prev_month_sales, 3) * 100 percent_change
-FROM
- (
-    SELECT month, 
-           SUM(tot_sales) monthly_sales,
-           LAG(SUM(tot_sales), 1, SUM(tot_sales)) OVER (ORDER BY month) prev_month_sales
+<p>Ans <br></p>
+<pre><code>with cte as (
+select
+    spend_date,
+    user_id,
+    sum(case when platform='mobile' then amount else 0 end) as mobile_amount,
+    sum(case when platform='desktop' then amount else 0 end) as desktop_amount    
+from spending
+    group by spend_date,user_id
 
-    FROM orders
-    WHERE year = 2001
-    AND region_id = 6
-    GROUP BY month) months
-ORDER BY month;
-
----------- ------------- --------------
-     MONTH MONTHLY_SALES PERCENT_CHANGE
----------- ------------- --------------
-         1        610697              0
-         2        428676          -29.8
-         3        637031           48.6
+),
+cte2 as (
+select
+    spend_date,
+     user_id,
+    case 
+        when  mobile_amount &gt; 0 and desktop_amount&gt;0 then 'both'
+        when  mobile_amount &gt; 0 and desktop_amount=0 then 'mobile'
+        when  mobile_amount = 0 and desktop_amount&gt;0 then 'desktop'
+        end as platform,
+    (mobile_amount+desktop_amount) as total_amount
+from cte
+group by spend_date , user_id
+),
+cte3 as 
+(
+    SELECT distinct(spend_date), 'desktop' platform 
+    FROM Spending
+    UNION
+    SELECT distinct(spend_date), 'mobile' platform 
+    FROM Spending
+    UNION
+    SELECT distinct(spend_date), 'both' platform 
+    FROM Spending
+)
+select 
+    cte3.spend_date,
+    cte3.platform,
+    coalesce(sum(cte2.total_amount),0) as total_amount,
+    count(cte2.user_id) as total_users
+from cte3
+left join cte2
+on 
+    cte3.spend_date=cte2.spend_date
+    and 
+    cte3.platform=cte2.platform
+group by  spend_date,
+platform;
 </code></pre>
 
               
@@ -1391,41 +1424,6 @@ ORDER BY month;
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../Common%20Table%20Expressions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Common Table Expressions (CTEs)" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Common Table Expressions (CTEs)
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../sql-practise-questions/" class="md-footer__link md-footer__link--next" aria-label="Next: SQL Practise Questions" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              SQL Practise Questions
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

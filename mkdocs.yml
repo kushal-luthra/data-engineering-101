@@ -31,6 +31,8 @@ nav:
       - Text-based File Formats : Storage Layer Choices/Text File Formats.md
       - Big Data File Formats : Storage Layer Choices/big data file formats.md
       - File Compression Techniques in Big Data Systems :  Storage Layer Choices/File Compression techniques in Big Data.md
+  - PyTest overview:
+      - PyTest overview : random/pytest.md
   - Productivity Hacks:
       - Cold Mail Tactics : random/cold_mails.md
       - LinkedIn Growth : random/LinkedIn growth.md
