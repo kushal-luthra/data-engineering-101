@@ -2,6 +2,7 @@
 
 
 #### What are Common Table Expressions (CTEs)?
+
 A Common Table Expression (CTE) is the result set of a query which exists temporarily and for use only within the context of a larger query. <br>
 Much like a derived table, the result of a CTE is not stored and exists only for the duration of the query. 
 
