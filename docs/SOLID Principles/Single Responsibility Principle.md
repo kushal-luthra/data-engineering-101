@@ -236,3 +236,23 @@ So now both our classes follow the new definition of the Single Responsibility P
 So this new definition which replaces Responsibility with Reason to Change is just a new perspective.  <br>
 At the end of the day, the action which we took to fix is the same, in the previous session and the current session.  <br>
 So, these two definitions are pretty much the same.  <br>
+
+
+#### Code exercise
+Given below code, we find 3 reasons to change ->  <br>
+![img_11.png](img_11.png)  <br>
+
+We take out 2 methods -> employeeRepository and TaxCalculation.  <br> 
+![img_13.png](img_13.png)  <br>
+
+![img_12.png](img_12.png)  <br>
+
+Now our final code looks like this ->  <br>
+![img_14.png](img_14.png)
+
+So we have applied the single responsibility principle here.  <br>
+But a word of caution is that, do not keep creating a huge number of classes just like that.  <br>
+For instance, it is a bad idea to create separate classes to handle employee id, separate class to handle employee name etc.  <br>
+If you can group the responsibilities together in a sensible way,then do it.  <br>
+Else, you will end up having a huge number of classes thereby adding unnecessary complexity to your code.  <br>
+So follow the principle, but use your discretion and make an informed judgment.  <br>
