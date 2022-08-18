@@ -33,6 +33,9 @@ nav:
       - File Compression Techniques in Big Data Systems :  Storage Layer Choices/File Compression techniques in Big Data.md
   - PyTest overview:
       - PyTest overview : random/pytest.md
+  - SOLID Principles:
+      - Introduction to SOLID Principles : SOLID Principles/Introduction.md
+      - Single Responsibility Principle : docs/SOLID Principles/Single Responsibility Principle.md
   - Productivity Hacks:
       - Cold Mail Tactics : random/cold_mails.md
       - LinkedIn Growth : random/LinkedIn growth.md

@@ -23,12 +23,15 @@
     - [Big Data File Formats](Storage Layer Choices/big data file formats.md) <br>
     - [File Compression Techniques in Big Data Systems](Storage Layer Choices/File Compression techniques in Big Data.md)<br>
   - PyTest overview <br>
-    - [PyTest overview](random/pytest.md)<br>
+    - [PyTest overview](random/pytest.md) <br>
+  - SOLID Principles <br>
+    - [Introduction to SOLID Principles](SOLID Principles/Introduction.md) <br>
+    - [Single Responsibility Principle](docs/SOLID Principles/Single Responsibility Principle.md) <br>
   - Productivity Hacks<br>
       - [Cold Mail Tactics](random/cold_mails.md)<br>
       - [LinkedIn Growth](random/LinkedIn growth.md)<br>
       - [Top 10 hacks to be a Bad developer](random/Top-10-hacks-to-be-a-Bad-Developer.md)<br>
       - [Jeff Bezos on Amazon Leadership principles](random/Amazon-Leadership-Principles-Jeff-Bezos-thought-process.md)<br>
-  - [About Me](aboutme.md)<br>
+      - [About Me](aboutme.md)<br>
 <br><br><br>
  **Author** : Kushal Luthra <br>
