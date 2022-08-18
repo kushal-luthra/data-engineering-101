@@ -26,7 +26,7 @@
     - [PyTest overview](random/pytest.md) <br>
   - SOLID Principles <br>
     - [Introduction to SOLID Principles](SOLID Principles/Introduction.md) <br>
-    - [Single Responsibility Principle](docs/SOLID Principles/Single Responsibility Principle.md) <br>
+    - [Single Responsibility Principle](SOLID Principles/Single Responsibility Principle.md) <br>
   - Productivity Hacks<br>
       - [Cold Mail Tactics](random/cold_mails.md)<br>
       - [LinkedIn Growth](random/LinkedIn growth.md)<br>

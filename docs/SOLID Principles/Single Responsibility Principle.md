@@ -1,15 +1,15 @@
 ## Introduction 
 S stands for Single Responsibility Principle, often abbreviated and referred to as SRP. <br>
 So what is this principle?  <br>
-The Single Responsibility Principle says that 'Every software  component should have one and only one responsibility'
+The Single Responsibility Principle says that 'Every software  component should have one and only one responsibility' <br>
 
-When we say software component, if we are talking in the context of an object oriented programming language like Java, the first thing that comes to our mind is a Java class.
+When we say software component, if we are talking in the context of an object oriented programming language like Java, the first thing that comes to our mind is a Java class. <br>
 
-But it is to be noted that the term software component could also refer to a method or a function or even a module.
+But it is to be noted that the term software component could also refer to a method or a function or even a module. <br>
 
-So the rule states that a software component should have only one responsibility.
+So the rule states that a software component should have only one responsibility. <br>
 
-Let me bring up a picture to explain this.
+Let me bring up a picture to explain this. <br>
 ![img_3.png](img_3.png)
 
 
@@ -77,7 +77,7 @@ In the context of this code snippet, we will learn about a new concept termed **
 Cohesion , in the software world is defined as the degree to which the various parts of a software component are related.  <br>
 
 Here, you see garbage that looks unsegregated.  <br>
-![img_4.png](img_4.png)
+![img_4.png](img_4.png) <br>
 You cannot really come up with a relation between all the contents of this garbage can. It has a wide variety of items like plastic cans, beer bottles, paper waste etc.  <br>
 
 But let's look at how it looks, after it gets segregated. Very nice.  <br>
@@ -171,12 +171,12 @@ If you look at this in terms of responsibilities, the Student class has the resp
 And the Repository class has a single responsibility of dealing with database operations.  <br>
 So by removing tight coupling, and making the coupling loose, we are again abiding by the Single Responsibility principle.  <br>
 
-So to sum up -
-- we looked at two concepts - Cohesion and Coupling.
-- We saw how low cohesion is bad.
-- Single Responsibility Principle always advocates higher cohesion.
-- We also saw how tight coupling is bad. Single Responsibility Principle always recommends loose coupling.
-- So always aim for Higher Cohesion and Loose Coupling.
+So to sum up - <br>
+- we looked at two concepts - Cohesion and Coupling. <br>
+- We saw how low cohesion is bad. <br>
+- Single Responsibility Principle always advocates higher cohesion. <br>
+- We also saw how tight coupling is bad. Single Responsibility Principle always recommends loose coupling. <br>
+- So always aim for Higher Cohesion and Loose Coupling. <br>
 
 
 #### Reason for change : Single Responsibility Principle revisited
@@ -184,7 +184,7 @@ The principle ,that we studied so far, states that 'Every software component sho
 In place of the term responsibility, we are going to put a new phrase 'reason to change'.  <br>
 So now it reads 'Every software component should have one and only one reason to change'.  <br>
 So what's this new phrase 'reason to change'?  <br>
-In the words of the Greek Philosopher - Heraclitus . "The only thing that is constant is change". In other words, change is inevitable.  <br>
+In the words of the Greek Philosopher - Heraclitus. "The only thing that is constant is change". In other words, change is inevitable.  <br>
 This quote applies to the software world as well.  <br>
 
 Software is never dormant. It always keeps changing.  <br>
@@ -200,7 +200,7 @@ There could be multiple reasons for a software component to change in the future
 
 So, we have 3 reasons to change.  <br>
 What does the Single Responsibility Principle say?  <br>
-As per the new definition, 'Every software component should have one and only one ~~responsibility~~ reason to change'  <br>
+As per the new definition, 'Every software component should have one and only one ~~responsibility~~ reason to change'  <br> <br>
 Why? What's the problem if our class has more reasons to change?  <br>
 
 If a software component has multiple reasons to change, then the frequency of changes to it will increase.  <br>
