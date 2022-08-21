@@ -1,4 +1,4 @@
-## Introduction 
+### Introduction 
 S stands for Single Responsibility Principle, often abbreviated and referred to as SRP. <br>
 So what is this principle?  <br>
 The Single Responsibility Principle says that 'Every software  component should have one and only one responsibility' <br>

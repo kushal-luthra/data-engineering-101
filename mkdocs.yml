@@ -35,7 +35,8 @@ nav:
       - PyTest overview : random/pytest.md
   - SOLID Principles:
       - Introduction to SOLID Principles : SOLID Principles/Introduction.md
-      - Single Responsibility Principle : docs/SOLID Principles/Single Responsibility Principle.md
+      - Single Responsibility Principle : SOLID Principles/Single Responsibility Principle.md
+      - Open Closed Principle : SOLID Principles/Open Closed Principle.md
   - Productivity Hacks:
       - Cold Mail Tactics : random/cold_mails.md
       - LinkedIn Growth : random/LinkedIn growth.md

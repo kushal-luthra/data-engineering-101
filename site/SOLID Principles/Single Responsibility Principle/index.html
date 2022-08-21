@@ -585,12 +585,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
       
       
       
@@ -625,10 +627,95 @@
               
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Single Responsibility Principle
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Single Responsibility Principle
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cohesion" class="md-nav__link">
+    Cohesion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coupling" class="md-nav__link">
+    Coupling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reason-for-change-single-responsibility-principle-revisited" class="md-nav__link">
+    Reason for change : Single Responsibility Principle revisited
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-exercise" class="md-nav__link">
+    Code exercise
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
-      <a href="../../docs/SOLID Principles/Single Responsibility Principle.md" class="md-nav__link">
-        Single Responsibility Principle
+      <a href="../Open%20Closed%20Principle/" class="md-nav__link">
+        Open Closed Principle
       </a>
     </li>
   
@@ -799,6 +886,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#code-exercise" class="md-nav__link">
+    Code exercise
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -824,14 +918,14 @@
 
   <h1>Single Responsibility Principle</h1>
 
-<h2 id="introduction">Introduction</h2>
+<h3 id="introduction">Introduction</h3>
 <p>S stands for Single Responsibility Principle, often abbreviated and referred to as SRP. <br>
 So what is this principle?  <br>
-The Single Responsibility Principle says that 'Every software  component should have one and only one responsibility'</p>
-<p>When we say software component, if we are talking in the context of an object oriented programming language like Java, the first thing that comes to our mind is a Java class.</p>
-<p>But it is to be noted that the term software component could also refer to a method or a function or even a module.</p>
-<p>So the rule states that a software component should have only one responsibility.</p>
-<p>Let me bring up a picture to explain this.
+The Single Responsibility Principle says that 'Every software  component should have one and only one responsibility' <br></p>
+<p>When we say software component, if we are talking in the context of an object oriented programming language like Java, the first thing that comes to our mind is a Java class. <br></p>
+<p>But it is to be noted that the term software component could also refer to a method or a function or even a module. <br></p>
+<p>So the rule states that a software component should have only one responsibility. <br></p>
+<p>Let me bring up a picture to explain this. <br>
 <img alt="img_3.png" src="../img_3.png" /></p>
 <p>This is Swiss Army Knife. As you know,a swiss army knife is a combination of a number of useful tools, each one with a distinct purpose. <br>
 You can have anything from a can opener to a pair of mini scissors or even a screw-driver inside a Swiss Army knife. <br></p>
@@ -885,7 +979,7 @@ It has multiple code flow, depending on what type of display is being used.  <br
 <p>In the context of this code snippet, we will learn about a new concept termed <strong>Cohesion</strong>.  <br></p>
 <p>Cohesion , in the software world is defined as the degree to which the various parts of a software component are related.  <br></p>
 <p>Here, you see garbage that looks unsegregated.  <br>
-<img alt="img_4.png" src="../img_4.png" />
+<img alt="img_4.png" src="../img_4.png" /> <br>
 You cannot really come up with a relation between all the contents of this garbage can. It has a wide variety of items like plastic cans, beer bottles, paper waste etc.  <br></p>
 <p>But let's look at how it looks, after it gets segregated. Very nice.  <br></p>
 <p><img alt="img_5.png" src="../img_5.png" />  <br></p>
@@ -947,18 +1041,18 @@ You only need to change the Repository class.  <br>
 If you look at this in terms of responsibilities, the Student class has the responsibility of dealing with core student related data.  <br>
 And the Repository class has a single responsibility of dealing with database operations.  <br>
 So by removing tight coupling, and making the coupling loose, we are again abiding by the Single Responsibility principle.  <br></p>
-<p>So to sum up -
-- we looked at two concepts - Cohesion and Coupling.
-- We saw how low cohesion is bad.
-- Single Responsibility Principle always advocates higher cohesion.
-- We also saw how tight coupling is bad. Single Responsibility Principle always recommends loose coupling.
-- So always aim for Higher Cohesion and Loose Coupling.</p>
+<p>So to sum up - <br>
+- we looked at two concepts - Cohesion and Coupling. <br>
+- We saw how low cohesion is bad. <br>
+- Single Responsibility Principle always advocates higher cohesion. <br>
+- We also saw how tight coupling is bad. Single Responsibility Principle always recommends loose coupling. <br>
+- So always aim for Higher Cohesion and Loose Coupling. <br></p>
 <h4 id="reason-for-change-single-responsibility-principle-revisited">Reason for change : Single Responsibility Principle revisited</h4>
 <p>The principle ,that we studied so far, states that 'Every software component should have one and only one responsibility'  <br>
 In place of the term responsibility, we are going to put a new phrase 'reason to change'.  <br>
 So now it reads 'Every software component should have one and only one reason to change'.  <br>
 So what's this new phrase 'reason to change'?  <br>
-In the words of the Greek Philosopher - Heraclitus . "The only thing that is constant is change". In other words, change is inevitable.  <br>
+In the words of the Greek Philosopher - Heraclitus. "The only thing that is constant is change". In other words, change is inevitable.  <br>
 This quote applies to the software world as well.  <br></p>
 <p>Software is never dormant. It always keeps changing.  <br>
 Let us explain this with an example.  <br></p>
@@ -970,7 +1064,7 @@ There could be multiple reasons for a software component to change in the future
 - A change in the database back end, as advised by the technical team. Another one.  <br></p>
 <p>So, we have 3 reasons to change.  <br>
 What does the Single Responsibility Principle say?  <br>
-As per the new definition, 'Every software component should have one and only one ~~responsibility~~ reason to change'  <br>
+As per the new definition, 'Every software component should have one and only one ~~responsibility~~ reason to change'  <br> <br>
 Why? What's the problem if our class has more reasons to change?  <br></p>
 <p>If a software component has multiple reasons to change, then the frequency of changes to it will increase.  <br>
 Every change to a software component opens up the possibility of introducing bugs into the software.  <br>
@@ -996,6 +1090,20 @@ We could combine both these and say 'changes to student profile'.  <br></p>
 So this new definition which replaces Responsibility with Reason to Change is just a new perspective.  <br>
 At the end of the day, the action which we took to fix is the same, in the previous session and the current session.  <br>
 So, these two definitions are pretty much the same.  <br></p>
+<h4 id="code-exercise">Code exercise</h4>
+<p>Given below code, we find 3 reasons to change -&gt;  <br>
+<img alt="img_11.png" src="../img_11.png" />  <br></p>
+<p>We take out 2 methods -&gt; employeeRepository and TaxCalculation.  <br> 
+<img alt="img_13.png" src="../img_13.png" />  <br></p>
+<p><img alt="img_12.png" src="../img_12.png" />  <br></p>
+<p>Now our final code looks like this -&gt;  <br>
+<img alt="img_14.png" src="../img_14.png" /></p>
+<p>So we have applied the single responsibility principle here.  <br>
+But a word of caution is that, do not keep creating a huge number of classes just like that.  <br>
+For instance, it is a bad idea to create separate classes to handle employee id, separate class to handle employee name etc.  <br>
+If you can group the responsibilities together in a sensible way,then do it.  <br>
+Else, you will end up having a huge number of classes thereby adding unnecessary complexity to your code.  <br>
+So follow the principle, but use your discretion and make an informed judgment.  <br></p>
 
               
             </article>
@@ -1005,6 +1113,41 @@ So, these two definitions are pretty much the same.  <br></p>
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../Introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction to SOLID Principles" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction to SOLID Principles
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Open%20Closed%20Principle/" class="md-footer__link md-footer__link--next" aria-label="Next: Open Closed Principle" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Open Closed Principle
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
