@@ -37,6 +37,8 @@ nav:
       - Introduction to SOLID Principles : SOLID Principles/Introduction.md
       - Single Responsibility Principle : SOLID Principles/Single Responsibility Principle.md
       - Open Closed Principle : SOLID Principles/Open Closed Principle.md
+      - Liskov Substitution Principle : SOLID Principles/Liskov Substitution Principle.md
+      - Interface Seggregation Principle : SOLID Principles/Interface Seggregation Principle.md
   - Productivity Hacks:
       - Cold Mail Tactics : random/cold_mails.md
       - LinkedIn Growth : random/LinkedIn growth.md

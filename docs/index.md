@@ -27,7 +27,9 @@
   - SOLID Principles <br>
     - [Introduction to SOLID Principles](SOLID Principles/Introduction.md) <br>
     - [Single Responsibility Principle](SOLID Principles/Single Responsibility Principle.md) <br>
-    - [Open Closed Principle](SOLID Principles/Open Closed Principle.md)
+    - [Open Closed Principle](SOLID Principles/Open Closed Principle.md) <br>
+    - [Liskov Substitution Principle](SOLID Principles/Liskov Substitution Principle.md) <br>
+    - [Interface Seggregation Principle](SOLID Principles/Interface Seggregation Principle.md) <br>
   - Productivity Hacks<br>
       - [Cold Mail Tactics](random/cold_mails.md)<br>
       - [LinkedIn Growth](random/LinkedIn growth.md)<br>
