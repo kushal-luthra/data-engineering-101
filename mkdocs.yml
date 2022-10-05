@@ -38,7 +38,13 @@ nav:
       - Single Responsibility Principle : SOLID Principles/Single Responsibility Principle.md
       - Open Closed Principle : SOLID Principles/Open Closed Principle.md
       - Liskov Substitution Principle : SOLID Principles/Liskov Substitution Principle.md
-      - Interface Seggregation Principle : SOLID Principles/Interface Seggregation Principle.md
+      - Interface Segregation Principle : SOLID Principles/Interface Seggregation Principle.md
+  - MLOps:
+      - Challenges and Evolution of Machine Learning:
+          - Introduction to Machine Learning : MLOPs/1 - Challenges and Evolution of ML/1 - Introduction to ML.md
+          - Benefits of Machine Learning : MLOPs/1 - Challenges and Evolution of ML/2 - Benefits of ML.md
+          - MLOps Fundamentals : MLOPs/1 - Challenges and Evolution of ML/3 - MLOPs Fundamentals.md
+          - DevOps and DataOps Fundamentals: MLOPs/1 - Challenges and Evolution of ML/4 - DevOps and DataOps Fundamentals.md
   - Productivity Hacks:
       - Cold Mail Tactics : random/cold_mails.md
       - LinkedIn Growth : random/LinkedIn growth.md
