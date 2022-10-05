@@ -30,6 +30,12 @@
     - [Open Closed Principle](SOLID Principles/Open Closed Principle.md) <br>
     - [Liskov Substitution Principle](SOLID Principles/Liskov Substitution Principle.md) <br>
     - [Interface Seggregation Principle](SOLID Principles/Interface Seggregation Principle.md) <br>
+  - MLOps <br>
+      - Challenges and Evolution of Machine Learning <br> 
+        - [Introduction to Machine Learning](MLOPs/1 - Challenges and Evolution of ML/1 - Introduction to ML.md) <br>
+        - [Benefits of Machine Learning](MLOPs/1 - Challenges and Evolution of ML/2 - Benefits of ML.md) <br>
+        - [MLOps Fundamentals](MLOPs/1 - Challenges and Evolution of ML/3 - MLOPs Fundamentals.md) <br>
+        - [DevOps and DataOps Fundamentals](MLOPs/1 - Challenges and Evolution of ML/4 - DevOps and DataOps Fundamentals.md) <br>
   - Productivity Hacks<br>
       - [Cold Mail Tactics](random/cold_mails.md)<br>
       - [LinkedIn Growth](random/LinkedIn growth.md)<br>
