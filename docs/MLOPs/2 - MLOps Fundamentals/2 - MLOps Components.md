@@ -10,8 +10,9 @@ Here, the feature stores are generated, the model is registered and versioned an
 Finally, the application is generated and monitored in the production startup part. <br>
  <br>
 
-![img_1.png](img_1.png) <br>
- <br>
+![img_1.png](images/img_1.png) <br>
+
+<br>
 Even though the ML ops field is quite broad, we will look at the most critical parts. <br> <br>
 
 #### Feature Store

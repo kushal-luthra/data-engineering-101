@@ -49,6 +49,9 @@ nav:
         - Problems that MLOps solves : MLOPs/2 - MLOps Fundamentals/ 1 - Problems that MLOps solves.md
         - MLOps Components : MLOPs/2 - MLOps Fundamentals/2 - MLOps Components.md
         - MLOps Toolbox : MLOPs/2 - MLOps Fundamentals/3 - MLOps Toolbox.md
+      - MLOps Stages :
+          - MLOps Stages : MLOPs/3 - MLOps Stages/1 - MLOps Stages.md
+
   - Productivity Hacks:
       - Cold Mail Tactics : random/cold_mails.md
       - LinkedIn Growth : random/LinkedIn growth.md

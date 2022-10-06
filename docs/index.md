@@ -40,6 +40,8 @@
         - [Problems that MLOps solves](MLOPs/2 - MLOps Fundamentals/ 1 - Problems that MLOps solves.md) <br>
         - [MLOps Components](MLOPs/2 - MLOps Fundamentals/2 - MLOps Components.md) <br>
         - [MLOps Toolbox](MLOPs/2 - MLOps Fundamentals/3 - MLOps Toolbox.md) <br>
+      - MLOps Stages <br>
+        - [MLOps Stages](MLOPs/3 - MLOps Stages/1 - MLOps Stages.md)
   - Productivity Hacks<br>
       - [Cold Mail Tactics](random/cold_mails.md)<br>
       - [LinkedIn Growth](random/LinkedIn growth.md)<br>

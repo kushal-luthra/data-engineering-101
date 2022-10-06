@@ -1,7 +1,8 @@
 MLOps Toolbox
 
-![img_2.png](img_2.png)
- <br>
+![img_2.png](images/img_2.png)
+ 
+<br>
 
 We will learn about the essential MLOps libraries in the data exploration and model training part. <br>
 

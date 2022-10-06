@@ -1,6 +1,6 @@
 ## Challenges addressed by MLOps
 
-![img.png](img.png)
+![img.png](images/img.png)
 
 
 #### Versioning
