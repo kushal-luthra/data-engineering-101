@@ -45,6 +45,10 @@ nav:
           - Benefits of Machine Learning : MLOPs/1 - Challenges and Evolution of ML/2 - Benefits of ML.md
           - MLOps Fundamentals : MLOPs/1 - Challenges and Evolution of ML/3 - MLOPs Fundamentals.md
           - DevOps and DataOps Fundamentals: MLOPs/1 - Challenges and Evolution of ML/4 - DevOps and DataOps Fundamentals.md
+      - MLOps Fundamentals :
+        - Problems that MLOps solves : MLOPs/2 - MLOps Fundamentals/ 1 - Problems that MLOps solves.md
+        - MLOps Components : MLOPs/2 - MLOps Fundamentals/2 - MLOps Components.md
+        - MLOps Toolbox : MLOPs/2 - MLOps Fundamentals/3 - MLOps Toolbox.md
   - Productivity Hacks:
       - Cold Mail Tactics : random/cold_mails.md
       - LinkedIn Growth : random/LinkedIn growth.md
