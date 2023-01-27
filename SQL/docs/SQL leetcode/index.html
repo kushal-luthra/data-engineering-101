@@ -1,0 +1,1953 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Engineering 101 - concepts, quick reads, notes, etc.">
+      
+      
+        <meta name="author" content="Kushal Luthra">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>SQL leetcode - Data Engineering 101</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#second-highest-salary" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Engineering 101
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SQL leetcode
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Engineering 101
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Data-Warehousing-basics/" class="md-nav__link">
+        Data Warehousing Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/ELK%20Stack/" class="md-nav__link">
+        ELK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/ETL%20VS%20ELT/" class="md-nav__link">
+        Database Vs Datawarehouse Vs Datalake | ETL Vs ELT
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          OOPs concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="OOPs concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          OOPs concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OOPs/OOPs%20in%20Python/" class="md-nav__link">
+        OOPs in Python
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_performance_tuning/" class="md-nav__link">
+        SQL Performance Tuning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_performance_tuning_summary/" class="md-nav__link">
+        SQL Performance Tuning Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Common%20Table%20Expressions/" class="md-nav__link">
+        Common Table Expressions (CTEs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql-analytical-functions/" class="md-nav__link">
+        SQL Analytical Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql-practise-questions/" class="md-nav__link">
+        SQL Practise Questions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" tabindex="0" aria-expanded="false">
+          Storage Layer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Storage Layer" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Storage Layer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
+        Row-based Vs Column-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/Text%20File%20Formats/" class="md-nav__link">
+        Text-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/big%20data%20file%20formats/" class="md-nav__link">
+        Big Data File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/File%20Compression%20techniques%20in%20Big%20Data/" class="md-nav__link">
+        File Compression Techniques in Big Data Systems
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" tabindex="0" aria-expanded="false">
+          PyTest overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PyTest overview" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          PyTest overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/pytest/" class="md-nav__link">
+        PyTest overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" tabindex="0" aria-expanded="false">
+          SOLID Principles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SOLID Principles" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          SOLID Principles
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Introduction/" class="md-nav__link">
+        Introduction to SOLID Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Single%20Responsibility%20Principle/" class="md-nav__link">
+        Single Responsibility Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Open%20Closed%20Principle/" class="md-nav__link">
+        Open Closed Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Liskov%20Substitution%20Principle/" class="md-nav__link">
+        Liskov Substitution Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Interface%20Seggregation%20Principle/" class="md-nav__link">
+        Interface Segregation Principle
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" tabindex="0" aria-expanded="false">
+          MLOps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1" tabindex="0" aria-expanded="false">
+          Challenges and Evolution of Machine Learning
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Challenges and Evolution of Machine Learning" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Challenges and Evolution of Machine Learning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/1%20-%20Introduction%20to%20ML/" class="md-nav__link">
+        Introduction to Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/2%20-%20Benefits%20of%20ML/" class="md-nav__link">
+        Benefits of Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/3%20-%20MLOPs%20Fundamentals/" class="md-nav__link">
+        MLOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/4%20-%20DevOps%20and%20DataOps%20Fundamentals/" class="md-nav__link">
+        DevOps and DataOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_2" tabindex="0" aria-expanded="false">
+          MLOps Fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Fundamentals" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Fundamentals
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/2%20-%20MLOps%20Fundamentals/%201%20-%20Problems%20that%20MLOps%20solves/" class="md-nav__link">
+        Problems that MLOps solves
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/2%20-%20MLOps%20Fundamentals/2%20-%20MLOps%20Components/" class="md-nav__link">
+        MLOps Components
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/2%20-%20MLOps%20Fundamentals/3%20-%20MLOps%20Toolbox/" class="md-nav__link">
+        MLOps Toolbox
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_3" type="checkbox" id="__nav_8_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3" tabindex="0" aria-expanded="false">
+          MLOps Stages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Stages" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Stages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/3%20-%20MLOps%20Stages/1%20-%20MLOps%20Stages/" class="md-nav__link">
+        MLOps Stages
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" tabindex="0" aria-expanded="false">
+          Productivity Hacks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Productivity Hacks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Productivity Hacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/cold_mails/" class="md-nav__link">
+        Cold Mail Tactics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/LinkedIn%20growth/" class="md-nav__link">
+        LinkedIn Growth
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/Top-10-hacks-to-be-a-Bad-Developer/" class="md-nav__link">
+        Top 10 hacks to be a Bad developer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/Amazon-Leadership-Principles-Jeff-Bezos-thought-process/" class="md-nav__link">
+        Jeff Bezos on Amazon Leadership principles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" tabindex="0" aria-expanded="false">
+          New Rules of the Game
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="New Rules of the Game" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          New Rules of the Game
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/Introduction/" class="md-nav__link">
+        New Rules of the Game - an Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Working/" class="md-nav__link">
+        New Rules of Work
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Learning/" class="md-nav__link">
+        New Rules of Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Life/" class="md-nav__link">
+        New Rules of Life
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../aboutme/" class="md-nav__link">
+        About Me
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#second-highest-salary" class="md-nav__link">
+    Second Highest Salary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-median-given-frequency-of-numbers" class="md-nav__link">
+    Find Median Given Frequency of Numbers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-cumulative-salary-of-an-employee" class="md-nav__link">
+    Find Cumulative Salary of an Employee
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#average-salary-departments-vs-company" class="md-nav__link">
+    Average Salary: Departments VS Company
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sales-by-day-of-the-week" class="md-nav__link">
+    Sales by Day of the Week
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#report-contiguous-dates" class="md-nav__link">
+    Report Contiguous Dates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-purchase-platform" class="md-nav__link">
+    User Purchase Platform
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+  <h1>SQL leetcode</h1>
+
+<h4 id="second-highest-salary">Second Highest Salary</h4>
+<p>Link : https://leetcode.com/problems/second-highest-salary/ <br></p>
+<pre><code>Table: Employee
+
+
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| salary      | int  |
++-------------+------+
+id is the primary key column for this table.
+Each row of this table contains information about the salary of an employee.
+</code></pre>
+<p>Write an SQL query to report the second highest salary from the Employee table. If there is no second highest salary, the query should report null.<br>
+The query result format is in the following example.<br></p>
+<pre><code>Example 1:
+
+Input: 
+Employee table:
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+Output: 
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+
+Example 2:
+
+Input: 
+Employee table:
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
++----+--------+
+Output: 
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| null                |
++---------------------+
+</code></pre>
+<p>Ans <br></p>
+<pre><code>select  max(salary) as SecondHighestSalary from
+(select 
+    salary, 
+    dense_rank() over (order by salary desc) as sal_rank 
+ from employee
+ ) 
+where sal_rank=2;
+</code></pre>
+<p>Note -&gt; if Nth highest salary --&gt; <br>
+Link : https://leetcode.com/problems/nth-highest-salary/ <br></p>
+<pre><code>CREATE FUNCTION getNthHighestSalary(N IN NUMBER) RETURN NUMBER IS
+result NUMBER;
+BEGIN
+    /* Write your PL/SQL query statement below */
+
+    select max(salary) into result
+    from 
+        (
+        select salary, 
+               dense_rank() over (order by salary desc) as sal_rank
+            from employee
+        ) where sal_rank=N;
+
+    RETURN result;
+END;
+
+</code></pre>
+<h4 id="find-median-given-frequency-of-numbers">Find Median Given Frequency of Numbers</h4>
+<p>Link : https://leetcode.com/problems/find-median-given-frequency-of-numbers/ <br>
+Table: Numbers <br></p>
+<pre><code>
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| num         | int  |
+| frequency   | int  |
++-------------+------+
+num is the primary key for this table.
+Each row of this table shows the frequency of a number in the database.
+
+</code></pre>
+<p>The median is the value separating the higher half from the lower half of a data sample. <br>
+Write an SQL query to report the median of all the numbers in the database after decompressing the Numbers table. Round the median to one decimal point. <br>
+The query result format is in the following example. <br></p>
+<pre><code>Example 1:
+
+Input: 
+Numbers table:
++-----+-----------+
+| num | frequency |
++-----+-----------+
+| 0   | 7         |
+| 1   | 1         |
+| 2   | 3         |
+| 3   | 1         |
++-----+-----------+
+Output: 
++--------+
+| median |
++--------+
+| 0.0    |
++--------+
+Explanation: 
+If we decompress the Numbers table, we will get [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3], so the median is (0 + 0) / 2 = 0.
+</code></pre>
+<p>Ans <br></p>
+<pre><code>select round(avg(num),1) as median
+from
+        (
+        select
+            num,
+            frequency,
+            lag(cum_sum,1,0) over (order by num) as prev_sum,
+            cum_sum,
+            medium_num
+        from
+                (select 
+                    num,
+                    frequency,
+                    sum(frequency) over (order by num) as cum_sum,
+                    sum(frequency) over () / 2 as medium_num
+                from numbers)   a 
+            ) b
+where medium_num between prev_sum and  cum_sum;
+</code></pre>
+<h4 id="find-cumulative-salary-of-an-employee">Find Cumulative Salary of an Employee</h4>
+<p>Table: Employee <br></p>
+<pre><code>+-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| month       | int  |
+| salary      | int  |
++-------------+------+
+(id, month) is the primary key for this table.
+Each row in the table indicates the salary of an employee in one month during the year 2020.
+
+</code></pre>
+<p>Write an SQL query to calculate the cumulative salary summary for every employee in a single unified table. <br></p>
+<p>The cumulative salary summary for an employee can be calculated as follows: <br>
+- For each month that the employee worked, sum up the salaries in that month and the previous two months. This is their 3-month sum for that month. If an employee did not work for the company in previous months, their effective salary for those months is 0. <br>
+- Do not include the 3-month sum for the most recent month that the employee worked for in the summary. <br>
+- Do not include the 3-month sum for any month the employee did not work. <br>
+- Return the result table ordered by id in ascending order. In case of a tie, order it by month in descending order. <br></p>
+<p>The query result format is in the following example. <br></p>
+<p>Example 1: <br></p>
+<pre><code>Input: 
+Employee table:
++----+-------+--------+
+| id | month | salary |
++----+-------+--------+
+| 1  | 1     | 20     |
+| 2  | 1     | 20     |
+| 1  | 2     | 30     |
+| 2  | 2     | 30     |
+| 3  | 2     | 40     |
+| 1  | 3     | 40     |
+| 3  | 3     | 60     |
+| 1  | 4     | 60     |
+| 3  | 4     | 70     |
+| 1  | 7     | 90     |
+| 1  | 8     | 90     |
++----+-------+--------+
+Output: 
++----+-------+--------+
+| id | month | Salary |
++----+-------+--------+
+| 1  | 7     | 90     |
+| 1  | 4     | 130    |
+| 1  | 3     | 90     |
+| 1  | 2     | 50     |
+| 1  | 1     | 20     |
+| 2  | 1     | 20     |
+| 3  | 3     | 100    |
+| 3  | 2     | 40     |
++----+-------+--------+
+Explanation: 
+Employee '1' has five salary records excluding their most recent month '8':
+- 90 for month '7'.
+- 60 for month '4'.
+- 40 for month '3'.
+- 30 for month '2'.
+- 20 for month '1'.
+So the cumulative salary summary for this employee is:
++----+-------+--------+
+| id | month | salary |
++----+-------+--------+
+| 1  | 7     | 90     |  (90 + 0 + 0)
+| 1  | 4     | 130    |  (60 + 40 + 30)
+| 1  | 3     | 90     |  (40 + 30 + 20)
+| 1  | 2     | 50     |  (30 + 20 + 0)
+| 1  | 1     | 20     |  (20 + 0 + 0)
++----+-------+--------+
+Note that the 3-month sum for month '7' is 90 because they did not work during month '6' or month '5'.
+
+Employee '2' only has one salary record (month '1') excluding their most recent month '2'.
++----+-------+--------+
+| id | month | salary |
++----+-------+--------+
+| 2  | 1     | 20     |  (20 + 0 + 0)
++----+-------+--------+
+
+Employee '3' has two salary records excluding their most recent month '4':
+- 60 for month '3'.
+- 40 for month '2'.
+So the cumulative salary summary for this employee is:
++----+-------+--------+
+| id | month | salary |
++----+-------+--------+
+| 3  | 3     | 100    |  (60 + 40 + 0)
+| 3  | 2     | 40     |  (40 + 0 + 0)
++----+-------+--------+
+</code></pre>
+<p>Ans <br></p>
+<pre><code>select
+    id, 
+    month,
+    sum(salary) over (partition by id order by month range between 2 PRECEDING and current row)  as salary
+from    
+    (
+    select 
+        id,
+        month,
+        salary,
+        max(month) over (partition by id order by month rows between unbounded preceding and unbounded following) as max_month_for_employee     
+    from employee
+     )
+ where month!=max_month_for_employee
+ order by id, month desc;  
+</code></pre>
+<h4 id="average-salary-departments-vs-company">Average Salary: Departments VS Company</h4>
+<p>Link : https://leetcode.com/problems/average-salary-departments-vs-company/ <br></p>
+<pre><code>Table: Salary
+
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| employee_id | int  |
+| amount      | int  |
+| pay_date    | date |
++-------------+------+
+id is the primary key column for this table.
+Each row of this table indicates the salary of an employee in one month.
+employee_id is a foreign key from the Employee table.
+
+
+Table: Employee
+
++---------------+------+
+| Column Name   | Type |
++---------------+------+
+| employee_id   | int  |
+| department_id | int  |
++---------------+------+
+employee_id is the primary key column for this table.
+Each row of this table indicates the department of an employee.
+</code></pre>
+<p>Write an SQL query to report the comparison result (higher/lower/same) of the average salary of employees in a department to the company's average salary. <br>
+Return the result table in any order. <br>
+The query result format is in the following example. <br>
+Example 1: <br></p>
+<pre><code>Input: 
+Salary table:
++----+-------------+--------+------------+
+| id | employee_id | amount | pay_date   |
++----+-------------+--------+------------+
+| 1  | 1           | 9000   | 2017/03/31 |
+| 2  | 2           | 6000   | 2017/03/31 |
+| 3  | 3           | 10000  | 2017/03/31 |
+| 4  | 1           | 7000   | 2017/02/28 |
+| 5  | 2           | 6000   | 2017/02/28 |
+| 6  | 3           | 8000   | 2017/02/28 |
++----+-------------+--------+------------+
+Employee table:
++-------------+---------------+
+| employee_id | department_id |
++-------------+---------------+
+| 1           | 1             |
+| 2           | 2             |
+| 3           | 2             |
++-------------+---------------+
+Output: 
++-----------+---------------+------------+
+| pay_month | department_id | comparison |
++-----------+---------------+------------+
+| 2017-02   | 1             | same       |
+| 2017-03   | 1             | higher     |
+| 2017-02   | 2             | same       |
+| 2017-03   | 2             | lower      |
++-----------+---------------+------------+
+Explanation: 
+In March, the company's average salary is (9000+6000+10000)/3 = 8333.33...
+The average salary for department '1' is 9000, which is the salary of employee_id '1' since there is only one employee in this department. So the comparison result is 'higher' since 9000 &gt; 8333.33 obviously.
+The average salary of department '2' is (6000 + 10000)/2 = 8000, which is the average of employee_id '2' and '3'. So the comparison result is 'lower' since 8000 &lt; 8333.33.
+
+With he same formula for the average salary comparison in February, the result is 'same' since both the department '1' and '2' have the same average salary with the company, which is 7000.
+</code></pre>
+<p>Ans  <br></p>
+<pre><code>select distinct
+    pay_month,
+    department_id,
+    case 
+        when avg_dept&lt;avg_company then 'lower'
+        when avg_dept=avg_company then 'same'
+        when avg_dept&gt;avg_company then 'higher'
+    end as comparison
+from    
+    (
+            select 
+                department_id,
+                date_format(pay_date, '%Y-%m') as pay_month,
+                 avg(employee_salary) over (partition by pay_date  ) as avg_company,
+                 avg(employee_salary) over (partition by pay_date, department_id  ) as avg_dept
+            from    
+                (select
+                    s.employee_id,
+                    s.amount as employee_salary,
+                    s.pay_date,
+                    e.department_id   
+                from salary s 
+                inner join employee e
+                on s.employee_id = e.employee_id) a
+    ) b     
+</code></pre>
+<h4 id="sales-by-day-of-the-week">Sales by Day of the Week</h4>
+<p>https://leetcode.com/problems/sales-by-day-of-the-week/ <br></p>
+<pre><code>Table: Orders
+
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| order_id      | int     |
+| customer_id   | int     |
+| order_date    | date    | 
+| item_id       | varchar |
+| quantity      | int     |
++---------------+---------+
+(ordered_id, item_id) is the primary key for this table.
+This table contains information on the orders placed.
+order_date is the date item_id was ordered by the customer with id customer_id.
+
+
+Table: Items
+
++---------------------+---------+
+| Column Name         | Type    |
++---------------------+---------+
+| item_id             | varchar |
+| item_name           | varchar |
+| item_category       | varchar |
++---------------------+---------+
+item_id is the primary key for this table.
+item_name is the name of the item.
+item_category is the category of the item.
+</code></pre>
+<p>You are the business owner and would like to obtain a sales report for category items and the day of the week. <br>
+Write an SQL query to report how many units in each category have been ordered on each day of the week. <br>
+Return the result table ordered by category. <br>
+The query result format is in the following example. <br></p>
+<p>Example 1: <br></p>
+<pre><code>Input: 
+Orders table:
++------------+--------------+-------------+--------------+-------------+
+| order_id   | customer_id  | order_date  | item_id      | quantity    |
++------------+--------------+-------------+--------------+-------------+
+| 1          | 1            | 2020-06-01  | 1            | 10          |
+| 2          | 1            | 2020-06-08  | 2            | 10          |
+| 3          | 2            | 2020-06-02  | 1            | 5           |
+| 4          | 3            | 2020-06-03  | 3            | 5           |
+| 5          | 4            | 2020-06-04  | 4            | 1           |
+| 6          | 4            | 2020-06-05  | 5            | 5           |
+| 7          | 5            | 2020-06-05  | 1            | 10          |
+| 8          | 5            | 2020-06-14  | 4            | 5           |
+| 9          | 5            | 2020-06-21  | 3            | 5           |
++------------+--------------+-------------+--------------+-------------+
+Items table:
++------------+----------------+---------------+
+| item_id    | item_name      | item_category |
++------------+----------------+---------------+
+| 1          | LC Alg. Book   | Book          |
+| 2          | LC DB. Book    | Book          |
+| 3          | LC SmarthPhone | Phone         |
+| 4          | LC Phone 2020  | Phone         |
+| 5          | LC SmartGlass  | Glasses       |
+| 6          | LC T-Shirt XL  | T-Shirt       |
++------------+----------------+---------------+
+Output: 
++------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+| Category   | Monday    | Tuesday   | Wednesday | Thursday  | Friday    | Saturday  | Sunday    |
++------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+| Book       | 20        | 5         | 0         | 0         | 10        | 0         | 0         |
+| Glasses    | 0         | 0         | 0         | 0         | 5         | 0         | 0         |
+| Phone      | 0         | 0         | 5         | 1         | 0         | 0         | 10        |
+| T-Shirt    | 0         | 0         | 0         | 0         | 0         | 0         | 0         |
++------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+Explanation: 
+On Monday (2020-06-01, 2020-06-08) were sold a total of 20 units (10 + 10) in the category Book (ids: 1, 2).
+On Tuesday (2020-06-02) were sold a total of 5 units in the category Book (ids: 1, 2).
+On Wednesday (2020-06-03) were sold a total of 5 units in the category Phone (ids: 3, 4).
+On Thursday (2020-06-04) were sold a total of 1 unit in the category Phone (ids: 3, 4).
+On Friday (2020-06-05) were sold 10 units in the category Book (ids: 1, 2) and 5 units in Glasses (ids: 5).
+On Saturday there are no items sold.
+On Sunday (2020-06-14, 2020-06-21) were sold a total of 10 units (5 +5) in the category Phone (ids: 3, 4).
+There are no sales of T-shirts.
+</code></pre>
+<p>Ans  <br></p>
+<pre><code>with cte_table as 
+(select
+    b.item_category,
+    dayname(a.order_date) as day_of_week,
+    COALESCE(sum(a.quantity),0) as qty
+from 
+    orders a 
+    RIGHT join
+    items b
+    on a.item_id = b.item_id
+group by b.item_category, dayname(a.order_date)
+)
+select
+    item_category as &quot;CATEGORY&quot;,
+    sum(case when upper(day_of_week)='MONDAY' then qty else 0 end) as 'MONDAY',
+    sum(case when  upper(day_of_week)='TUESDAY' then qty else 0 end) as 'TUESDAY',
+    sum(case when  upper(day_of_week)='WEDNESDAY' then qty else 0 end) as 'WEDNESDAY',
+    sum(case when  upper(day_of_week)='THURSDAY' then qty else 0 end) as 'THURSDAY',
+    sum(case when  upper(day_of_week)='FRIDAY' then qty else 0 end) as 'FRIDAY',
+    sum(case when  upper(day_of_week)='SATURDAY' then qty else 0 end) as 'SATURDAY',
+    sum(case when  upper(day_of_week)='SUNDAY' then qty else 0 end) as 'SUNDAY'
+
+from cte_table
+group by item_category
+order by item_category;
+
+</code></pre>
+<h4 id="report-contiguous-dates">Report Contiguous Dates</h4>
+<p>https://leetcode.com/problems/report-contiguous-dates/ <br></p>
+<pre><code>Table: Failed
+
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| fail_date    | date    |
++--------------+---------+
+fail_date is the primary key for this table.
+This table contains the days of failed tasks.
+
+
+Table: Succeeded
+
++--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| success_date | date    |
++--------------+---------+
+success_date is the primary key for this table.
+This table contains the days of succeeded tasks.
+</code></pre>
+<p>A system is running one task every day. Every task is independent of the previous tasks. The tasks can fail or succeed. <br>
+Write an SQL query to generate a report of period_state for each continuous interval of days in the period from 2019-01-01 to 2019-12-31. <br>
+period_state is 'failed' if tasks in this interval failed or 'succeeded' if tasks in this interval succeeded. Interval of days are retrieved as start_date and end_date. <br>
+Return the result table ordered by start_date. <br>
+The query result format is in the following example. <br></p>
+<p>Example 1: <br></p>
+<pre><code>Input: 
+Failed table:
++-------------------+
+| fail_date         |
++-------------------+
+| 2018-12-28        |
+| 2018-12-29        |
+| 2019-01-04        |
+| 2019-01-05        |
++-------------------+
+Succeeded table:
++-------------------+
+| success_date      |
++-------------------+
+| 2018-12-30        |
+| 2018-12-31        |
+| 2019-01-01        |
+| 2019-01-02        |
+| 2019-01-03        |
+| 2019-01-06        |
++-------------------+
+Output: 
++--------------+--------------+--------------+
+| period_state | start_date   | end_date     |
++--------------+--------------+--------------+
+| succeeded    | 2019-01-01   | 2019-01-03   |
+| failed       | 2019-01-04   | 2019-01-05   |
+| succeeded    | 2019-01-06   | 2019-01-06   |
++--------------+--------------+--------------+
+Explanation: 
+The report ignored the system state in 2018 as we care about the system in the period 2019-01-01 to 2019-12-31.
+From 2019-01-01 to 2019-01-03 all tasks succeeded and the system state was &quot;succeeded&quot;.
+From 2019-01-04 to 2019-01-05 all tasks failed and the system state was &quot;failed&quot;.
+From 2019-01-06 to 2019-01-06 all tasks succeeded and the system state was &quot;succeeded&quot;.
+</code></pre>
+<p>Ans  <br></p>
+<pre><code>with 
+cte1 as 
+        (
+            select
+                'failed' as status,
+                date_format(fail_date,'%Y-%m-%d') as mydate
+            from 
+            Failed
+            where fail_date between '2019-01-01' and '2019-12-31'
+            union 
+            select
+                'succeeded' as status,
+                date_format(success_date,'%Y-%m-%d') as mydate
+            from 
+            Succeeded
+            where success_date between '2019-01-01' and '2019-12-31'
+        ), 
+cte2 as 
+    (select 
+            mydate,
+            status,
+            row_number() over (order by mydate)  -   dense_rank() over (partition by status order by mydate) as grp
+    from cte1
+    )
+select
+    status as period_state, 
+    min(mydate) as start_date,
+    max(mydate) as end_date
+from 
+cte2
+group by grp , status 
+order by  min(mydate); 
+</code></pre>
+<h4 id="user-purchase-platform">User Purchase Platform</h4>
+<pre><code>Table: Spending
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| user_id     | int     |
+| spend_date  | date    |
+| platform    | enum    | 
+| amount      | int     |
++-------------+---------+
+The table logs the history of the spending of users that make purchases from an online shopping website that has a desktop and a mobile application.
+(user_id, spend_date, platform) is the primary key of this table.
+The platform column is an ENUM type of ('desktop', 'mobile').
+</code></pre>
+<p>Write an SQL query to find the total number of users and the total amount spent using the mobile only, the desktop only, and both mobile and desktop together for each date.
+Return the result table in any order.<br>
+The query result format is in the following example.<br></p>
+<pre><code>Example 1:
+
+Input: 
+Spending table:
++---------+------------+----------+--------+
+| user_id | spend_date | platform | amount |
++---------+------------+----------+--------+
+| 1       | 2019-07-01 | mobile   | 100    |
+| 1       | 2019-07-01 | desktop  | 100    |
+| 2       | 2019-07-01 | mobile   | 100    |
+| 2       | 2019-07-02 | mobile   | 100    |
+| 3       | 2019-07-01 | desktop  | 100    |
+| 3       | 2019-07-02 | desktop  | 100    |
++---------+------------+----------+--------+
+Output: 
++------------+----------+--------------+-------------+
+| spend_date | platform | total_amount | total_users |
++------------+----------+--------------+-------------+
+| 2019-07-01 | desktop  | 100          | 1           |
+| 2019-07-01 | mobile   | 100          | 1           |
+| 2019-07-01 | both     | 200          | 1           |
+| 2019-07-02 | desktop  | 100          | 1           |
+| 2019-07-02 | mobile   | 100          | 1           |
+| 2019-07-02 | both     | 0            | 0           |
++------------+----------+--------------+-------------+ 
+Explanation: 
+On 2019-07-01, user 1 purchased using both desktop and mobile, user 2 purchased using mobile only and user 3 purchased using desktop only.
+On 2019-07-02, user 2 purchased using mobile only, user 3 purchased using desktop only and no one purchased using both platforms.
+</code></pre>
+<p>Ans <br></p>
+<pre><code>with cte as (
+select
+    spend_date,
+    user_id,
+    sum(case when platform='mobile' then amount else 0 end) as mobile_amount,
+    sum(case when platform='desktop' then amount else 0 end) as desktop_amount    
+from spending
+    group by spend_date,user_id
+
+),
+cte2 as (
+select
+    spend_date,
+     user_id,
+    case 
+        when  mobile_amount &gt; 0 and desktop_amount&gt;0 then 'both'
+        when  mobile_amount &gt; 0 and desktop_amount=0 then 'mobile'
+        when  mobile_amount = 0 and desktop_amount&gt;0 then 'desktop'
+        end as platform,
+    (mobile_amount+desktop_amount) as total_amount
+from cte
+group by spend_date , user_id
+),
+cte3 as 
+(
+    SELECT distinct(spend_date), 'desktop' platform 
+    FROM Spending
+    UNION
+    SELECT distinct(spend_date), 'mobile' platform 
+    FROM Spending
+    UNION
+    SELECT distinct(spend_date), 'both' platform 
+    FROM Spending
+)
+select 
+    cte3.spend_date,
+    cte3.platform,
+    coalesce(sum(cte2.total_amount),0) as total_amount,
+    count(cte2.user_id) as total_users
+from cte3
+left join cte2
+on 
+    cte3.spend_date=cte2.spend_date
+    and 
+    cte3.platform=cte2.platform
+group by  spend_date,
+platform;
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Kushal Luthra
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/kushal-luthra" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/kushal_luthra" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/kushalluthra/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2290 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Engineering 101 - concepts, quick reads, notes, etc.">
+      
+      
+        <meta name="author" content="Kushal Luthra">
+      
+      
+      
+        <link rel="prev" href="../../random/ETL%20VS%20ELT/">
+      
+      
+        <link rel="next" href="../../SQL/docs/sql_performance_tuning/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>OOPs in Python - Data Engineering 101</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#oops-in-python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Engineering 101
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OOPs in Python
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Engineering 101
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/Data-Warehousing-basics/" class="md-nav__link">
+        Data Warehousing Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/ELK%20Stack/" class="md-nav__link">
+        ELK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/ETL%20VS%20ELT/" class="md-nav__link">
+        Database Vs Datawarehouse Vs Datalake | ETL Vs ELT
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="true">
+          OOPs concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="OOPs concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          OOPs concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          OOPs in Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        OOPs in Python
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#oops-in-python" class="md-nav__link">
+    OOPS in python
+  </a>
+  
+    <nav class="md-nav" aria-label="OOPS in python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-terminologies" class="md-nav__link">
+    Key terminologies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-class-attribute" class="md-nav__link">
+    What is a class attribute?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-instance-attribute" class="md-nav__link">
+    What is Instance attribute?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-self-parameter-is-handled" class="md-nav__link">
+    How self parameter is handled?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-instance-method" class="md-nav__link">
+    What is Instance Method?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-static-method" class="md-nav__link">
+    What is a static method?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-init-method" class="md-nav__link">
+    What is init() method?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-variable" class="md-nav__link">
+    self Variable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-methods-and-instance-methods" class="md-nav__link">
+    Static Methods and Instance Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstraction-and-encapsulation" class="md-nav__link">
+    Abstraction and Encapsulation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    Inheritance
+  </a>
+  
+    <nav class="md-nav" aria-label="Inheritance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-1-single-level-inheritance" class="md-nav__link">
+    Type 1 : single level inheritance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type2-multiple-inheritances" class="md-nav__link">
+    Type2: Multiple Inheritances
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-3-multi-level-inheritance" class="md-nav__link">
+    Type 3: multi level inheritance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-specifiers-public-private-and-protected" class="md-nav__link">
+    Access Specifiers - public, private and protected
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polymorphism" class="md-nav__link">
+    PolyMorphism
+  </a>
+  
+    <nav class="md-nav" aria-label="PolyMorphism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overriding-and-super-method" class="md-nav__link">
+    Overriding and Super() method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diamond-problem" class="md-nav__link">
+    Diamond Problem
+  </a>
+  
+    <nav class="md-nav" aria-label="Diamond Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-1-method-will-not-be-overridden-in-class-b-and-class-c" class="md-nav__link">
+    Case 1: Method() will Not be overridden in Class B and Class C
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-2-method-will-be-overridden-in-class-b-but-not-in-class-c" class="md-nav__link">
+    Case 2: Method() will be overridden in Class B but not in Class C
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-3-method-will-be-overridden-in-class-c-but-not-in-class-b" class="md-nav__link">
+    Case 3: Method() will be overridden in Class C but not in Class B
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-4-method-will-be-overridden-in-both-class-b-and-class-c" class="md-nav__link">
+    Case 4: Method() will be overridden in both Class B and Class C
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operator-overloading" class="md-nav__link">
+    Operator Overloading
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstract-base-class" class="md-nav__link">
+    Abstract Base Class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/sql_performance_tuning/" class="md-nav__link">
+        SQL Performance Tuning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/sql_performance_tuning_summary/" class="md-nav__link">
+        SQL Performance Tuning Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/Common%20Table%20Expressions/" class="md-nav__link">
+        Common Table Expressions (CTEs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/sql-analytical-functions/" class="md-nav__link">
+        SQL Analytical Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/sql-practise-questions/" class="md-nav__link">
+        SQL Practise Questions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" tabindex="0" aria-expanded="false">
+          Storage Layer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Storage Layer" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Storage Layer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
+        Row-based Vs Column-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage%20Layer%20Choices/Text%20File%20Formats/" class="md-nav__link">
+        Text-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage%20Layer%20Choices/big%20data%20file%20formats/" class="md-nav__link">
+        Big Data File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage%20Layer%20Choices/File%20Compression%20techniques%20in%20Big%20Data/" class="md-nav__link">
+        File Compression Techniques in Big Data Systems
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" tabindex="0" aria-expanded="false">
+          PyTest overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PyTest overview" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          PyTest overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/pytest/" class="md-nav__link">
+        PyTest overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" tabindex="0" aria-expanded="false">
+          SOLID Principles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SOLID Principles" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          SOLID Principles
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Introduction/" class="md-nav__link">
+        Introduction to SOLID Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Single%20Responsibility%20Principle/" class="md-nav__link">
+        Single Responsibility Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Open%20Closed%20Principle/" class="md-nav__link">
+        Open Closed Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Liskov%20Substitution%20Principle/" class="md-nav__link">
+        Liskov Substitution Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Interface%20Seggregation%20Principle/" class="md-nav__link">
+        Interface Segregation Principle
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" tabindex="0" aria-expanded="false">
+          MLOps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1" tabindex="0" aria-expanded="false">
+          Challenges and Evolution of Machine Learning
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Challenges and Evolution of Machine Learning" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Challenges and Evolution of Machine Learning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/1%20-%20Introduction%20to%20ML/" class="md-nav__link">
+        Introduction to Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/2%20-%20Benefits%20of%20ML/" class="md-nav__link">
+        Benefits of Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/3%20-%20MLOPs%20Fundamentals/" class="md-nav__link">
+        MLOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/4%20-%20DevOps%20and%20DataOps%20Fundamentals/" class="md-nav__link">
+        DevOps and DataOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_2" tabindex="0" aria-expanded="false">
+          MLOps Fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Fundamentals" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Fundamentals
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/2%20-%20MLOps%20Fundamentals/%201%20-%20Problems%20that%20MLOps%20solves/" class="md-nav__link">
+        Problems that MLOps solves
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/2%20-%20MLOps%20Fundamentals/2%20-%20MLOps%20Components/" class="md-nav__link">
+        MLOps Components
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/2%20-%20MLOps%20Fundamentals/3%20-%20MLOps%20Toolbox/" class="md-nav__link">
+        MLOps Toolbox
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_3" type="checkbox" id="__nav_8_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3" tabindex="0" aria-expanded="false">
+          MLOps Stages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Stages" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Stages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/3%20-%20MLOps%20Stages/1%20-%20MLOps%20Stages/" class="md-nav__link">
+        MLOps Stages
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" tabindex="0" aria-expanded="false">
+          Productivity Hacks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Productivity Hacks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Productivity Hacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/cold_mails/" class="md-nav__link">
+        Cold Mail Tactics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/LinkedIn%20growth/" class="md-nav__link">
+        LinkedIn Growth
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/Top-10-hacks-to-be-a-Bad-Developer/" class="md-nav__link">
+        Top 10 hacks to be a Bad developer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/Amazon-Leadership-Principles-Jeff-Bezos-thought-process/" class="md-nav__link">
+        Jeff Bezos on Amazon Leadership principles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" tabindex="0" aria-expanded="false">
+          New Rules of the Game
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="New Rules of the Game" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          New Rules of the Game
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../New%20Rules%20of%20the%20game/Introduction/" class="md-nav__link">
+        New Rules of the Game - an Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Working/" class="md-nav__link">
+        New Rules of Work
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Learning/" class="md-nav__link">
+        New Rules of Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Life/" class="md-nav__link">
+        New Rules of Life
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        About Me
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#oops-in-python" class="md-nav__link">
+    OOPS in python
+  </a>
+  
+    <nav class="md-nav" aria-label="OOPS in python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-terminologies" class="md-nav__link">
+    Key terminologies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-class-attribute" class="md-nav__link">
+    What is a class attribute?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-instance-attribute" class="md-nav__link">
+    What is Instance attribute?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-self-parameter-is-handled" class="md-nav__link">
+    How self parameter is handled?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-instance-method" class="md-nav__link">
+    What is Instance Method?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-static-method" class="md-nav__link">
+    What is a static method?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-init-method" class="md-nav__link">
+    What is init() method?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-variable" class="md-nav__link">
+    self Variable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-methods-and-instance-methods" class="md-nav__link">
+    Static Methods and Instance Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstraction-and-encapsulation" class="md-nav__link">
+    Abstraction and Encapsulation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    Inheritance
+  </a>
+  
+    <nav class="md-nav" aria-label="Inheritance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-1-single-level-inheritance" class="md-nav__link">
+    Type 1 : single level inheritance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type2-multiple-inheritances" class="md-nav__link">
+    Type2: Multiple Inheritances
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-3-multi-level-inheritance" class="md-nav__link">
+    Type 3: multi level inheritance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-specifiers-public-private-and-protected" class="md-nav__link">
+    Access Specifiers - public, private and protected
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polymorphism" class="md-nav__link">
+    PolyMorphism
+  </a>
+  
+    <nav class="md-nav" aria-label="PolyMorphism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overriding-and-super-method" class="md-nav__link">
+    Overriding and Super() method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diamond-problem" class="md-nav__link">
+    Diamond Problem
+  </a>
+  
+    <nav class="md-nav" aria-label="Diamond Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-1-method-will-not-be-overridden-in-class-b-and-class-c" class="md-nav__link">
+    Case 1: Method() will Not be overridden in Class B and Class C
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-2-method-will-be-overridden-in-class-b-but-not-in-class-c" class="md-nav__link">
+    Case 2: Method() will be overridden in Class B but not in Class C
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-3-method-will-be-overridden-in-class-c-but-not-in-class-b" class="md-nav__link">
+    Case 3: Method() will be overridden in Class C but not in Class B
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-4-method-will-be-overridden-in-both-class-b-and-class-c" class="md-nav__link">
+    Case 4: Method() will be overridden in both Class B and Class C
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operator-overloading" class="md-nav__link">
+    Operator Overloading
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstract-base-class" class="md-nav__link">
+    Abstract Base Class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+  <h1>OOPs in Python</h1>
+
+<h2 id="oops-in-python">OOPS in python</h2>
+<h4 id="key-terminologies">Key terminologies</h4>
+<ul>
+<li><strong>Classes</strong> are logical collection of attributes and methods;</li>
+<li><strong>Objects</strong> are instance of class.</li>
+<li>Actions performed are covered in <strong>Methods</strong></li>
+<li>To access attribute of your class, use <strong>self parameter</strong></li>
+<li>Process of creating your object is called <strong>object instantiation</strong></li>
+</ul>
+<p>Everything in python is an object. <br>
+eg - mylist = [1,2,3] --if we do type() on this, it returns o/t as 'class list'.<br>
+That means, list is a class in python, and above mylist is an object of class list.<br>
+So, if you call function, say, append, then it invokes method of class list.<br>
+mylist.append(4) -&gt; [1,2,3,4]<br></p>
+<h4 id="attributes">Attributes</h4>
+<p>Attributes - an attribute is a property that further defines a class.<br></p>
+<h5 id="what-is-a-class-attribute">What is a class attribute?</h5>
+<ul>
+<li>a class attribute are attributes that are shared across all instances of a class.<br>
+eg - no. of working hours. <br></li>
+<li>they are created either as a part of the class or by using className.attributeName.<br></li>
+<li>so if edited or modified, then reflected for all object instances.<br>
+How to edit - to access them, use ClassName.ClassAttributeName and change value. <br>
+eg -</li>
+</ul>
+<pre><code>class Employee:
+    HoursOfWork = 40
+
+x=Employee()
+x.HoursOfWork --&gt; output = 40
+
+Now edit HoursOfWork --&gt;
+Employee.HoursOfWork = 30
+x.HoursOfWork --&gt; output = 30
+</code></pre>
+<p>We can also edit class attribute specific for an object instead for class as a whole. <br>
+eg -</p>
+<pre><code>class Employee:
+    HoursOfWork = 40
+
+x=Employee()
+x.HoursOfWork --&gt; output = 40
+
+Now edit HoursOfWork --&gt;
+x.HoursOfWork = 50
+x.HoursOfWork --&gt; output is 50 --&gt; here we created another instance attribute called HoursOfWork(class attribute remains unchanged)
+
+y=Employee()
+y.HoursOfWork --&gt; output = 40
+</code></pre>
+<h5 id="what-is-instance-attribute">What is Instance attribute?</h5>
+<p>Instance attribute are attributes that are specific to each instance of a class. <br>
+eg - <br></p>
+<pre><code>class Employee:
+    HoursOfWork = 40
+
+x=Employee()
+x.name = &quot;ram&quot;  --&gt; creates an instance attribute for object 'x'
+x.name --&gt; output = ram
+
+y=Employee()
+y.name --&gt; give error coz no instance attribute associated with 'y'
+</code></pre>
+<p>They are created using objectName.attributeName  <br>
+So, if edited or modified, then reflected only for that object instance.  <br></p>
+<h5 id="how-self-parameter-is-handled">How self parameter is handled?</h5>
+<p>The method call objectName.methodName() is interpreted as className.methodName(objectName), and this parameter is referred to as '<strong>self</strong>' in method definition.  <br></p>
+<h4 id="methods">Methods</h4>
+<p>Attributes - an attribute is a property that further defines a class.<br>
+Method - a method is a function within a class which can access all the attributes of a class and perform a specific task.<br></p>
+<h5 id="what-is-instance-method">What is Instance Method?</h5>
+<p>Methods that accept self parameter as default parameter. <br>
+They are used to modify instance attributes. <br></p>
+<h5 id="what-is-a-static-method">What is a static method?</h5>
+<p>Methods that do not modify instance attributes of a class are called Static Methods.  <br>
+But they can be used to modify Class Attributes. <br></p>
+<h5 id="what-is-init-method">What is init() method?</h5>
+<p><em>init()</em> method is the initializer in python. <br>
+It is called when an object is instantiated. <br>
+All the attributes of the class should be initialized in this method to make your object a fully initialized object. <br></p>
+<p>It has the default parameter as the object are static methods.  <br></p>
+<h4 id="self-variable">self Variable</h4>
+<p>When you call any class method, then by default, first argument that is passed is class object name. <br>
+eg - </p>
+<pre><code>class Employee:
+    def employeeDetails()
+        pass
+
+
+employeOne = Employee()
+employeOne.employeeDetails() is same  as employeeOne.emplpyeDetails(employeeOne)
+</code></pre>
+<p>By using self parameter, you are referring to attributes of that object, and the values persist until lifespan of program or until you manually delete the object.
+Eg -</p>
+<pre><code>class Employee:
+    def employeeDetails(self):
+        self.name = &quot;kush&quot;
+        print(&quot;name = &quot;, self.name)
+
+        age = 30 --&gt; since we didnt use &quot;self&quot;, the value age is not available to other methods
+        print(&quot;age = &quot;,age)
+
+    def printEmployeeDetails(self):
+        print(&quot;my name = &quot;, self.name)
+        print(&quot;my age = &quot;,age) --&gt; here it will throw error since &quot;age&quot; is not available to other functions. Its scope is restricted to method employeeDetails.
+
+</code></pre>
+<h4 id="static-methods-and-instance-methods">Static Methods and Instance Methods</h4>
+<p>Instance Methods
+- They are methods of our class that make use of self parameter and modify instance attributes of our class. <br></p>
+<p>Static Methods-
+- They are methods that do not take default self parameter.  <br>
+- To differentiate between static and instance method, we use decorator  @staticmethod <br></p>
+<p><strong>Decorators</strong> are functions that take another function as input and extend their functionality. <br>
+They are denoted by starting them with '@' symbol.  <br>
+For example - <em>@staticmethod</em> is a decorator that takes the function as message, extends its functionality  and ignores the binding of the object.  <br></p>
+<pre><code>class Employee:
+    @staticmethod
+    def WelcomeMessage():
+        print(&quot;welcome to our organization&quot;)
+</code></pre>
+<p>init() method <br>
+- init() method is a special method in python which is used to initialize an object. <br>
+eg -</p>
+<pre><code>class Employee:
+
+    def setName(self):
+        self.name=&quot;ram&quot;
+
+    def printName(self):
+        print(self.name)
+
+
+
+x=employee()
+x.printName() --&gt; it gives error coz we havent initialized name.
+</code></pre>
+<ul>
+<li>init() method is first method to be called in a class.</li>
+</ul>
+<pre><code>class Employee:
+    def __init__(self, name):
+        self.name = name
+
+    def printName(self):
+        print(self.name)
+
+x=employee(&quot;ram&quot;)
+x.printName() --&gt; output is Ram
+
+y=employee(&quot;shyam&quot;)
+y.printName() --&gt; output is shyam
+</code></pre>
+<h3 id="abstraction-and-encapsulation">Abstraction and Encapsulation</h3>
+<p>Abstraction is the process of hiding implementation details from the user. <br>
+Encapsulation is done to achieve abstraction. <br>
+You use method of class via abstraction.  <br></p>
+<h3 id="inheritance">Inheritance</h3>
+<ul>
+<li>allows code re-usability.</li>
+</ul>
+<h4 id="type-1-single-level-inheritance">Type 1 : single level inheritance</h4>
+<p>eg 1 - </p>
+<pre><code>dad = good baseball player. 
+son = good baseball player.
+</code></pre>
+<p>eg 2 - </p>
+<pre><code>class Apple:
+    manufacturer = &quot;Apple Inc.&quot;
+    contactWebsite = &quot;www.apple.com/contact&quot;
+
+    def contactDetails(self):
+        print(&quot;To contact us, log on to &quot;, self.contactWebsite )
+
+class MacBook(Apple):
+    def __init__(self):
+        self.yearOfManufacture = 2017
+
+    def manufactureDetails(self):
+        print(&quot;This macbook was manufactured in year {} by {}&quot;
+        .format(self.yearOfManufacture, self.manufacturer)&quot;)
+
+mymacbook = MacBook()
+
+# output = This macbook was manufactured in year 2017 by Apple Inc.
+mymacbook.manufactureDetails
+
+# To contact us, log on to www.apple.com/contact
+mymacbook.contactDetails 
+</code></pre>
+<h4 id="type2-multiple-inheritances">Type2: Multiple Inheritances</h4>
+<p>eg 1 - </p>
+<pre><code>dad = good baseball player.
+mom = good cook. 
+son = good baseball player and good cook
+</code></pre>
+<p>eg 2 - </p>
+<pre><code>class OperatingSystem:
+    multitasking = True
+    name = &quot;Windows OS&quot;
+
+Class Apple:
+    website = &quot;www.apple.com&quot;
+    name = &quot;Apple OS&quot;
+
+Class MacBook(OperatingSystem, Apple):
+    def __init__(self):
+        if self.multitasking is True:
+
+            # output = this is a multitasking system. Visit www.apple.com for more details.
+            print(&quot;this is a multi tasking system. Visit {} for more details&quot;.format(self.website))
+
+            #output = Window OS --why - coz we inherited OperatingSystem class first, and so variable present in both classes will be picked up from first class.
+            print(&quot;name = &quot;.self.name)
+
+
+
+Class NewMacBook(Apple, OperatingSystem):
+    def __init__(self):
+        if self.multitasking is True:
+            # output = this is a multitasking system. Visit www.apple.com for more details.
+            print(&quot;this is a multi tasking system. Visit {} for more details&quot;.format(seld.website))
+
+            # output = Apple OS --why - coz we inherited Apple class first, and so variable present in both classes will be picked up from first class. 
+            print(&quot;name = &quot;.self.name)
+
+
+</code></pre>
+<h4 id="type-3-multi-level-inheritance">Type 3: multi level inheritance</h4>
+<p>eg 1- </p>
+<pre><code>grandfather = good baseball player
+father = good soccer player 
+son = good baseball and soccer player
+</code></pre>
+<p>eg 2- </p>
+<pre><code>class MusicalInstruments:
+    numberOfMajorKeys = 12
+
+class StringInstruments(MusicalInstruments):
+    typeOfWood = &quot;ToneWood&quot;
+
+class Guitar(StringInstruments):
+    def __init__(self):
+        self.numberOfStrings = 6
+        print(&quot;this guitar consists of {} strings. It is made of {} and it can play {} keys&quot;
+        .format(self.numberOfStrings, self.typeOfWood, self.numberOfMajorKeys))
+
+guitar = Guitar()
+output - 
+    This guitar consists of 6 strings. It is made of ToneWood and can play 12 keys
+</code></pre>
+<h3 id="access-specifiers-public-private-and-protected">Access Specifiers - public, private and protected</h3>
+<ul>
+<li>public - </li>
+<li>your class, derived class, and further sub-classes derived from derived class --all can access values in main class.</li>
+<li>protected - </li>
+<li>only your class and derived class members can access data and methods of your class.</li>
+<li>private- </li>
+<li>only your class can access methods and attributes of your class.</li>
+</ul>
+<p>To declare attribute or method as - <br>
+    1. public - MemberName <br>
+    2. Protected - _memberName --&gt; single underscore. <br>
+    3. Private - __MemberName --&gt; double underscore. <br></p>
+<pre><code>class Car:
+    numberOfWheels = 4
+    _color = &quot;Black&quot;
+    __YearOfManufacture = 2018 #python saves it as _Car__yearOfManufacture i.e _ClassName__AttributeName
+
+Class BMW(Car):
+    def __init__(self):
+        print(&quot;Protected attrubte color : &quot;, self._color)
+
+car=Car()
+print(&quot;Public Attribute numberOfWheels: &quot;, self.car.NumberOfWheels) --&gt; output =  Public Attribute NumberOfWheels: 4
+
+bmw = BMW() --&gt; output =  Protected attribute color : Black
+
+print(&quot;Private Attribute yearOfManufacture: &quot;, car.__yearOfManufacture  ) --&gt; output = error
+print(&quot;Private Attribute yearOfManufacture: &quot;, car._Car__yearOfManufacture) --&gt; output = Private attribute YearOfManufacture : 2018
+</code></pre>
+<h3 id="polymorphism">PolyMorphism</h3>
+<p>It is characteristic of an entity to be able to be present in more than one form. <br>
+eg - "+" operator when applied to 2 numbers returns their sum, but whe applied to 2 strings, returns their concatenation.  <br></p>
+<h4 id="overriding-and-super-method">Overriding and Super() method</h4>
+<p>Overriding = redefine base class method in your derived class.  <br></p>
+<p>super() function allows you to transfer control back to base class in a derived class. <br>
+It is used in case you want to access method in base class. <br></p>
+<pre><code>class Employee:
+    def setNumberOfWorkingHours(self):
+        self.NumberOfWorkingHours = 10
+
+
+    def displayNumberOfWorkingHours(self):
+        print(self.NumberOfWorkingHours)
+
+
+employee = Employee()
+employee.setNumberOfWorkingHours()
+print(&quot;Number of working hours of emplyee = &quot;, end = ' ')
+employee.displayNumberOfWorkingHours()
+
+output -
+Number of working hours of Employee = 10
+
+
+class Trainee(Employee):
+    def setNumberOfWorkingHours(self):
+        self.NumberOfWorkingHours = 20
+
+
+    def resetNumberOfWorkingHours(self):
+        super().setNumberOfWorkingHours()
+
+trainee = Trainee()
+
+trainee.setNumberOfWorkingHours()
+print(&quot;Number of working hours of Trainee = &quot;, end = ' ')
+trainee.displayNumberOfWorkingHours()
+
+
+trainee.resetNumberOfWorkingHours()
+print(&quot;Number of working hours of Trainee after reset = &quot;, end = ' ')
+trainee.displayNumberOfWorkingHours()
+
+
+output -
+Number of working hours of Trainee = 20
+Number of working hours of Trainee after reset = 10
+</code></pre>
+<h4 id="diamond-problem">Diamond Problem</h4>
+<p>Here we have 4 classes - A, B, C and D <br>
+- A is base class <br>
+- B anc C derived from A
+- D is derived from B and C</p>
+<h5 id="case-1-method-will-not-be-overridden-in-class-b-and-class-c">Case 1: Method() will Not be overridden in Class B and Class C</h5>
+<pre><code>class A:
+    def method(self):
+        print(&quot;this method belongs to class A&quot;)
+
+    pass
+
+
+class B(A):
+    pass
+
+class C(A):
+    pass
+
+class D(B,C):
+    pass
+
+d = D()
+d.method()
+
+output --&gt;
+This method belongs to class A
+</code></pre>
+<h5 id="case-2-method-will-be-overridden-in-class-b-but-not-in-class-c">Case 2: Method() will be overridden in Class B but not in Class C</h5>
+<pre><code>class A:
+    def method(self):
+        print(&quot;this method belongs to class A&quot;)
+
+    pass
+
+class B(A):
+    def method(self):
+        print(&quot;this method belongs to class B&quot;)
+
+class C(A):
+    pass
+
+class D(B,C):
+    pass
+
+d = D()
+d.method()
+output --&gt; This method belongs to class B
+
+</code></pre>
+<h5 id="case-3-method-will-be-overridden-in-class-c-but-not-in-class-b">Case 3: Method() will be overridden in Class C but not in Class B</h5>
+<pre><code>class A:
+    def method(self):
+        print(&quot;this method belongs to class A&quot;)
+
+class B(A):
+    pass
+
+class C(A):
+    def method(self):
+        print(&quot;this method belongs to class C&quot;)
+
+class D(B,C):
+    pass
+
+d = D()
+d.method()
+output --&gt; This method belongs to class C
+</code></pre>
+<h5 id="case-4-method-will-be-overridden-in-both-class-b-and-class-c">Case 4: Method() will be overridden in both Class B and Class C</h5>
+<pre><code>class A:
+    def method(self):
+        print(&quot;this method belongs to class A&quot;)
+
+class B(A):
+    def method(self):
+        print(&quot;this method belongs to class B&quot;)
+
+class C(A):
+    def method(self):
+        print(&quot;this method belongs to class C&quot;)
+
+class D(B,C):
+    pass
+
+d = D()
+output -&gt; This method belongs to class B
+why this output -&gt; 
+Method Resolution Order -- in case of derived class from multiple classes, method picked from 1st class to which it is obtained;
+
+
+Had we defined class D as below, output would have been different. 
+class D(C,B):
+    pass
+
+d = D()
+d.method() --&gt; output = This method belongs to class C
+</code></pre>
+<h4 id="operator-overloading">Operator Overloading</h4>
+<p>There are internal functions of python. <br>
+They are overridden in following way -  <br>
+eg - overloading addition operator,  the "+" operator when  <br>
+- applied to 2 numbers returns their sum. <br>
+- applied to 2 strings, returns their concatenation.</p>
+<pre><code>class Square:
+    def __init__(self, side):
+        self.side = side
+
+
+sq1 = Square(5)
+sq2 = Square(10)
+
+# output -&gt; ERROR
+# Why -&gt; sq1 + sq2 = error coz '+' operator doesn't work on object of class square
+print(&quot;the sum of sides of both the squares = &quot;, sq1 + sq2)  
+
+So, we need a mechanism to add sides of square and return value.
+That should allow us to add above 2 square objects as well.
+
+Solution -&gt;
+overload special method add() in your class
+
+class Square:
+    def __init__(self, side):
+        self.side = side
+
+    def __add__(square1, square2):
+        return( (4 * square1.side) + (4 * square2.side) )
+
+sq1 = Square(5)
+sq2 = Square(10)
+
+# output -&gt; 60
+print(&quot;the sum of sides of both the squares = &quot;, sq1 + sq2)
+
+</code></pre>
+<h3 id="abstract-base-class">Abstract Base Class</h3>
+<p>An Abstract Base Class is a base class which doesn't have a definition of its own. <br>
+It has abstract methods which forces its implementation in derived classes  <br></p>
+<p><strong>To declare a class as abstract base class</strong>, it needs to be declared as instance of <strong>ABCMeta class of python</strong>. <br>
+eg -</p>
+<pre><code># we import ABCMeta and abstractmethod from abc module of python
+
+from abc import ABCMeta, abstractmethod
+
+class shape(metaclass = ABCMeta):
+
+    #decorator abstractmethod tells that given method is required to be defined in derived classes.
+    @abstractmethod    
+    def area(self):
+        return 0
+
+    #here we say that method area() does not have a defn of its own; but it needs to be defined in derived classes.
+
+
+class Square(shape):
+    side = 4
+
+    def area(self):
+        print(&quot;area of square&quot;, self.side * self.side)
+
+class Rectangle(Shape):
+    width = 5
+    breadth = 10
+
+    def area(self):
+        print(&quot;area of rectangle &quot; , self.width * self.length)
+
+sq = Square()
+rc = Rectangle()
+
+sq.area()
+rc.area()
+</code></pre>
+<p><strong>Note</strong> - if no definition of method area() in class Square and even if we don't call sq.area() --&gt; we get error</p>
+<p>An abstract can only be inherited in derived classes, but cannot be instantiated. <br>
+If we try to create object of abstract class, we get error.  <br></p>
+<pre><code>sh = Shape()
+</code></pre>
+<p><strong>Summary</strong>  <br>
+ - polymorphism = ability of an entity to be able to exist in more than one form.  <br>
+ - overriding = form of polymorphism in which we redefine method of base class in a derived class. 
+   - By doing this we change behaviour of a base class method.  <br>
+   - How -</p>
+<pre><code>    class BaseClass:
+           def BaseClassMethod():
+               #define behaviour
+    class DerivedClass(BaseClass):
+           def baseClassMethod():
+               #redefine behaviour
+</code></pre>
+<ul>
+<li>
+<p>Operator Overloading - defining a special method for an operator within your class to handle the operation between the objects of that class is called <strong>Operator Overloading</strong>.</p>
+</li>
+<li>
+<p>Abstract Base Class - a base class which consists of abstract methods that should be implemented in its derived class is called abstract base class. <br>
+Syntax -</p>
+</li>
+</ul>
+<pre><code>    from abc import ABCMeta, abstractmethod
+
+    class baseClass(metaclass = ABCMeta):
+
+        @abstractmethod
+        def abstractMethod(self):
+            return
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Kushal Luthra
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/kushal-luthra" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/kushal_luthra" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/kushalluthra/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>

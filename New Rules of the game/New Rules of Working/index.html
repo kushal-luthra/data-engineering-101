@@ -1,0 +1,1574 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Engineering 101 - concepts, quick reads, notes, etc.">
+      
+      
+        <meta name="author" content="Kushal Luthra">
+      
+      
+      
+        <link rel="prev" href="../Introduction/">
+      
+      
+        <link rel="next" href="../New%20Rules%20of%20Learning/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>New Rules of Work - Data Engineering 101</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rule-1-do-the-work-you-love" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Engineering 101
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              New Rules of Work
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Engineering 101
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/Data-Warehousing-basics/" class="md-nav__link">
+        Data Warehousing Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/ELK%20Stack/" class="md-nav__link">
+        ELK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/ETL%20VS%20ELT/" class="md-nav__link">
+        Database Vs Datawarehouse Vs Datalake | ETL Vs ELT
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          OOPs concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="OOPs concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          OOPs concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OOPs/OOPs%20in%20Python/" class="md-nav__link">
+        OOPs in Python
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/sql_performance_tuning/" class="md-nav__link">
+        SQL Performance Tuning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/sql_performance_tuning_summary/" class="md-nav__link">
+        SQL Performance Tuning Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/Common%20Table%20Expressions/" class="md-nav__link">
+        Common Table Expressions (CTEs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/sql-analytical-functions/" class="md-nav__link">
+        SQL Analytical Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SQL/docs/sql-practise-questions/" class="md-nav__link">
+        SQL Practise Questions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" tabindex="0" aria-expanded="false">
+          Storage Layer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Storage Layer" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Storage Layer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
+        Row-based Vs Column-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage%20Layer%20Choices/Text%20File%20Formats/" class="md-nav__link">
+        Text-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage%20Layer%20Choices/big%20data%20file%20formats/" class="md-nav__link">
+        Big Data File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Storage%20Layer%20Choices/File%20Compression%20techniques%20in%20Big%20Data/" class="md-nav__link">
+        File Compression Techniques in Big Data Systems
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" tabindex="0" aria-expanded="false">
+          PyTest overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PyTest overview" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          PyTest overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/pytest/" class="md-nav__link">
+        PyTest overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" tabindex="0" aria-expanded="false">
+          SOLID Principles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SOLID Principles" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          SOLID Principles
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Introduction/" class="md-nav__link">
+        Introduction to SOLID Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Single%20Responsibility%20Principle/" class="md-nav__link">
+        Single Responsibility Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Open%20Closed%20Principle/" class="md-nav__link">
+        Open Closed Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Liskov%20Substitution%20Principle/" class="md-nav__link">
+        Liskov Substitution Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOLID%20Principles/Interface%20Seggregation%20Principle/" class="md-nav__link">
+        Interface Segregation Principle
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" tabindex="0" aria-expanded="false">
+          MLOps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1" tabindex="0" aria-expanded="false">
+          Challenges and Evolution of Machine Learning
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Challenges and Evolution of Machine Learning" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Challenges and Evolution of Machine Learning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/1%20-%20Introduction%20to%20ML/" class="md-nav__link">
+        Introduction to Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/2%20-%20Benefits%20of%20ML/" class="md-nav__link">
+        Benefits of Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/3%20-%20MLOPs%20Fundamentals/" class="md-nav__link">
+        MLOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/4%20-%20DevOps%20and%20DataOps%20Fundamentals/" class="md-nav__link">
+        DevOps and DataOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_2" tabindex="0" aria-expanded="false">
+          MLOps Fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Fundamentals" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Fundamentals
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/2%20-%20MLOps%20Fundamentals/%201%20-%20Problems%20that%20MLOps%20solves/" class="md-nav__link">
+        Problems that MLOps solves
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/2%20-%20MLOps%20Fundamentals/2%20-%20MLOps%20Components/" class="md-nav__link">
+        MLOps Components
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/2%20-%20MLOps%20Fundamentals/3%20-%20MLOps%20Toolbox/" class="md-nav__link">
+        MLOps Toolbox
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_3" type="checkbox" id="__nav_8_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3" tabindex="0" aria-expanded="false">
+          MLOps Stages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Stages" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Stages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLOPs/3%20-%20MLOps%20Stages/1%20-%20MLOps%20Stages/" class="md-nav__link">
+        MLOps Stages
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" tabindex="0" aria-expanded="false">
+          Productivity Hacks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Productivity Hacks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Productivity Hacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/cold_mails/" class="md-nav__link">
+        Cold Mail Tactics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/LinkedIn%20growth/" class="md-nav__link">
+        LinkedIn Growth
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/Top-10-hacks-to-be-a-Bad-Developer/" class="md-nav__link">
+        Top 10 hacks to be a Bad developer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../random/Amazon-Leadership-Principles-Jeff-Bezos-thought-process/" class="md-nav__link">
+        Jeff Bezos on Amazon Leadership principles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" tabindex="0" aria-expanded="true">
+          New Rules of the Game
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="New Rules of the Game" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          New Rules of the Game
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction/" class="md-nav__link">
+        New Rules of the Game - an Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          New Rules of Work
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        New Rules of Work
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rule-1-do-the-work-you-love" class="md-nav__link">
+    Rule 1: Do the work you love
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-2-be-an-adaptive-problem-solver" class="md-nav__link">
+    Rule 2: Be an adaptive problem solver
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-3-think-like-an-entrepreneur" class="md-nav__link">
+    Rule 3: Think like an entrepreneur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-4-work-with-others-to-solve-a-pool-of-problems" class="md-nav__link">
+    Rule 4: Work with others to solve a pool of problems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-5-have-a-portfolio-of-work" class="md-nav__link">
+    Rule 5: Have a portfolio of work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-6-build-and-tend-your-network" class="md-nav__link">
+    Rule 6: Build and tend your network
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-7-do-work-driven-by-meaning" class="md-nav__link">
+    Rule 7: Do work driven by meaning
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Rules%20of%20Learning/" class="md-nav__link">
+        New Rules of Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Rules%20of%20Life/" class="md-nav__link">
+        New Rules of Life
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aboutme/" class="md-nav__link">
+        About Me
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rule-1-do-the-work-you-love" class="md-nav__link">
+    Rule 1: Do the work you love
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-2-be-an-adaptive-problem-solver" class="md-nav__link">
+    Rule 2: Be an adaptive problem solver
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-3-think-like-an-entrepreneur" class="md-nav__link">
+    Rule 3: Think like an entrepreneur
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-4-work-with-others-to-solve-a-pool-of-problems" class="md-nav__link">
+    Rule 4: Work with others to solve a pool of problems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-5-have-a-portfolio-of-work" class="md-nav__link">
+    Rule 5: Have a portfolio of work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-6-build-and-tend-your-network" class="md-nav__link">
+    Rule 6: Build and tend your network
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-7-do-work-driven-by-meaning" class="md-nav__link">
+    Rule 7: Do work driven by meaning
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+  <h1>New Rules of Work</h1>
+
+<h3 id="rule-1-do-the-work-you-love">Rule 1: Do the work you love</h3>
+<p><img alt="img_1.png" src="../img_1.png" /> <br>
+It used to be okay to settle for work that didn't excite you, but if you're going to increasingly compete with others for work, then you're going to need to do work that motivates you. <br> 
+So, rule number one of the new rules of work is, do the work that you love.  <br>
+One of the most fundamental understandings of ourselves is that we each have a completely unique mix of skills, knowledges, traits, experiences and interests. Nobody else on the planet has exactly the same characteristics as you. And that unique mix means that there's a range of different kinds of work that you could be doing. <br> 
+ <br>
+Dick Bolles, author of "What Color Is Your Parachute?", the enduring career manual, has found that the key to being motivated at work is in finding or in creating a match between your unique characteristics and the work that you do. <br> 
+Over and over again, we've seen that the better that match is, between what's true about you and your work, the better your satisfaction and motivation.  <br>
+ <br>
+So why is motivation more important in a world of constant change? There are several important reasons. <br> 
+ <br>
+First, workers will increasingly stand out because they're motivated. Think of motivation as a spectrum. On one end, we're completely disinterested in the work that we do. We show up, we do it, but we have zero motivation. But on the other end, we jump out of bed in the morning. We're energized by the opportunity to do the work that we love. Now in a more static world with nine-to-five jobs and repetitive work, it was possible to do work that didn't motivate you very much. But you're going to increasingly find that being highly motivated by the work that you do will not only make you stand out, it will give you the drive to continually excel at what you do. <br> 
+It's absolutely your choice if you don't want to be motivated at work, but you're going to find it will increasingly put you at a disadvantage.  <br>
+ <br></p>
+<p><img alt="img_2.png" src="../img_2.png" /> <br>
+Second, workers who are doing the work that they love are far more likely to be more creative, more innovative, and more proactive in doing their work. <br> 
+That increases your ability to perform your work and to repeatedly find new ways to solve problems.  <br>
+Now, using your fingers as circles, if your left hand circle is all of the skills, knowledges and work environment characteristics that make you happy in your work and your right-hand circle is your current job, how much of an overlap do those two circles have? And how much do you want them to have? The greater the overlap, the more agile you'll be in continually doing the work you're motivated to do. And that will be one of your greatest assets in a constantly changing world of work. <br></p>
+<p><br></p>
+<h3 id="rule-2-be-an-adaptive-problem-solver">Rule 2: Be an adaptive problem solver</h3>
+<p><img alt="img_3.png" src="../img_3.png" /> <br>
+Our constantly changing world isn't going to slow down anytime soon. So, need to be an adaptive problem solver. <br> </p>
+<p>Let's start by looking at the fundamentals of work.  <br>
+Why do we get paid for the work that we do? It's to solve problems and to generate results. <br> 
+How do we solve problems? We perform tasks, and how do we perform those tasks? We use our skills. <br> 
+So here's the sequence, we use our skills to perform tasks and solve problems to generate results.  <br>
+For example, a fast food company has problems like getting food into the hands of happy customers and getting paid for it. <br> 
+Tasks such as taking orders and making change are performed using skills like listening, handling money, making change and so on. <br> 
+And the result should be that food gets delivered into the hands of a happy customer. And money gets deposited into a cash register.  <br>
+ <br>
+Or a consulting company has problems, like helping clients develop complex market strategies, tasks such as conducting research programs and engaging in strategy design are performed using skills like analyzing, interviewing, synthesizing and writing. And the result is a happy client who has a new strategy. <br> 
+ <br>
+In a rapidly changing world, successful workers will increasingly be the ones who seek out problems to be solved and who come up with creative ways to solve them and to generate results. <br> 
+But the problems we're asked to solve tomorrow probably won't be the problems we're solving today. That's why we need to be adaptive. The work world will constantly change. So we'll need to learn how to continually adapt. <br> 
+Even once we picked up a kind of work we very much want to perform. We have to be prepared to do a completely different kind of work in the future.  <br>
+ <br>
+Now, what does it mean to be adaptive? Here are three characteristics. <br> 
+Adaptive workers are continually aware and they're always on the lookout for changes in their work environment. They ask questions and they're constantly trying to understand the changing dynamics of their work. <br> 
+ <br>
+Adaptive workers are continually innovating. They don't fall in love with any particular way of doing something. Instead, they're constantly looking for new ways to solve problems. <br> 
+ <br>
+Adaptive workers are continually learning. They don't assume they know everything about their work. In a constantly changing work environment, they know there will always be something new to learn. <br> 
+ <br>
+Let's face it, if you thrive on stability, you'll need to look even harder in the future for work situations that don't change on a regular basis. <br> 
+Now, the good news is that in a world of constant change, we can increasingly use technology to help us solve those problems.  <br>
+Technology can amplify our skills, allowing us to do things we couldn't necessarily do on our own.  <br>
+So technology itself can help us to be far more adaptive.  <br></p>
+<h3 id="rule-3-think-like-an-entrepreneur">Rule 3: Think like an entrepreneur</h3>
+<p>Now being passive may have been okay in the time of the old rules of work. If you weren't especially engaged in your work, and you didn't care all that much about the problems you were solving, maybe it was acceptable that you didn't have to be very proactive, but those days are increasingly behind us.  <br> 
+Instead, whether we work in a large company or we're a start-up of one, or something in between, we need to think like entrepreneurs, which is the third new rule of work.   <br>
+  <br>
+<strong>So what do entrepreneurs do?</strong>  <br> 
+They identify problems proactively, they don't wait for problems to come to them.  <br> 
+This is about dynamically binding around problems, bringing your unique skills to bear on identifying and solving challenges and roadblocks, then pulling others into the process of generating results.  <br> 
+  <br>
+Entrepreneurs make decisions based on the information that they have at hand, they don't wait until they have the perfect information they'd like to have.  <br> 
+Entrepreneurs also gather as much information as they can, in a brief period of time, then they act and they do their best not to second guess their decisions after the fact.  <br> 
+  <br>
+But, perhaps, the most important trait of entrepreneurs is that they take smart risks.  <br> 
+They put themselves in a position where they could fail, and when they do fail they don't treat it as a life-changing problem, they treat it as a badge of courage, and then they go on to the next challenge, incorporating what they've learned, so they don't fail at the same thing again.  <br> 
+As investor and entrepreneur Esther Dyson says, "<em>Make new mistakes</em>."   <br>
+  <br>
+In large companies though, making new mistakes is one of the hardest things to do. Unless the organization supports a culture of risk-taking, a single mistake could brand you as a failure.  <br> 
+That's why these people are called Intrapreneurs.   <br>
+People who act entrepreneurially in large organizations deserve a tremendous amount of credit for putting themselves in situations where they're taking visible risks.  <br> 
+  <br>
+John Hagel, at the Lloyd Center for the Edge, says that it's hardest to do this kind of entrepreneurial activity in the center of the organization, that is in a division or a department that's in the middle of the company's core business.  <br> 
+It's far easier to act entrepreneurially in a new venture or in a small department that's not at the center of the organization, but no matter where you work in your organization you'll need to look for ways that you can be more proactive.   <br>
+And we call this kind of proactivity - Agency, taking initiative, attacking new problems, coming up with new solutions.   <br>
+This is how workers are agent-ful, delivering new value to the organization and gaining more satisfaction in their work.   <br>
+  <br>
+Finally, thinking like an entrepreneur doesn't necessarily mean you should go out and start a company, though it doesn't mean you shouldn't either.  <br> 
+What it does mean is that you need to be more of a risk-taker, and you're going to find the results will be tremendously rewarding.  <br></p>
+<h3 id="rule-4-work-with-others-to-solve-a-pool-of-problems">Rule 4: Work with others to solve a pool of problems</h3>
+<p><img alt="img_4.png" src="../img_4.png" /> <br>
+The old rules of work meant you didn't always have to collaborate with other people. Even if you were part of a team, you might've worked somewhat independently of others workers. <br> 
+But in a constantly changing work environment, you and your fellow team members will increasingly need to work together to solve problems.  <br>
+You're going to find you need to collaborate across departments and divisions across organizational boundaries and with people all over around the world. <br> 
+So, rule number four of the new rules of work, work with others to solve a pool of problems.  <br>
+ <br>
+In order to be an adaptive problem solver, what you'll increasingly find is that you and your coworkers will need to work together as a team of problem solvers. <br> 
+So, rather than being a set of individual workers who operate in parallel, think instead of the pool of problems that your team is charged with solving.  <br>
+What if you approach that set of problems as a team dynamically allocating the tasks to be solved between yourselves so that each person's unique skills could be brought to bear on the most appropriate problems, that's what it means to be a pool of problem solvers. <br> 
+ <br>
+Now, how can you know the kinds of people with whom you'd work best? Well, there are numerous approaches. Psychologists call this the <strong>Person Environment fit</strong>. <br> 
+That essentially means that you have a set of unique characteristics and so does where you work and especially the kinds of people with whom you work.  <br>
+Since few things in life are ever perfect person-environment fit is really about optimization, which is trying to continually adjust to increase the match between you and your environment. <br> 
+ <br>
+One theory of person-environment fit is known as your Holland Code. That code can give you some pretty good insights about the kind of people-environment that you'd like to most work at. <br> 
+ <br>
+Now there's another approach that's called the Myers Briggs Type Indicator, which is a schema based on psychologist Carl Young's archetypes. And that gives you a four letter code that helps you to understand the kinds of ways you solve problems and how you interact with other people. Once you know that Myers Briggs Code, you can get a good idea of the kinds of people with whom you work best, and the kinds of people you probably have some more difficulty communicating and collaborating with. <br> 
+ <br>
+You can think of this process as finding your tribe, the kinds of people with whom you feel the most affinity at work. <br> 
+Working with your tribe can bring a tremendous amount of satisfaction because you feel you're working with the people who think and act like you and reinforcing your own skills and knowledge. <br> 
+But don't, over-index on your tribe. Don't create a situation where all you see are the kinds of people who think like you.  <br>
+Researchers show that the best ideas come from heterogeneous groups with lots of ideas from people who think far more differently.  <br>
+It's great to work with people you think of as your tribe, but if you're going to be a member of a team of problem solvers make sure you have plenty of chances to collaborate with people who are dramatically different from your tribe as well. <br></p>
+<h3 id="rule-5-have-a-portfolio-of-work">Rule 5: Have a portfolio of work</h3>
+<p>In a world of rapid change, we need a new model that helps each of us to continually grow and develop and to continually find new sources of opportunities for compensated work, what we used to call a job. <br> 
+Without our necessarily realizing it, our actual relationship with work is changing.  <br>
+ <br>
+When our relationship to work is binary, we either have a job or we don't, we usually have predictable activities and earnings. <br> 
+But when rapidly changing times means we have a fuzzier relationship with work, perhaps requiring multiple sources of income from a variety of activities. <br> 
+I call this a portfolio of work.  <br>
+ <br>
+In the same way that an investor often has a distributed portfolio, some safe investments, some riskier investments, an important strategy for dealing with the uncertainty in the world of work is to have more than one activity at any one time. And the most entrepreneurial of workers will have a range of activities they do to generate income, and to perform the kinds of activities that they really enjoy. <br> 
+ <br>
+So what are all the different ways that you can work? You could be full-time long-term or full-time temporary. <br> 
+Or you could work part-time long-term or part-time temporary.  <br>
+You could also be on call or doing project-based or piecework.  <br>
+ <br>
+Maybe you could be doing app-based work, such as driving for Lyft or doing tasks for TaskRabbit. <br> 
+ <br>
+You might be doing what's known as asset-based work, such as sharing something you own on Airbnb, selling and buying assets on something like eBay, or creating and selling wares on something like Etsy. <br> 
+ <br>
+Perhaps you might be participating in an online work co-op. <br> 
+You could also be starting your own company on the side.  <br>
+Or you might be doing several of these all at the same time.  <br>
+ <br>
+Now, of course, jobs as we know them will continue to exist for a long time. But for many people, there will be strong incentives to work in a different manner. <br> 
+Alternatives to traditional jobs have existed for years. But the incentives to use those alternatives are increasing.  <br>
+Think of each of these alternatives as parts of your portfolio of work.  <br>
+ <br>
+A portfolio of work is inevitable for each of us and it's already in practice by many workers. <br> 
+For those who thrive on variety and change, a portfolio of work is ideal. Life is varied. There's a constant flow of new challenges. <br> 
+ <br>
+But for those who thrive on stability and predictability, a portfolio can mean stress and uncertainty. <br> 
+Even if you only have one job, you probably already have at least one additional work-related activity in your portfolio. <br> 
+You might have a hobby that could turn into work. You might have an idea for a startup that you're working on.  <br>
+Or you might help out with projects with friends or at a nonprofit, which could turn into compensated work some day. <br> 
+If for no other reason, think of a work portfolio as a kind of insurance. In a constantly changing world, there's no guarantee that your current work situation is going to remain static. <br> 
+ <br>
+Now, to some people, this is a really exciting opportunity, which means constant variety and change, while to others, it sounds like a lot of work. <br> 
+If you already are good at things like time management and communicating with people in your network, you'll find that you're naturally drawn to this kind of work context. <br> 
+But you may find you'll need to hone these kinds of skills if you haven't practiced them much until now.  <br>
+Just as entrepreneurs are always trying to anticipate problems before they arrive, it's going to be increasingly useful to expand your portfolio of work and to continually look for new ways to do the kinds of work that you love. <br></p>
+<h3 id="rule-6-build-and-tend-your-network">Rule 6: Build and tend your network</h3>
+<p><img alt="img_5.png" src="../img_5.png" /> <br>
+ <br>
+In a more aesthetic world, you probably didn't need much of a network of contacts. If you only change jobs every decade or so, you didn't need to go through many other people to find that work, but that's an old rule. <br> 
+The new rules of work mean you'll increasingly need a network of connections to do your work and to find new work.  <br>
+ <br>
+One of the most influential research papers on networks comes from a sociologist by the name of Mark Granovetter, who wrote a paper called The Strength of Weak Ties. His thesis was that some of the greatest value from our connections with other people is at the edge of our networks, not at the core. <br> 
+The people we know well, those who are at the center of our network are likely to hear about the same opportunities that we are and the more likely are potential competitors than they are our allies, at least when we're looking for work.  <br>
+Today, we maintain a lot of weak ties through online social media, like Facebook and LinkedIn, but having weak ties doesn't mean that you should build your network without being intentional about the connections that you make.  <br>
+You could have a broad network, but make sure that even the weaker connections are quality connections.  <br>
+ <br>
+As the walls of organizations become more pliable, people are more frequently moving in and out of work situations. <br> 
+That means that you'll frequently be meeting a variety of people, sometimes briefly, sometimes in deeper contact.  <br>
+ <br>
+It's essential that you build that network over time, maintaining connections with those with whom you share interests and experiences. <br> 
+ <br>
+It also means you should take care when adding to your network. <br> 
+If you don't really know someone, if you've never met them and you don't really know anyone who knows them, it's still possible you want them in your network. <br> 
+But it's important to be as intentional as possible.  <br>
+ <br>
+When you make a decision to add someone. Remember too, that while you'll probably make many of your connections online, the best relationships are actually cemented in person. <br> 
+So it's important to seek out opportunities to see people in your network face to face, that will increase the quality of the connection between you.  <br>
+It'll also make it more likely that you'll understand what's important to others in your network, so you can make it a two way street.  <br>
+Just as you may someday need the help of people in your network, you'll want to know how you can be helpful to them.  <br>
+ <br>
+It may help you to think of your network as a garden. You need to grow it, nurture it, and do your best to keep it healthy and thriving. <br> 
+Beyond your own skills and abilities in a world of constant change, your network is the greatest asset you'll have. <br>
+ <br></p>
+<h3 id="rule-7-do-work-driven-by-meaning">Rule 7: Do work driven by meaning</h3>
+<p>Any of us, no matter what age, has the opportunity to look for that meaning and to seek out what we believe to be our purpose. <br> 
+Of course, if you don't feel it's important to have your work be a source of purpose in your life, it's completely your choice.  <br>
+But it's my fervent hope for you, though, that you find meaning and purpose in some other part of your life outside your work.  <br>
+ <br>
+It's never been more possible for a single passionate individual or group of passionate individuals to have a positive impact on the world. <br> 
+Look, there's too many important things to do, and there aren't enough people and time to do them.  <br>
+That's why we all need to look for that meaning and purpose in our work, and you can do it too. <br></p>
+<p><br><br><br>
+Credits : <a href="https://www.linkedin.com/in/gbolles/?trk=lil_instructor">Gary Bolles</a> - <a href="https://www.linkedin.com/learning-login/share?account=2272706&amp;forceAccount=false&amp;redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fthe-new-rules-of-work%3Ftrk%3Dshare_ent_url%26shareId%3Dt3tRwyBYTZ6df1PO5fdpMA%253D%253D">Program</a></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Kushal Luthra
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/kushal-luthra" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/kushal_luthra" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/kushalluthra/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>

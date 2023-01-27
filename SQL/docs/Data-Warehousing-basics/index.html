@@ -1,0 +1,2017 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Engineering 101 - concepts, quick reads, notes, etc.">
+      
+      
+        <meta name="author" content="Kushal Luthra">
+      
+      
+      
+        <link rel="prev" href="../../..">
+      
+      
+        <link rel="next" href="../../../random/ELK%20Stack/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>Data Warehousing Concepts - Data Engineering 101</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-warehouse" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Engineering 101
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Warehousing Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Engineering 101
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Data Warehousing Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Data Warehousing Concepts
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-data-warehouse" class="md-nav__link">
+    What is Data Warehouse?
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Data Warehouse?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#characteristics-of-data-warehouse" class="md-nav__link">
+    Characteristics of Data warehouse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-data-warehouse-systems" class="md-nav__link">
+    Types of Data warehouse systems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#difference-between-data-warehouse-and-data-mart" class="md-nav__link">
+    Difference between Data Warehouse and Data Mart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-warehousing" class="md-nav__link">
+    Data Warehousing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#different-use-cases-of-etl" class="md-nav__link">
+    Different use cases of ETL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etl" class="md-nav__link">
+    ETL
+  </a>
+  
+    <nav class="md-nav" aria-label="ETL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extract" class="md-nav__link">
+    Extract
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transform" class="md-nav__link">
+    Transform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load" class="md-nav__link">
+    Load
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#star-and-snowflake-schema" class="md-nav__link">
+    Star and Snowflake schema
+  </a>
+  
+    <nav class="md-nav" aria-label="Star and Snowflake schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#star-schema" class="md-nav__link">
+    Star Schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snowflake-schema" class="md-nav__link">
+    Snowflake Schema
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fact-table-granularity" class="md-nav__link">
+    Fact Table Granularity
+  </a>
+  
+    <nav class="md-nav" aria-label="Fact Table Granularity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fact-and-fact-table-types" class="md-nav__link">
+    Fact And Fact Table Types 
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slowly-changing-dimensions" class="md-nav__link">
+    Slowly Changing Dimensions
+  </a>
+  
+    <nav class="md-nav" aria-label="Slowly Changing Dimensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-1" class="md-nav__link">
+    Type 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-2" class="md-nav__link">
+    Type 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-3" class="md-nav__link">
+    Type 3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-integrity" class="md-nav__link">
+    Data Integrity
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Integrity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#junk-dimension" class="md-nav__link">
+    Junk Dimension
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/ELK%20Stack/" class="md-nav__link">
+        ELK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/ETL%20VS%20ELT/" class="md-nav__link">
+        Database Vs Datawarehouse Vs Datalake | ETL Vs ELT
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          OOPs concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="OOPs concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          OOPs concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OOPs/OOPs%20in%20Python/" class="md-nav__link">
+        OOPs in Python
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_performance_tuning/" class="md-nav__link">
+        SQL Performance Tuning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_performance_tuning_summary/" class="md-nav__link">
+        SQL Performance Tuning Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Common%20Table%20Expressions/" class="md-nav__link">
+        Common Table Expressions (CTEs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql-analytical-functions/" class="md-nav__link">
+        SQL Analytical Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql-practise-questions/" class="md-nav__link">
+        SQL Practise Questions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" tabindex="0" aria-expanded="false">
+          Storage Layer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Storage Layer" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Storage Layer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
+        Row-based Vs Column-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/Text%20File%20Formats/" class="md-nav__link">
+        Text-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/big%20data%20file%20formats/" class="md-nav__link">
+        Big Data File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/File%20Compression%20techniques%20in%20Big%20Data/" class="md-nav__link">
+        File Compression Techniques in Big Data Systems
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" tabindex="0" aria-expanded="false">
+          PyTest overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PyTest overview" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          PyTest overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/pytest/" class="md-nav__link">
+        PyTest overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" tabindex="0" aria-expanded="false">
+          SOLID Principles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SOLID Principles" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          SOLID Principles
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Introduction/" class="md-nav__link">
+        Introduction to SOLID Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Single%20Responsibility%20Principle/" class="md-nav__link">
+        Single Responsibility Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Open%20Closed%20Principle/" class="md-nav__link">
+        Open Closed Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Liskov%20Substitution%20Principle/" class="md-nav__link">
+        Liskov Substitution Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Interface%20Seggregation%20Principle/" class="md-nav__link">
+        Interface Segregation Principle
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" tabindex="0" aria-expanded="false">
+          MLOps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1" tabindex="0" aria-expanded="false">
+          Challenges and Evolution of Machine Learning
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Challenges and Evolution of Machine Learning" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Challenges and Evolution of Machine Learning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/1%20-%20Introduction%20to%20ML/" class="md-nav__link">
+        Introduction to Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/2%20-%20Benefits%20of%20ML/" class="md-nav__link">
+        Benefits of Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/3%20-%20MLOPs%20Fundamentals/" class="md-nav__link">
+        MLOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/4%20-%20DevOps%20and%20DataOps%20Fundamentals/" class="md-nav__link">
+        DevOps and DataOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_2" tabindex="0" aria-expanded="false">
+          MLOps Fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Fundamentals" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Fundamentals
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/2%20-%20MLOps%20Fundamentals/%201%20-%20Problems%20that%20MLOps%20solves/" class="md-nav__link">
+        Problems that MLOps solves
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/2%20-%20MLOps%20Fundamentals/2%20-%20MLOps%20Components/" class="md-nav__link">
+        MLOps Components
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/2%20-%20MLOps%20Fundamentals/3%20-%20MLOps%20Toolbox/" class="md-nav__link">
+        MLOps Toolbox
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_3" type="checkbox" id="__nav_8_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3" tabindex="0" aria-expanded="false">
+          MLOps Stages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Stages" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Stages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/3%20-%20MLOps%20Stages/1%20-%20MLOps%20Stages/" class="md-nav__link">
+        MLOps Stages
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" tabindex="0" aria-expanded="false">
+          Productivity Hacks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Productivity Hacks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Productivity Hacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/cold_mails/" class="md-nav__link">
+        Cold Mail Tactics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/LinkedIn%20growth/" class="md-nav__link">
+        LinkedIn Growth
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/Top-10-hacks-to-be-a-Bad-Developer/" class="md-nav__link">
+        Top 10 hacks to be a Bad developer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/Amazon-Leadership-Principles-Jeff-Bezos-thought-process/" class="md-nav__link">
+        Jeff Bezos on Amazon Leadership principles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" tabindex="0" aria-expanded="false">
+          New Rules of the Game
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="New Rules of the Game" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          New Rules of the Game
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/Introduction/" class="md-nav__link">
+        New Rules of the Game - an Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Working/" class="md-nav__link">
+        New Rules of Work
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Learning/" class="md-nav__link">
+        New Rules of Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Life/" class="md-nav__link">
+        New Rules of Life
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../aboutme/" class="md-nav__link">
+        About Me
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-data-warehouse" class="md-nav__link">
+    What is Data Warehouse?
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Data Warehouse?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#characteristics-of-data-warehouse" class="md-nav__link">
+    Characteristics of Data warehouse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-data-warehouse-systems" class="md-nav__link">
+    Types of Data warehouse systems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#difference-between-data-warehouse-and-data-mart" class="md-nav__link">
+    Difference between Data Warehouse and Data Mart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-warehousing" class="md-nav__link">
+    Data Warehousing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#different-use-cases-of-etl" class="md-nav__link">
+    Different use cases of ETL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etl" class="md-nav__link">
+    ETL
+  </a>
+  
+    <nav class="md-nav" aria-label="ETL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extract" class="md-nav__link">
+    Extract
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transform" class="md-nav__link">
+    Transform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load" class="md-nav__link">
+    Load
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#star-and-snowflake-schema" class="md-nav__link">
+    Star and Snowflake schema
+  </a>
+  
+    <nav class="md-nav" aria-label="Star and Snowflake schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#star-schema" class="md-nav__link">
+    Star Schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snowflake-schema" class="md-nav__link">
+    Snowflake Schema
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fact-table-granularity" class="md-nav__link">
+    Fact Table Granularity
+  </a>
+  
+    <nav class="md-nav" aria-label="Fact Table Granularity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fact-and-fact-table-types" class="md-nav__link">
+    Fact And Fact Table Types 
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slowly-changing-dimensions" class="md-nav__link">
+    Slowly Changing Dimensions
+  </a>
+  
+    <nav class="md-nav" aria-label="Slowly Changing Dimensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-1" class="md-nav__link">
+    Type 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-2" class="md-nav__link">
+    Type 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-3" class="md-nav__link">
+    Type 3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-integrity" class="md-nav__link">
+    Data Integrity
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Integrity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#junk-dimension" class="md-nav__link">
+    Junk Dimension
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="data-warehouse">Data Warehouse</h1>
+<h3 id="what-is-data-warehouse">What is Data Warehouse?</h3>
+<p>Put simply, it’s a central place where data is stored for the purpose of analysis and reporting.<br>
+The data may be collected from a variety of sources.<br>
+It’s organised to provide complete data for users that can be easily understood in a business context.<br>
+Different from databases in that it’s purpose is for analysis<br></p>
+<p>-In companies, we use dimensional modelling to design our data warehouses.<br>
+Dimensional modelling always uses two types of tables – facts and dimensions.<br></p>
+<p>a. Fact Tables-<br>
+Contain the measurements, metrics or facts of a business process i.e. Transactions (items &amp; baskets)<br>
+Each fact will include measures (e.g. spend) and context data.<br>
+Describe the measurements/facts in a transaction table – what was bought/how much it cost, etc. <br></p>
+<p>b. Dimension Tables-<br>
+Stores attributes that describe the objects in a fact table i.e. Stores, Products, Customers<br></p>
+<p>They are linked together – this is a relational model -<br>
+a. Primary key -<br> 
+Is the attribute or a set of attributes in an entity whose value(s) guarantee only one tuple (row) exists for each value.<br>
+The fact table will also include foreign keys that relate each fact to our dimension tables.<br></p>
+<p>b. Foreign key <br> The primary key of another table referenced here.<br>
+Each entity in a dimension table will contain an attributes that describe that entity. <br>There will also be a key that is used to join the dimension table to the fact table.<br></p>
+<h4 id="characteristics-of-data-warehouse">Characteristics of Data warehouse</h4>
+<ul>
+<li>Data warehouse is a database which is separate from operational database which stores historical information also.<br></li>
+<li>Data warehouse database contains transaction(OLTP) as well as analytical data(OLAP).<br></li>
+<li>Data warehouse helps higher management  to take strategic as well as tactical decisions using historical or current data.<br></li>
+<li>Data warehouse helps consolidated historical data analysis.<br></li>
+<li>Data warehouse helps business user to see the current trends to run the business.<br></li>
+<li>Data warehouse is used for reporting and data analysis purpose.<br></li>
+</ul>
+<h4 id="types-of-data-warehouse-systems">Types of Data warehouse systems</h4>
+<p>a. Data Mart<br>
+Data Mart is a simplest set of Data warehouse which is used to focus on single functional area of the business.<br></p>
+<p>b. Online Analytical Processing (OLAP) -<br>
+<a href="https://www.complexsql.com/olap-vs-oltp/">Refer</a> <br>
+OLAP is used at strategic level and contains aggregated data, covering number of years.<br>
+The key purpose to use OLAP system is to reduce the query response time and increase the effectiveness of reporting.<br>
+So, data is denormalized.<br>
+OLAP uses Star-Schema,Snowflakes schema or Fact-Dimensions.<br>
+OLAP database stores aggregated historical data in multidimensional schema.<br>
+eg - summaries data.<br></p>
+<p>c. Online Transactional Processing (OLTP) -<br>
+<a href="https://www.complexsql.com/olap-vs-oltp/">Refer</a> <br>
+It is operational database, maintaining large number of small daily transactions like insert,update and delete.<br>
+Data is normailzed.<br>
+OLTP uses Entity Relations.<br>
+OLTP system maintains concurrency and it avoids the centralization so as to avoid the single point of failures.<br>
+Data concurrency and integrity = focus.<br></p>
+<p>d. Predictive Analysis<br></p>
+<h4 id="difference-between-data-warehouse-and-data-mart">Difference between Data Warehouse and Data Mart</h4>
+<p>a. Definition -<br>
+The Data Warehouse is a large repository of data collected from different organizations or departments within a corporation.<br>
+The data mart is an only sub-type of a Data Warehouse. It is designed to meet the need of a certain user group.<br></p>
+<p>b. Focus -<br>
+Data warehouse focuses on multiple business areas.<br>
+Data mart focuses only on single subject area.<br></p>
+<p>c. Usage -<br>
+DW - It helps to take a strategic decision.<br>
+DM  - The data mart is used to take tactical decisions for growth of business.<br></p>
+<p>d. Type of system -<br>
+DW - This is centralized system where one fact is at center surrounded by dimension tables.<br>
+DM - Data mart system is de-centralized system<br></p>
+<p>e. data model -<br>
+DW = top down<br>
+DM - bottom up<br></p>
+<p>f. source -<br>
+Data warehouse data comes from multiple heterogeneous data sources.<br>
+Data mart data is data of only one business area.Many times it will come from only one data source.<br></p>
+<p>g. Implementation Time -<br>
+Data warehouse contains all data which will come from multiple data sources. It will take time to build data warehouse. The Time to build data warehouse is months to years.<br>
+Data mart is small data warehouse which will contain the data of only a single business area. The implementation time to build data mart is in months.<br></p>
+<h3 id="data-warehousing">Data Warehousing</h3>
+<p>-It’s the process of TRANSFORMING data into information and making it available to users in a TIMELY enough manner to make a difference.<br></p>
+<h3 id="different-use-cases-of-etl">Different use cases of ETL</h3>
+<p>a. Data Warehousing -<br>
+User needs to fetch the historical data as well as current data for developing data warehouse. The Data warehouse data is nothing but combination of historical data as well as transactional data. Its data sources might be different.User needs to fetch the data from multiple heterogeneous systems and load it in to single target system which is also called as data warehouse.<br></p>
+<p>b. Data Migration<br>
+ETL tools are widely used in data migration projects. <br>
+If the organization is managing the data in oracle 10 g previously and now organization wants to go for SQL server cloud database then there is need to migrate the data from Source to Target.<br>
+To do this kind of migration the ETL tools are very useful. <br>
+If user wants to write the code of ETL it is very time consuming process.<br>
+To make this simple the ETL tools are very useful in which the coding is simple as compare to PL SQL or T-SQL code.<br>
+So ETL process i very useful in Data migration projects.<br></p>
+<p>c. Data Integration<br>
+Now a days big organizations are acquiring small firms. <br>
+Obviously the data source for the different organizations may be different.We need to integrate the data from one organization to other organization. <br>
+These kind of integration projects need the ETL process to extract the data,transform the data and load the data.<br></p>
+<p>d. Third Party data management-<br>
+many a times company outsources process to different vendors.<br>
+eg - telecom - billing managed by one and CRM by other vendor. <br>
+If CRM company needs some data from the company who is managing the Billing. That company will receive a data feed from the other company. <br>
+To load the data from the feed ETL process is used.<br></p>
+<h3 id="etl">ETL</h3>
+<h4 id="extract">Extract</h4>
+<p>Extract source data from our client-<br>
+Once the data we will receive has been agreed, it is transferred from the client to us via our secure FTP system called Axway. This data is known as source data.<br>
+Once the data has been received, it is validated according to the retailer-specific rules which are outlined in the DIS.<br>
+If the data does not reflect what is outlined in the DIS changes may need to be made – either by updating the DIS or requesting a resupply.<br>
+Once we agree the data is in the correct format it can be read in.<br>
+Data Extraction can be - Full or Partial (Delta).<br></p>
+<p>DIS - The data we receive is mapped in a document known as Data Interface Specification (DIS).<br></p>
+<p>QA check in Source / RAW layer-<br>
+A key section of RAW is quality assurance (QA). We carry out standard checks to ensure data is “healthy” and without errors<br>
+Main focus of the checks is the fact tables, and relation on the fact data with the key dimension tables.<br>
+Checks include:<br>
+ * Number of baskets in the basket and item tables<br>
+ * Levels of spend<br>
+ * Missing foreign/primary keys<br>
+Any issues found are recorded and can either be resolved with the solution DSG or may require input from the client<br>
+Once these checks are successfully completed the build moves forward into the PREP stage.<br></p>
+<h4 id="transform">Transform</h4>
+<p>Transform this client data to meet the operational and business needs of our internal database.<br>
+Within prep we transform the client data into a standardized format within the guidelines of Marketplace<br>
+What types of transformations do we perform?<br>
+i. Reject bad data -<br>
+Bad data i.e. record where key info is missing.<br>
+What is rejected depends on the business rules.<br>
+We keep a record of rejected data by extracting them to a separate table, mark the missing field.<br></p>
+<p>ii. Remove duplicates<br>
+Duplicate data can have negative impact on results. <br>
+Important to understand if it is really a duplicate before removing.<br></p>
+<p>iii. Convert fields<br>
+Convert from character to date and numeric fields where relevant e.g. spends/quantities.<br></p>
+<p>iv. Text manipulations<br>
+Changes format e.g. change lookup value to descriptive form.<br></p>
+<p>v. Merges with other tables<br>
+Merge lookups/useful fields that should be on specific table.<br></p>
+<p>vi. Aggregate data<br>
+Sometimes need to roll up products in same basket or even create basket table - involves summations.<br></p>
+<p>vii. Rename fields<br>
+Rename to make more meaningful – esp if in a foreign language.<br></p>
+<p>viii. Create standard fields<br>
+Essential to marketplace, same naming conventions e.g. dib_bask_code.<br></p>
+<h4 id="load">Load</h4>
+<p>Load into our analytical data mart within Marketplace<br>
+The load is automated, so you will not be expected to know exactly what occurs.<br>
+Here is an overview:<br>
+Inbound Outbound -extracts and updates required data into standard structure<br>
+Staging -<br>
+ <em>manage slowly changing dimensions,<br>
+ </em>generate surrogate keys and<br>
+ *create skeleton records<br></p>
+<p><strong>SCD</strong> - a dimension is considered a SCD when its attributes remain almost constant over time, requiring relatively minor alterations to represent the evolved state.<br>
+<strong>Surrogate Keys</strong> - system-generated and non-persistent integer keys which replace foreign keys.<br>
+<strong>Skeleton records</strong> - Generated when a foreign key in a fact table does not have a match in the dimension table. A dummy or ‘skeleton’ record is created in the dimension table.</p>
+<p>There are following 3 Types of Data Loading Strategies :<br>
+i. Initial load : Populating all the data tables from source system and loads it in to data warehouse table.<br>
+ii. Incremental Load : Applying the ongoing changes as necessary in periodic manner.<br>
+iii. Full Refresh : Completely erases the data from one or more tables and reload the fresh data.<br></p>
+<h3 id="star-and-snowflake-schema">Star and Snowflake schema</h3>
+<h4 id="star-schema">Star Schema</h4>
+<p>In the star schema design, a single object (the fact table) sits in the middle and is radically connected to other surrounding objects (dimension lookup tables) like a star.<br>
+Each dimension is represented as a single table.<br>
+The primary key in each dimension table is related to a foreign key in the fact table.<br></p>
+<p>All measures in the fact table are related to all the dimensions that fact table is related to.<br>
+In other words, they all have the same level of granularity.<br></p>
+<p>A star schema can be simple or complex.<br>
+A simple star consists of one fact table; a complex star can have more than one fact table.<br></p>
+<h4 id="snowflake-schema">Snowflake Schema</h4>
+<p>It is an extension of star schema.<br>
+In a star schema, each dimension is represented by a single dimensional table, whereas in a snowflake schema, that dimensional table is normalized into multiple lookup tables, each representing a level in the dimensional hierarchy.<br></p>
+<p>Adv -<br>
+improvement in query performance due to minimized disk storage requirements and joining smaller lookup tables.<br></p>
+<p>Disadvantage-<br>
+additional maintenance efforts needed due to the increase number of lookup tables.<br></p>
+<h3 id="fact-table-granularity">Fact Table Granularity</h3>
+<p>The first step in designing a fact table is to determine the granularity of the fact table.<br>
+By granularity, we mean the lowest level of information that will be stored in the fact table. <br>
+This constitutes two steps:<br></p>
+<p>i. Determine which dimensions will be included - this depends on business process being targetted.<br></p>
+<p>ii. Determine where along the hierarchy of each dimension the information will be kept -<br>
+This depends on requirements. Eg - if client wants hourly reports, then fact table will keep hour as lowest level of granularity.<br>
+If daily reports are fine, then date_id is lowest level of granularity.<br></p>
+<p>The determining factors usually goes back to the requirements.<br></p>
+<h4 id="fact-and-fact-table-types">Fact And Fact Table Types <br></h4>
+<p>There are three types of facts:<br>
+i. Additive: Additive facts are facts that can be summed up through all of the dimensions in the fact table.<br>
+ii. Semi-Additive: Semi-additive facts are facts that can be summed up for some of the dimensions in the fact table, but not the others.<br>
+iii. Non-Additive: Non-additive facts are facts that cannot be summed up for any of the dimensions present in the fact table.<br></p>
+<p>eg1 - Additive Fact -<br>
+Consider a retailer fact table with following columns -<br>
+- Date
+- Store
+- Product
+- Sales_Amount</p>
+<p>The purpose of this table is to record the sales amount for each product in each store on a daily basis.<br></p>
+<p>Sales_Amount is an additive fact, because you can sum up this fact along any of the three dimensions present in the fact table -- date, store, and product.<br></p>
+<p>eg2A - Semi-Additive Fact and Non-Additive Fact -<br>
+Say we are a bank with the following fact table:<br>
+- Date
+- Account
+- Current_Balance
+- Profit_Margin</p>
+<p>The purpose of this table is to record the current balance for each account at the end of each day, as well as the profit margin for each account for each day.<br></p>
+<p>Current_Balance and Profit_Margin are the facts.<br></p>
+<p>Current_Balance is a semi-additive fact, as it makes sense to add them up for all accounts (what's the total current balance for all accounts in the bank?), but it does not make sense to add them up through time (adding up all current balances for a given account for each day of the month does not give us any useful information).<br></p>
+<p>Profit_Margin is a non-additive fact, for it does not make sense to add them up for the account level or the day level.<br></p>
+<p>eg 2B -<br>
+semi -additive - distinct customers who shopped in a day = semi additive.<br>
+Across all stores, this number can be aggregated. For example, store A has 300 customers and store B has 200 customers. So total 500 customers.<br>
+But cant add across date dimension. So no summation possible across days in a week.<br></p>
+<p>non-additive = %age loyalty transaction in a day.<br>
+For example, store A has 30% sales as loyalty count, and store B has 40%.<br>
+But we cant add these two figures to find overall loyalty sales.<br></p>
+<p>Based on the above classifications, there are two types of Fact TABLES:<br>
+* Cumulative: This type of fact table describes what has happened over a period of time. For example, this fact table may describe the total sales by product by store by day. The facts for this type of fact tables are mostly additive facts. The first example presented here is a cumulative fact table.<br>
+* Snapshot: This type of fact table describes the state of things in a particular instance of time, and usually includes more semi-additive and non-additive facts. The second example presented here is a snapshot fact table.<br></p>
+<h3 id="slowly-changing-dimensions">Slowly Changing Dimensions</h3>
+<p>The "Slowly Changing Dimension" problem is a common one particular to data warehousing. In a nutshell, this applies to cases where the attribute for a record varies over time.<br>
+There are in general three ways to solve this type of problem, and they are categorized as follows:<br></p>
+<h4 id="type-1">Type 1</h4>
+<p>The new record replaces the original record. <br>
+No trace of the old record exists. <br>
+In other words, no history is kept.<br>
+Advantage -<br>
+* easiest to handle as no need to maintain history.<br></p>
+<p>Disadvantage-<br>
+*History is lost. Cant track past behavior.<br></p>
+<p>So, Type 1 slowly changing dimension should be used when it is not necessary for the data warehouse to keep track of historical changes.<br></p>
+<h4 id="type-2">Type 2</h4>
+<p>A new record is added into the customer dimension table. <br>
+Therefore, the customer is treated essentially as two people.<br>
+Both the original and the new record will be present. <br>
+The new record gets its own primary key.<br></p>
+<p>Advantages:<br>
+- This allows us to accurately keep all historical information.<br></p>
+<p>Disadvantages:<br>
+- This will cause the size of the table to grow fast. <br>
+  In cases where the number of rows for the table is very high to start with, storage and performance can become a concern.<br>
+- This necessarily complicates the ETL process.<br></p>
+<h4 id="type-3">Type 3</h4>
+<p>The original record is modified to reflect the change.<br>
+We add more column to track change. <br>
+But this is feasible only if changes to be tracked are finite.<br>
+For example, phone or address changes more than once will complicate things.<br></p>
+<h3 id="data-integrity">Data Integrity</h3>
+<p>Data integrity refers to the validity of data, meaning data is consistent and correct. <br>
+In the data warehousing field, we frequently hear the term, "Garbage In, Garbage Out." <br>
+If there is no data integrity in the data warehouse, any resulting report and analysis will not be useful.<br></p>
+<p>In a data warehouse or a data mart, there are 3 areas of where data integrity needs to be enforced:<br></p>
+<p>a. Database level<br>
+We can enforce data integrity at the database level. <br>
+Common ways of enforcing data integrity include:<br></p>
+<p>i. Referential integrity<br>
+The relationship between the primary key of one table and the foreign key of another table must always be maintained. <br>
+For example, a primary key cannot be deleted if there is still a foreign key that refers to this primary key.<br></p>
+<p>ii. Primary key / Unique constraint<br>
+Primary keys and the UNIQUE constraint are used to make sure every row in a table can be uniquely identified.<br></p>
+<p>iii. Not NULL vs. NULL-able<br>
+For columns identified as NOT NULL, they may not have a NULL value.<br></p>
+<p>iv. Valid Values<br>
+Only allowed values are permitted in the database. <br>
+For example, if a column can only have positive integers, a value of '-1' cannot be allowed.<br></p>
+<p>b. ETL process<br>
+For each step of the ETL process, data integrity checks should be put in place to ensure that source data is the same as the data in the destination. <br>
+Most common checks include record counts or record sums.<br></p>
+<p>c. Access level<br>
+We need to ensure that data is not altered by any unauthorized means either during the ETL process or in the data warehouse. <br>
+To do this, there needs to be safeguards against unauthorized access to data (including physical access to the servers), as well as logging of all data access history. <br>
+Data integrity can only ensured if there is no unauthorized access to the data.<br></p>
+<p>4F. Factless Fact Table<br>
+A factless fact table is a fact table that does not have any measures.<br>
+It is essentially an intersection of dimensions.<br>
+On the surface, a factless fact table does not make sense, since a fact table is, after all, about facts.<br>
+However, there are situations where having this kind of relationship makes sense in data warehousing.<br></p>
+<p>eg1 - student class attendance record.<br>
+In this case, the fact table would consist of 3 dimensions: the student dimension, the time dimension, and the class dimension. <br>
+This factless fact table would look like the following:<br>
+<strong>Fact Table "school_attendance"</strong></p>
+<table>
+<thead>
+<tr>
+<th>date_id</th>
+<th>classId</th>
+<th>student_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>02-02-2020</td>
+<td>1</td>
+<td>101</td>
+</tr>
+<tr>
+<td>02-02-2020</td>
+<td>1</td>
+<td>102</td>
+</tr>
+<tr>
+<td>02-02-2020</td>
+<td>1</td>
+<td>103</td>
+</tr>
+<tr>
+<td>----------------------------------</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>The only measure that you can possibly attach to each combination is "1" to show the presence of that particular combination. <br></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>However, adding a fact that always shows 1 is redundant because we can simply use the COUNT function in SQL to answer the same questions.<br></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>eg 2 - online sales in CRV. columns -<br>
+date_id, store_id, till_id, pos_id<br>
+In essence it contains only 1 column = basket_key.<br>
+If a basket is in this table, it means its online sale, else offline sale.<br></p>
+<p>eg3 - Promotion data.<br>
+Table structure could be -<br>
+date_id | store_id| promo_type| promo_id| basket_key<br></p>
+<p>promo_type = Promotion can be online, in-store, flat discount, coupon, voucher, etc.<br>
+Above table contains info of promotion applied on a basket.<br>
+No measurable fact exists here.<br>
+But why needed ?<br>
+Transaction data contains info of what item was sold on promotion.<br>
+But promotion data contains information of all the promotion during the purchase period.<br>
+That is, all products having promotion applied on them, including those which were not sold in spite of promotion. And so, this promotion table becomes pivotal even though it contains no measurable fact.<br></p>
+<p><strong>Why need factless facts?</strong> <br>
+Factless fact tables offer the most flexibility in data warehouse design.<br>
+For example, one can easily answer the following questions with this factless fact table:<br>
+ * How many students attended a particular class on a particular day?<br>
+ * How many classes on average does a student attend on a given day?<br>
+Without using a factless fact table, we will need two separate fact tables to answer the above two questions.<br>
+With the above factless fact table, it becomes the only fact table that's needed.<br></p>
+<h4 id="junk-dimension">Junk Dimension</h4>
+<p>There are columns in Fact table which can have only a few or 2 kind of values - true or false, 1 or 0, etc.<br>
+eg =<br>
+bulk Vs non-bulk<br>
+online vs offline<br>
+promo vs non-promo vs hybrid sale etc.<br></p>
+<p>From business point of view, capturing above info in Fact table is very important.<br>
+Issue -having these info will only make our fact table bulky and eventually unmanageable.<br></p>
+<p>Soln - junk dimension.<br>
+eg - CRV basket channel seg -<br>
+shop_channel_code in 0,1,2 or 3 - covers both bulk/non-bulk and online/offline.<br></p>
+<p>this would reduce 2 columns in fact table to 1.<br>
+we can expand scope of above column to include promo info, and in that way we replace 3 fact columns by 1.<br>
+This will result in a data warehousing environment that offer better performance as well as being easier to manage.<br></p>
+<p>[reference] (https://www.1keydata.com/datawarehousing/junk-dimension.html)</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Kushal Luthra
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/kushal-luthra" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/kushal_luthra" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/kushalluthra/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>

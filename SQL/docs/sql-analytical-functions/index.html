@@ -1,0 +1,1924 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Engineering 101 - concepts, quick reads, notes, etc.">
+      
+      
+        <meta name="author" content="Kushal Luthra">
+      
+      
+      
+        <link rel="prev" href="../Common%20Table%20Expressions/">
+      
+      
+        <link rel="next" href="../sql-practise-questions/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>SQL Analytical Functions - Data Engineering 101</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql-analytical-functions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Data Engineering 101" class="md-header__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Data Engineering 101
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SQL Analytical Functions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Data Engineering 101" class="md-nav__button md-logo" aria-label="Data Engineering 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Data Engineering 101
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kushal-luthra/data-engineering-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    data-engineering-101
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Data-Warehousing-basics/" class="md-nav__link">
+        Data Warehousing Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/ELK%20Stack/" class="md-nav__link">
+        ELK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/ETL%20VS%20ELT/" class="md-nav__link">
+        Database Vs Datawarehouse Vs Datalake | ETL Vs ELT
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          OOPs concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="OOPs concepts" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          OOPs concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OOPs/OOPs%20in%20Python/" class="md-nav__link">
+        OOPs in Python
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="true">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_performance_tuning/" class="md-nav__link">
+        SQL Performance Tuning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_performance_tuning_summary/" class="md-nav__link">
+        SQL Performance Tuning Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Common%20Table%20Expressions/" class="md-nav__link">
+        Common Table Expressions (CTEs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          SQL Analytical Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        SQL Analytical Functions
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#over-partition-by-order-by" class="md-nav__link">
+    over (partition by / order by )
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ranking-functions" class="md-nav__link">
+    Ranking Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Ranking Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#row_number-rank-and-dense_rank" class="md-nav__link">
+    ROW_NUMBER, RANK and DENSE_RANK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-nulls" class="md-nav__link">
+    Handling NULLs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ntile" class="md-nav__link">
+    NTILE
+  </a>
+  
+    <nav class="md-nav" aria-label="NTILE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cume_dist-and-percent_rank" class="md-nav__link">
+    CUME_DIST and PERCENT_RANK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windowing-functions" class="md-nav__link">
+    Windowing Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Windowing Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-and" class="md-nav__link">
+    ROWS BETWEEN &lt;&gt; AND &lt;&gt;
+  </a>
+  
+    <nav class="md-nav" aria-label="ROWS BETWEEN &lt;&gt; AND &lt;&gt;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-unbounded-preceding-and-unbounded-following" class="md-nav__link">
+    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-unbounded-preceding-and-current-row" class="md-nav__link">
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-1-preceding-and-1-following-" class="md-nav__link">
+    ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING -
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range-between" class="md-nav__link">
+    RANGE BETWEEN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first_value-and-last_value" class="md-nav__link">
+    FIRST_VALUE and LAST_VALUE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laglead-functions" class="md-nav__link">
+    LAG/LEAD Functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql-practise-questions/" class="md-nav__link">
+        SQL Practise Questions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" tabindex="0" aria-expanded="false">
+          Storage Layer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Storage Layer" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Storage Layer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/row%20based%20and%20column%20based%20file%20formats/" class="md-nav__link">
+        Row-based Vs Column-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/Text%20File%20Formats/" class="md-nav__link">
+        Text-based File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/big%20data%20file%20formats/" class="md-nav__link">
+        Big Data File Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Storage%20Layer%20Choices/File%20Compression%20techniques%20in%20Big%20Data/" class="md-nav__link">
+        File Compression Techniques in Big Data Systems
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" tabindex="0" aria-expanded="false">
+          PyTest overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PyTest overview" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          PyTest overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/pytest/" class="md-nav__link">
+        PyTest overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" tabindex="0" aria-expanded="false">
+          SOLID Principles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SOLID Principles" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          SOLID Principles
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Introduction/" class="md-nav__link">
+        Introduction to SOLID Principles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Single%20Responsibility%20Principle/" class="md-nav__link">
+        Single Responsibility Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Open%20Closed%20Principle/" class="md-nav__link">
+        Open Closed Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Liskov%20Substitution%20Principle/" class="md-nav__link">
+        Liskov Substitution Principle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SOLID%20Principles/Interface%20Seggregation%20Principle/" class="md-nav__link">
+        Interface Segregation Principle
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" tabindex="0" aria-expanded="false">
+          MLOps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1" tabindex="0" aria-expanded="false">
+          Challenges and Evolution of Machine Learning
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Challenges and Evolution of Machine Learning" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Challenges and Evolution of Machine Learning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/1%20-%20Introduction%20to%20ML/" class="md-nav__link">
+        Introduction to Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/2%20-%20Benefits%20of%20ML/" class="md-nav__link">
+        Benefits of Machine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/3%20-%20MLOPs%20Fundamentals/" class="md-nav__link">
+        MLOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/1%20-%20Challenges%20and%20Evolution%20of%20ML/4%20-%20DevOps%20and%20DataOps%20Fundamentals/" class="md-nav__link">
+        DevOps and DataOps Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_2" tabindex="0" aria-expanded="false">
+          MLOps Fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Fundamentals" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Fundamentals
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/2%20-%20MLOps%20Fundamentals/%201%20-%20Problems%20that%20MLOps%20solves/" class="md-nav__link">
+        Problems that MLOps solves
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/2%20-%20MLOps%20Fundamentals/2%20-%20MLOps%20Components/" class="md-nav__link">
+        MLOps Components
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/2%20-%20MLOps%20Fundamentals/3%20-%20MLOps%20Toolbox/" class="md-nav__link">
+        MLOps Toolbox
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8_3" type="checkbox" id="__nav_8_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3" tabindex="0" aria-expanded="false">
+          MLOps Stages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MLOps Stages" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          MLOps Stages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLOPs/3%20-%20MLOps%20Stages/1%20-%20MLOps%20Stages/" class="md-nav__link">
+        MLOps Stages
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" tabindex="0" aria-expanded="false">
+          Productivity Hacks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Productivity Hacks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Productivity Hacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/cold_mails/" class="md-nav__link">
+        Cold Mail Tactics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/LinkedIn%20growth/" class="md-nav__link">
+        LinkedIn Growth
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/Top-10-hacks-to-be-a-Bad-Developer/" class="md-nav__link">
+        Top 10 hacks to be a Bad developer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../random/Amazon-Leadership-Principles-Jeff-Bezos-thought-process/" class="md-nav__link">
+        Jeff Bezos on Amazon Leadership principles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" tabindex="0" aria-expanded="false">
+          New Rules of the Game
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="New Rules of the Game" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          New Rules of the Game
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/Introduction/" class="md-nav__link">
+        New Rules of the Game - an Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Working/" class="md-nav__link">
+        New Rules of Work
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Learning/" class="md-nav__link">
+        New Rules of Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Rules%20of%20the%20game/New%20Rules%20of%20Life/" class="md-nav__link">
+        New Rules of Life
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../aboutme/" class="md-nav__link">
+        About Me
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#over-partition-by-order-by" class="md-nav__link">
+    over (partition by / order by )
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ranking-functions" class="md-nav__link">
+    Ranking Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Ranking Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#row_number-rank-and-dense_rank" class="md-nav__link">
+    ROW_NUMBER, RANK and DENSE_RANK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-nulls" class="md-nav__link">
+    Handling NULLs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ntile" class="md-nav__link">
+    NTILE
+  </a>
+  
+    <nav class="md-nav" aria-label="NTILE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cume_dist-and-percent_rank" class="md-nav__link">
+    CUME_DIST and PERCENT_RANK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windowing-functions" class="md-nav__link">
+    Windowing Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Windowing Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-and" class="md-nav__link">
+    ROWS BETWEEN &lt;&gt; AND &lt;&gt;
+  </a>
+  
+    <nav class="md-nav" aria-label="ROWS BETWEEN &lt;&gt; AND &lt;&gt;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-unbounded-preceding-and-unbounded-following" class="md-nav__link">
+    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-unbounded-preceding-and-current-row" class="md-nav__link">
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-between-1-preceding-and-1-following-" class="md-nav__link">
+    ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING -
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range-between" class="md-nav__link">
+    RANGE BETWEEN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first_value-and-last_value" class="md-nav__link">
+    FIRST_VALUE and LAST_VALUE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laglead-functions" class="md-nav__link">
+    LAG/LEAD Functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="sql-analytical-functions">SQL Analytical Functions</h1>
+<p><a href="http://etutorials.org/SQL/Mastering+Oracle+SQL/Chapter+14.+Advanced+Analytic+SQL/14.1+Analytic+SQL+Overview/">Source</a></p>
+<h3 id="over-partition-by-order-by">over (partition by / order by )</h3>
+<p>eg -</p>
+<pre><code>SELECT o.region_id region_id, o.cust_nbr cust_nbr,
+
+ SUM(o.tot_sales) tot_sales,
+
+ SUM(SUM(o.tot_sales)) OVER (PARTITION BY o.region_id) region_sales
+
+FROM orders o
+
+WHERE o.year = 2001
+
+GROUP BY o.region_id, o.cust_nbr;
+</code></pre>
+<h3 id="ranking-functions">Ranking Functions</h3>
+<p><a href="http://etutorials.org/SQL/Mastering+Oracle+SQL/Chapter+14.+Advanced+Analytic+SQL/14.2+Ranking+Functions/">source</a></p>
+<h4 id="row_number-rank-and-dense_rank">ROW_NUMBER, RANK and DENSE_RANK</h4>
+<ul>
+<li>ROW_NUMBER - Returns a unique number for each row starting with 1. <br>For rows that have duplicate values, numbers are arbitrarily assigned.<br></li>
+<li>DENSE_RANK - Assigns a unique number for each row starting with 1, except for rows that have duplicate values, in which case the same ranking is assigned.<br></li>
+<li>RANK - Assigns a unique number for each row starting with 1, except for rows that have duplicate values, in which case the same ranking is assigned and a gap appears in the sequence for each duplicate ranking.<br>
+eg 1 -</li>
+</ul>
+<pre><code>
+SELECT region_id, cust_nbr, 
+
+  SUM(tot_sales) cust_sales,
+
+  RANK( ) OVER (ORDER BY SUM(tot_sales) DESC) sales_rank,
+
+  DENSE_RANK( ) OVER (ORDER BY SUM(tot_sales) DESC) sales_dense_rank,
+
+  ROW_NUMBER( ) OVER (ORDER BY SUM(tot_sales) DESC) sales_number
+
+FROM orders
+
+WHERE year = 2001
+
+GROUP BY region_id, cust_nbr
+
+ORDER BY sales_number;
+
+
+REGION_ID   CUST_NBR  CUST_SALES SALES_RANK SALES_DENSE_RANK SALES_NUMBER
+
+---------- ---------- ---------- ---------- ---------------- ------------
+
+         8         18    1253840         11               11           11
+
+         5          2    1224992         12               12           12
+
+         9         23    1224992         12               12           13
+
+         9         24    1224992         12               12           14
+
+        10         30    1216858         15               13           15
+
+</code></pre>
+<p>eg 2 - The following query generates rankings for customer sales within each region rather than across all regions.<br> 
+Note the addition of the PARTITION BY clause:<br></p>
+<pre><code>SELECT 
+  region_id, cust_nbr, 
+
+  SUM(tot_sales) cust_sales,
+
+  RANK( ) OVER (PARTITION BY region_id  ORDER BY SUM(tot_sales) DESC) sales_rank,
+
+  DENSE_RANK( ) OVER (PARTITION BY region_id ORDER BY SUM(tot_sales) DESC) sales_dense_rank,
+
+  ROW_NUMBER( ) OVER (PARTITION BY region_id ORDER BY SUM(tot_sales) DESC) sales_number
+
+FROM orders
+
+WHERE year = 2001
+
+GROUP BY region_id, cust_nbr
+
+ORDER BY region_id, sales_number;
+
+REGION_ID    CUST_NBR CUST_SALES SALES_RANK SALES_DENSE_RANK SALES_NUMBER
+
+---------- ---------- ---------- ---------- ---------------- ------------
+
+         5          4    1878275          1                1            1
+
+         5          2    1224992          2                2            2
+
+         5          5    1169926          3                3            3
+
+         5          3    1161286          4                4            4
+
+         5          1    1151162          5                5            5
+
+         6          6    1788836          1                1            1
+
+         6          9    1208959          2                2            2
+
+</code></pre>
+<h4 id="handling-nulls">Handling NULLs<br></h4>
+<p>All ranking functions allow you to specify where in the ranking order NULL values should appear. <br>
+This is accomplished by appending either NULLS FIRST or NULLS LAST after the ORDER BY clause of the function, as in:<br></p>
+<pre><code>SELECT region_id, cust_nbr, SUM(tot_sales) cust_sales,
+
+  RANK( ) OVER (ORDER BY SUM(tot_sales) DESC NULLS LAST) sales_rank
+
+FROM orders
+
+WHERE year = 2001
+
+GROUP BY region_id, cust_nbr;
+</code></pre>
+<h3 id="ntile">NTILE<br></h3>
+<p>Another way rankings are commonly used is to generate buckets into which sets of rankings are grouped.<br> 
+For example, you may want to find those customers whose total sales ranked in the top 25%. <br>
+The following query uses the NTILE function to group the customers into four buckets (or quartiles):<br></p>
+<pre><code>SELECT region_id, cust_nbr, SUM(tot_sales) cust_sales,
+
+  NTILE(4) OVER (ORDER BY SUM(tot_sales) DESC) sales_quartile
+
+FROM orders
+
+WHERE year = 2001
+
+GROUP BY region_id, cust_nbr
+
+ORDER BY sales_quartile, cust_sales DESC;
+
+REGION_ID    CUST_NBR CUST_SALES SALES_QUARTILE
+
+---------- ---------- ---------- --------------
+
+         9         25    2232703              1
+
+         8         17    1944281              1
+
+         7         14    1929774              1
+</code></pre>
+<h4 id="cume_dist-and-percent_rank">CUME_DIST and PERCENT_RANK</h4>
+<p>CUME_DIST function (short for Cumulative Distribution) calculates the ratio of the number of rows that have a lesser or equal ranking to the total number of rows in the partition. <br> </p>
+<p>PERCENT_RANK function calculates the ratio of a row's ranking to the number of rows in the partition using the formula:<br></p>
+<pre><code>(RRP -- 1) / (NRP -- 1)
+</code></pre>
+<p>where RRP is the "rank of row in partition," and NRP is the "number of rows in partition."<br></p>
+<h3 id="windowing-functions">Windowing Functions</h3>
+<h4 id="rows-between-and">ROWS BETWEEN &lt;&gt; AND &lt;&gt;</h4>
+<p>Some of the sample values can be -</p>
+<h5 id="rows-between-unbounded-preceding-and-unbounded-following">ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING</h5>
+<p>eg -</p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  SUM(SUM(tot_sales)) OVER ( ORDER BY month 
+                             ROWS BETWEEN UNBOUNDED PRECEDING AND 
+                                          UNBOUNDED FOLLOWING     ) total_sales
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH MONTHLY_SALES TOTAL_SALES
+         1        610697     6307766
+         2        428676     6307766
+         3        637031     6307766
+         4        541146     6307766
+</code></pre>
+<h5 id="rows-between-unbounded-preceding-and-current-row">ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</h5>
+<p>eg 1 - max current value-</p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  MAX(SUM(tot_sales)) OVER (ORDER BY month 
+                            ROWS BETWEEN UNBOUNDED PRECEDING 
+                            AND CURRENT ROW) max_preceeding
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH MONTHLY_SALES MAX_PRECEEDING
+         1        610697         610697
+         2        428676         610697
+         3        637031         637031
+         4        541146         637031
+         5        592935         637031
+         6        501485         637031
+</code></pre>
+<p>eg 2 - cumulative SUM -</p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  SUM(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) max_preceeding
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH MONTHLY_SALES RUNNING_TOTAL
+         1        610697         610697
+         2        428676        1039373
+         3        637031        1676404
+         4        541146        2217550
+         5        592935        2810485
+</code></pre>
+<h5 id="rows-between-1-preceding-and-1-following-">ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING -</h5>
+<p>eg -calculate avg of rolling 3 values (current row, rev row and next row);</p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  AVG(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) rolling_avg
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH MONTHLY_SALES ROLLING_AVG
+         1        610697    519686.5
+         2        428676  558801.333
+         3        637031  535617.667
+         4        541146  590370.667
+         5        592935  545188.667
+</code></pre>
+<h4 id="range-between">RANGE BETWEEN</h4>
+<ul>
+<li>ROWS BETWEEN - based on row ordered as per condition of ordering inside over() clause.</li>
+<li>RANGE BETWEEN - based on value ranges specified under over() clause.</li>
+</ul>
+<p>eg1 - to generate a three-month rolling average (similar to above ROWS BETWEEN question).
+In our table, month is numeric integer value, and so RANGE works perfectly fine here.
+This substitution works because the month column contains integer values, so adding and subtracting 1 from the current month yields a three-month range.</p>
+<p>But if its character, then below wont be suited.</p>
+<pre><code>SELECT 
+  month,
+  SUM(tot_sales) monthly_sales,
+  AVG(SUM(tot_sales)) OVER (ORDER BY month 
+                            RANGE BETWEEN 
+                                1 PRECEDING 
+                                AND 
+                                1 FOLLOWING) rolling_avg
+FROM orders
+WHERE year = 2001  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+---------- ------------- -----------
+MONTH      MONTHLY_SALES ROLLING_AVG
+---------- ------------- -----------
+         1        610697    519686.5
+         2        428676  558801.333
+         3        637031  535617.667
+</code></pre>
+<p>eg2 - if we do a range of +/- 1.999, then also we get same values:</p>
+<pre><code>SELECT month,
+  SUM(tot_sales) monthly_sales,
+  AVG(SUM(tot_sales)) OVER (ORDER BY month 
+                            RANGE BETWEEN 
+                                1.99 PRECEDING 
+                                AND 
+                                1.99 FOLLOWING) rolling_avg
+FROM orders
+WHERE year = 2001  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+---------- ------------- -----------
+    MONTH  MONTHLY_SALES ROLLING_AVG
+---------- ------------- -----------
+         1        610697    519686.5
+         2        428676  558801.333
+         3        637031  535617.667
+</code></pre>
+<p>eg3 - working with <strong>DATE Range</strong>. <br>
+ROWS wont be of much use if we are working on Date Range.<br>
+If you are generating a window based on a DATE column, you can specify a range in increments of days, months, or years. <br>
+Since the orders table has no DATE columns, the next example shows how a date range can be specified against the order_dt column of the cust_order table:<br></p>
+<pre><code>SELECT 
+  TRUNC(order_dt) day,
+  SUM(sale_price) daily_sales,
+  AVG(SUM(sale_price)) OVER ( 
+                              ORDER BY TRUNC(order_dt) 
+                              RANGE BETWEEN 
+                                INTERVAL '2' DAY PRECEDING 
+                                AND 
+                                INTERVAL '2' DAY FOLLOWING     
+                            ) five_day_avg
+FROM cust_order
+WHERE sale_price IS NOT NULL 
+  AND order_dt BETWEEN TO_DATE('01-JUL-2001','DD-MON-YYYY')
+  AND TO_DATE('31-JUL-2001','DD-MON-YYYY')
+GROUP BY TRUNC(order_dt);
+
+
+--------- ----------- ------------
+DAY       DAILY_SALES FIVE_DAY_AVG
+--------- ----------- ------------
+16-JUL-01         112          146
+18-JUL-01         180          114
+20-JUL-01          50          169
+21-JUL-01          50   165.333333
+22-JUL-01         396   165.333333
+</code></pre>
+<h3 id="first_value-and-last_value">FIRST_VALUE and LAST_VALUE</h3>
+<p>They are used with windowing functions to identify the values of the first and last values in the window.<br>
+sample que :"How did each month's sales compare to the first month?"<br></p>
+<p>eg -<br>
+In the case of the three-month rolling average query shown previously, you could display the values of all three months along with the average of the three, as in:<br></p>
+<pre><code>SELECT month,
+  FIRST_VALUE(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) prev_month,
+  SUM(tot_sales) monthly_sales,
+  LAST_VALUE(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) next_month,
+  AVG(SUM(tot_sales)) OVER (ORDER BY month ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) rolling_avg
+FROM orders
+WHERE year = 2001 
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+     MONTH PREV_MONTH MONTHLY_SALES NEXT_MONTH ROLLING_AVG
+         1     610697        610697     428676    519686.5
+         2     610697        428676     637031  558801.333
+         3     428676        637031     541146  535617.667
+         4     637031        541146     592935  590370.667
+         5     541146        592935     501485  545188.667
+</code></pre>
+<h3 id="laglead-functions">LAG/LEAD Functions</h3>
+<pre><code>&quot;LAG(VAL, N, &lt;default value&gt;) OVER () &quot; -- N=1 by default.
+&quot;LEAD(VAL, N, &lt;default value&gt;) OVER () &quot; -- N=1 by default.
+</code></pre>
+<p>Query - "Compute the total sales per month for the Mid-Atlantic region, including the percent change from the previous month" requires data from both the current and preceding rows to calculate the answer.</p>
+<p>Step 1 - get prev month's data using LAG function.<br></p>
+<pre><code>SELECT month, 
+  SUM(tot_sales) monthly_sales,
+  LAG(SUM(tot_sales), 1) OVER (ORDER BY month) prev_month_sales
+FROM orders
+WHERE year = 2001
+  AND region_id = 6
+GROUP BY month
+ORDER BY month;
+
+---------- ------------- ----------------
+     MONTH MONTHLY_SALES PREV_MONTH_SALES
+---------- ------------- ----------------
+         1        610697
+         2        428676           610697
+         3        637031           428676
+</code></pre>
+<p>Step 2 - handle NULL values. <br>
+If you see above, for month 1, PREV_MONTH_SALES is NULL.<br>
+So, can calculate % change in sales.<br>
+Here we keep current month sales as default value, and % sales in this case is 0%.<br></p>
+<pre><code>SELECT 
+    months.month month, 
+    months.monthly_sales monthly_sales,
+  ROUND((months.monthly_sales - months.prev_month_sales)/ months.prev_month_sales, 3) * 100 percent_change
+FROM
+ (
+    SELECT month, 
+           SUM(tot_sales) monthly_sales,
+           LAG(SUM(tot_sales), 1, SUM(tot_sales)) OVER (ORDER BY month) prev_month_sales
+
+    FROM orders
+    WHERE year = 2001
+    AND region_id = 6
+    GROUP BY month) months
+ORDER BY month;
+
+---------- ------------- --------------
+     MONTH MONTHLY_SALES PERCENT_CHANGE
+---------- ------------- --------------
+         1        610697              0
+         2        428676          -29.8
+         3        637031           48.6
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Kushal Luthra
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/kushal-luthra" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/kushal_luthra" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/kushalluthra/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>
