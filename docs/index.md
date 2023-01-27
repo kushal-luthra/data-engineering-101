@@ -48,5 +48,7 @@
       - [Top 10 hacks to be a Bad developer](random/Top-10-hacks-to-be-a-Bad-Developer.md)<br>
       - [Jeff Bezos on Amazon Leadership principles](random/Amazon-Leadership-Principles-Jeff-Bezos-thought-process.md)<br>
       - [About Me](aboutme.md)<br>
+  - New Rules of Working, Learning and Life <br>
+    - [New Rules of Work](random/New Rules of Working.md)
 <br><br><br>
  **Author** : Kushal Luthra <br>

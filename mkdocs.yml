@@ -6,7 +6,7 @@ repo_name: data-engineering-101
 repo_url: https://github.com/kushal-luthra/data-engineering-101
 edit_uri: edit/main/docs/
 
-copyright: Copyright &copy; 2022 Kushal Luthra
+copyright: Copyright &copy; 2023 Kushal Luthra
 
 theme:
   name: material
@@ -57,6 +57,8 @@ nav:
       - LinkedIn Growth : random/LinkedIn growth.md
       - Top 10 hacks to be a Bad developer : random/Top-10-hacks-to-be-a-Bad-Developer.md
       - Jeff Bezos on Amazon Leadership principles : random/Amazon-Leadership-Principles-Jeff-Bezos-thought-process.md
+  - New Rules of Working, Learning and Life:
+        - New Rules of Work : random/New Rules of Working.md
   - About Me: aboutme.md
 
 extra:
