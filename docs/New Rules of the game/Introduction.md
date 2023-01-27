@@ -17,3 +17,6 @@ In the past, the pace of change has usually been stretched out over years or dec
 But information technology is unlike any other kind of technology that has come before it. With the advent of robots and machine learning, often called artificial intelligence or AI, technology has the ability to create more technology in ways that were previously the realm of science fiction. <br> 
 As we become an increasingly digital economy, we are undergoing a shift in the world of work that's as fundamental as the transition from an agricultural to an industrial economy.  <br>
 And it's happening at a blinding pace. This kind of big shift creates a lot of challenges in the work arena, but it also creates a range of opportunities if we can just understand what the new rules are. <br>
+
+<br><br><br>
+Credits : [Gary Bolles](https://www.linkedin.com/in/gbolles/?trk=lil_instructor) - [Program](https://www.linkedin.com/learning-login/share?account=2272706&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fthe-new-rules-of-work%3Ftrk%3Dshare_ent_url%26shareId%3Dt3tRwyBYTZ6df1PO5fdpMA%253D%253D)

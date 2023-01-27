@@ -96,3 +96,5 @@ You're always taking courses and researching topics that fascinate you and you'r
 That's something you can teach others as well.  <br>
 Remember, there are still many people who were following the old rules and who aren't achieving life as they'd hoped to, as the landscape of work has changed dramatically. <br> 
 You can help others to become agile navigators of the new rules as well. <br>
+<br><br><br>
+Credits : [Gary Bolles](https://www.linkedin.com/in/gbolles/?trk=lil_instructor) - [Program](https://www.linkedin.com/learning-login/share?account=2272706&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fthe-new-rules-of-work%3Ftrk%3Dshare_ent_url%26shareId%3Dt3tRwyBYTZ6df1PO5fdpMA%253D%253D)

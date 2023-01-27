@@ -184,4 +184,5 @@ It's never been more possible for a single passionate individual or group of pas
 Look, there's too many important things to do, and there aren't enough people and time to do them.  <br>
 That's why we all need to look for that meaning and purpose in our work, and you can do it too. <br>
 
+<br><br><br>
 Credits : [Gary Bolles](https://www.linkedin.com/in/gbolles/?trk=lil_instructor) - [Program](https://www.linkedin.com/learning-login/share?account=2272706&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fthe-new-rules-of-work%3Ftrk%3Dshare_ent_url%26shareId%3Dt3tRwyBYTZ6df1PO5fdpMA%253D%253D)

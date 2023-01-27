@@ -95,4 +95,6 @@ So, as a lifelong learner, here's some ways you can be investing your time the b
 - Consider engaging in one or more hobbies, which one day may become paid work for you. <br> 
 - And be sure to participate in leisure activities, like travel or sports. <br> 
 
-Together, these will define your portfolio of learning, which will go hand-in-hand with your portfolio of work
+Together, these will define your portfolio of learning, which will go hand-in-hand with your portfolio of work.
+<br><br><br>
+Credits : [Gary Bolles](https://www.linkedin.com/in/gbolles/?trk=lil_instructor) - [Program](https://www.linkedin.com/learning-login/share?account=2272706&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fthe-new-rules-of-work%3Ftrk%3Dshare_ent_url%26shareId%3Dt3tRwyBYTZ6df1PO5fdpMA%253D%253D)
