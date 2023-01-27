@@ -51,7 +51,7 @@
   - New Rules of the Game <br>
     - [New Rules of the Game - an Introduction](New Rules of the game/Introduction.md)<br>
     - [New Rules of Work](New Rules of the game/New Rules of Working.md)<br>
-    - [New Rules of Learning](New Rules of the game/New Rules of Working.md)<br>
+    - [New Rules of Learning](New Rules of the game/New Rules of Learning.md)<br>
     - [New Rules of Life](New Rules of the game/New Rules of Life.md)<br>
 <br><br><br>
  **Author** : Kushal Luthra <br>
